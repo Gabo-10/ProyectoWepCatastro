@@ -39,14 +39,14 @@
           <li class="nav-item {% if request.path == '/' %} active {% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Home' %}">Bitacora</a>
           </li>
-          <li class="nav-item {% if request.path == '/direccions/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Direccions' %}">Direccion</a>
+          <li class="nav-item {% if request.path == '/cartografias/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Cartografias' %}">Cartografia</a>
           </li>
           <li class="nav-item {% if request.path == '/ventanilla/' %} active {% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Ventanilla' %}">Venanilla</a>
           </li>
-          <li class="nav-item {% if request.path == '/cartografia/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Cartografia' %}">Cartografía</a>
+          <li class="nav-item {% if request.path == '/direccion/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Direccion' %}">Direccion</a>
           </li>
           <li class="nav-item {% if request.path|slice:':6' == '/inspeccion/' %} active {% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Inspeccion' %}">Inspección</a>

@@ -21,11 +21,11 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('direccions/', include('direccions.urls')),
+    path('cartografias/', include('cartografias.urls')),
     
     path('inspeccion/', include('inspeccion.urls')),
     
-    path('cartografia/', include('cartografia.urls')),
+    path('direccion/', include('direccion.urls')),
     
     path('ventanilla/', include('ventanilla.urls')),
     
