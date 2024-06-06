@@ -1,0 +1,188 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventanilla</title>
+    <link rel="stylesheet" href="{% static 'css/styleventani.css' %}">
+</head>
+<body>
+    <div class="contenedorventa">
+        <div class="formularioventa">
+            <h1>Ventanilla</h1>
+                <form method="POST" action="{% url 'Ventanilla' %}"> {% csrf_token %}
+                    <div class="button-container">
+                        <button type="button" id="prepararven">Preparar</button>
+                        <button type="submit" id="generarven">Generar</button>
+                        <button type="button" id="limpiarven">Limpiar</button>
+                    </div>                
+                    <div class="grid-container">
+                        <div class="campo">
+                            <label for="prog3">N°PROG:</label>
+                            <input type="text" id="txtprog" name="prog" value="{{ datos_formulario.prog }}" class="form-control" required>
+                        </div>
+                        <div class="campo">
+                            <label for="claveca3" >CLAVE CATASTRAL:</label>
+                            <input type="text" id="txtclavera" name="clavera" value="{{ datos_formulario.clavera }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="nombre3">NOMBRE:</label>
+                            <input type="text" id="txtnombre" name="nombre" value="{{ datos_formulario.nombre }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="curp3">CURP:</label>
+                            <input type="text" id="txtcurp" name="curp" value="{{ datos_formulario.curp }}"  class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="manzana3">MANZANA:</label>
+                            <input type="text" id="txtmanzana" name="manzana" value="{{ datos_formulario.manzana }}"  class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="lote3">LOTE:</label>
+                            <input type="text" id="txtlote" name="lote" value="{{ datos_formulario.lote }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="calle3">CALLE:</label>
+                            <input type="text" id="txtcalle" name="calle" value="{{ datos_formulario.calle }}"  class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="barrio3">BARRIO O COLONIA:</label>
+                            <input type="text" id="txtbarrio" name="barrio" value="{{ datos_formulario.barrio }}" class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="entidad3">ENTIDAD:</label>
+                            <input type="text" id="txtentidad" name="tentidad" value="{{ datos_formulario.tentidad }}" class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="municipio3">MUNICIPIO:</label>
+                            <input type="text" id="txtmunicipio" name="municipio" value="{{ datos_formulario.municipio }}" class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="certc3">CERT.CLAVE:</label>
+                            <input type="text" id="txtcert" name="cert" value="{{ datos_formulario.cert }}" class="form-control" >
+                        </div>
+                         <div class="campo">
+                            <label for="planomz3">CERT.DE PLANO MZ:</label>
+                            <input type="text" id="txtplanomz" name="planomz" value="{{ datos_formulario.planomz }}"  class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="topo3">LEVANTAMIENTO TOPO:</label>
+                            <input type="text" id="txttopo" name="topo" value="{{ datos_formulario.topo }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="linderos3">VERIFICACION DE LINDEROS:</label>
+                            <input type="text" id="txtlinderos" name="linderos" value="{{ datos_formulario.linderos }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="ident3">CONST DE IDENT.CATASTRAL:</label>
+                            <input type="text" id="txtident" name="ident" value="{{ datos_formulario.ident }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="ccvc3">C.C.V.C:</label>
+                            <input type="text" id="txtccvc" name="ccvc" value="{{ datos_formulario.ccvc }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="fecha3">FECHA:</label>
+                            <input type="text" id="txtfecha" name="fecha" value="{{ datos_formulario.fecha }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="folio3">FOLIO:</label>
+                            <input type="text" id="txtfolio" name="folio" value="{{ datos_formulario.folio }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="recibo3">N°RECIBO:</label>
+                            <input type="text" id="txtrecibo" name="recibo" value="{{ datos_formulario.recibo }}"  class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="importe3">IMPORTE:</label>
+                            <input type="text" id="txtimporte" name="importe"  value="{{ datos_formulario.importe }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="reviso3">REVISO:</label>
+                            <input type="text" id="txtreviso" name="treviso" value="{{ datos_formulario.treviso }}"  class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="motivo3">MOTIVO:</label>
+                            <input type="text" id="txtmotivo" name="motivo" value="{{ datos_formulario.motivo }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="soliservi3">SOLICITUD DE SERVICIO CATASTRAL(codigos):</label>
+                            <input type="text" id="txtsoliservi" name="soliservi" value="{{ datos_formulario.soliservi }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="terrreno3">SUPERFICIE TERRENO (M2):</label>
+                            <input type="text" id="txtterrreno" name="terreno" value="{{ datos_formulario.terreno }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="construc3">SUPERFICIE CONSTRUCCION RESULTANTE (M2):</label>
+                            <input type="text" id="txtconstruc" name="construc" value="{{ datos_formulario.construc }}"  class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="elaboracion3">FECHA ELABORACION:</label>
+                            <input type="text" id="txtelaboracion" name="elaboracion" value="{{ datos_formulario.elaboracion }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="atencion3">OBSERVACIONES ATENCION:</label>
+                            <input type="text" id="txtatencion" name="atencion" value="{{ datos_formulario.atencion }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="hora3">HORA DE RECEPCION:</label>
+                            <input type="text" id="txthora" name="hora" value="{{ datos_formulario.hora }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="pago3">PAGO:</label>
+                            <input type="text" id="txtpago" name="pago" value="{{ datos_formulario.pago }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="extras3">$EXTRA$:</label>
+                            <input type="text" id="txtextras" name="extras" value="{{ datos_formulario.extras }}" class="form-control" >
+                        </div>
+                    </div>
+                </form>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    <script>
+                        setTimeout(function() {
+                            var messages = document.querySelector('.messages');
+                            messages.style.display = 'none';
+                        }, 5000);
+                    </script>
+                {% endif %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlObtenerSiguienteId = "{% url 'obtener_siguiente_id' %}";
+
+            document.getElementById('prepararven').addEventListener('click', function() {
+                fetch(urlObtenerSiguienteId)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('txtprog').value = data.siguiente_id;  // Poner el siguiente ID en el campo de texto
+                        document.getElementById('txtfolio').value = data.siguiente_id;  // Poner el mismo siguiente ID en el campo de folio
+                     
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener el siguiente ID:', error);
+                    });
+            });
+        });
+    </script>
+    <script>src="{% static 'js/obtenerid.js' %}"</script>
+    <script src="{% static 'js/ventanilla.js' %}"></script>
+</body>
+</html>
+
+
+{% endblock %}

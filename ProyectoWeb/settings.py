@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'direccion',
     'ventanilla',
     'carro',
-    'crispy_forms',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
