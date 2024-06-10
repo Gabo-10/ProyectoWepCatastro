@@ -1,7 +1,7 @@
 from django.db import models
 
 class Ventanilla(models.Model):
-    nprog = models.CharField(max_length=25, primary_key=True)  
+    nprog = models.AutoField(primary_key=True)  # Cambiar a AutoField para que sea autoincremental
     clave_catastral = models.CharField(max_length=150)  
     nombre = models.CharField(max_length=150)  
     curp = models.CharField(max_length=25)  
