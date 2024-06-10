@@ -8,14 +8,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartografia</title>
-    <link rel="stylesheet" href="{% static 'css/stylecartoedi.css' %}">  
+    <title>Vitacora</title>
+    <link rel="stylesheet" href="{% static 'css/stylevitaedi.css' %}">  
   </head>
   
-  <body >
-    <div class="contenedorcarto"> 
-      <div class="formulariocarto">  
-        <h1>Cartografia</h1> 
+  <body>
+    <div class="contenedorvita"> 
+      <div class="formulariovita">  
+        <h1>Vitacora</h1> 
         <div class="buscador">
           <input type="search" placeholder="Buscar...">
           <button type="submit">Buscar</button>
@@ -61,9 +61,9 @@
                   <tbody>
                     {% for ventanilla in ventanilla  %}      
                 <tr>  
-                  <td><a href="/cartografia/edicionCarto/{{ ventanilla.nprog}}" class="btneditarcarto">
+                  <td><a href="/vitacora/edicionVita/{{ ventanilla.nprog}}" class="btneditarvita">
                   <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
-                  <a href="#" class="btneliminarcar" data-url="{% url 'eliminarcar' codigo=ventanilla.nprog %}">
+                  <a href="#" class="btneliminarvit" data-url="{% url 'eliminarvit' codigo=ventanilla.nprog %}">
                   <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
                   <td>{{ ventanilla.clave_catastral }}</td>
@@ -123,10 +123,8 @@
             }, 5000);
         </script>
       {% endif %}
-      <script src="{% static 'js/Careeditor.js' %}"></script> 
+      <script src="{% static 'js/Vitaeditor.js' %}"></script> 
   </body>
 </html>
-
-
 
 {% endblock %}

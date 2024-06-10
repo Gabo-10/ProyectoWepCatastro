@@ -47,7 +47,7 @@
         <ul class="navbar-nav mx-auto">
 
           <li class="nav-item {% if request.path == '/ventanilla/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Ventanilla' %}">Venanilla</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Ventanilla' %}">Ventanilla</a>
           </li>
 
           <li class="nav-item {% if request.path == '/cartografia/' %} active {% endif %} px-lg-4">
@@ -55,7 +55,7 @@
           </li>
 
           <li class="nav-item {% if request.path == '/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Home' %}">Bitacora</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'editorvit' %}">Vitacora</a>
           </li>
                             
           <li class="nav-item {% if request.path|slice:':6' == '/inspeccion/' %} active {% endif %} px-lg-4">
