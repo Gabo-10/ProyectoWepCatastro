@@ -1,34 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+class Inspeccion(models.Model):
+    nprog = models.AutoField(primary_key=True)  # Cambiar a AutoField para que sea autoincremental
+    clave_catastral = models.CharField(max_length=150)  
+    nombre = models.CharField(max_length=150)  
+    manzana = models.CharField(max_length=150)  
+    lote = models.CharField(max_length=150)  
+    calle = models.CharField(max_length=150)  
+    barrio_colonia = models.CharField(max_length=150)  
+    municipio = models.CharField(max_length=25)
+    fecha = models.CharField(max_length=25)
+    motivo = models.CharField(max_length=150)
+    
+    class Meta:
+        db_table = 'instpeccion'
+    
 
-class Categoria(models.Model):
-    
-    nombre=models.CharField(max_length=50)
-    created=models.DateTimeField(auto_now_add=True)
-    updated=models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        verbose_name='categotia'
-        verbose_name_plural='categorias'
-        
-    def __str__(self):
-        return self.nombre
-    
-class Post(models.Model):
-    
-    titulo=models.CharField(max_length=50)
-    contenido=models.CharField(max_length=50)
-    imagen=models.ImageField(upload_to='inspeccion', null=True, blank=True)
-    autor=models.ForeignKey(User, on_delete=models.CASCADE)
-    categorias=models.ManyToManyField(Categoria)
-    created=models.DateTimeField(auto_now_add=True)
-    updated=models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        verbose_name='post'
-        verbose_name_plural='posts'
-        
-    def __str__(self):
-        return self.titulo

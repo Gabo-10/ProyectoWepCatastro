@@ -1,0 +1,114 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspeccion</title>
+    <link rel="stylesheet" href="{% static 'css/styleventani.css' %}">
+</head>
+<body>
+    <div class="contenedorventa">
+        <div class="formularioventa">
+            <h1>Inspeccion</h1>
+                <form method="POST" action="{% url 'Inspeccion' %}"> {% csrf_token %}
+                    <div class="button-container">
+                        <button type="button" id="prepararven">Preparar</button>
+                        <button type="submit" id="generarven">Generar</button>
+                        <button type="button" id="limpiarven">Limpiar</button>
+                    </div>                
+                    <div class="grid-container">
+                        <div class="campo">
+                            <label for="prog3">N°PROG:</label>
+                            <input type="text" id="txtprog" name="prog" value="{{ datos_formulario.prog }}" class="form-control" required>
+                        </div>
+                        <div class="campo">
+                            <label for="claveca3" >CLAVE CATASTRAL:</label>
+                            <input type="text" id="txtclavera" name="clavera" value="{{ datos_formulario.clavera }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="nombre3">NOMBRE:</label>
+                            <input type="text" id="txtnombre" name="nombre" value="{{ datos_formulario.nombre }}" class="form-control" >
+                        </div>
+                       
+                        <div class="campo">
+                            <label for="manzana3">MANZANA:</label>
+                            <input type="text" id="txtmanzana" name="manzana" value="{{ datos_formulario.manzana }}"  class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="lote3">LOTE:</label>
+                            <input type="text" id="txtlote" name="lote" value="{{ datos_formulario.lote }}" class="form-control" >
+                        </div>
+                        <div class="campo">
+                            <label for="calle3">CALLE:</label>
+                            <input type="text" id="txtcalle" name="calle" value="{{ datos_formulario.calle }}"  class="form-control">
+                        </div>
+                        <div class="campo">
+                            <label for="barrio3">BARRIO O COLONIA:</label>
+                            <input type="text" id="txtbarrio" name="barrio" value="{{ datos_formulario.barrio }}" class="form-control">
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="municipio3">MUNICIPIO:</label>
+                            <input type="text" id="txtmunicipio" name="municipio" value="{{ datos_formulario.municipio }}" class="form-control">
+                        </div>
+                        
+                         
+                        <div class="campo">
+                            <label for="fecha3">FECHA:</label>
+                            <input type="text" id="txtfecha" name="fecha" value="{{ datos_formulario.fecha }}" class="form-control" >
+                        </div>
+                       
+                        <div class="campo">
+                            <label for="motivo3">MOTIVO:</label>
+                            <input type="text" id="txtmotivo" name="motivo" value="{{ datos_formulario.motivo }}" class="form-control" >
+                        </div>
+                       
+                    </div>
+                </form>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    <script>
+                        setTimeout(function() {
+                            var messages = document.querySelector('.messages');
+                            messages.style.display = 'none';
+                        }, 5000);
+                    </script>
+                {% endif %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlObtenerSiguienteId = "{% url 'obtener_siguiente_id' %}";
+
+            document.getElementById('prepararven').addEventListener('click', function() {
+                fetch(urlObtenerSiguienteId)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('txtprog').value = data.siguiente_id;  // Poner el siguiente ID en el campo de texto
+                        document.getElementById('txtfolio').value = data.siguiente_id;  // Poner el mismo siguiente ID en el campo de folio
+                     
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener el siguiente ID:', error);
+                    });
+            });
+        });
+    </script>
+    <script>src="{% static 'js/obtenerid.js' %}"</script>
+    <script src="{% static 'js/inspeccion.js' %}"></script>
+</body>
+</html>
+
+
+{% endblock %}
