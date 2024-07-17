@@ -1,5 +1,5 @@
 /* Estilos generales para el cuerpo del documento */
-#bg4 {
+#bg14 {
     font-family: sans-serif;
     background-repeat: no-repeat;
     background-position: center;
@@ -8,44 +8,32 @@
   }
   
   /* Estilos para el contenedor principal */
-  .contenedorventa {
+  .contenedorinspec {
+    margin-top: -3.2vw;
     width: 97vw;
-    height: 99vh;
+    height: 97vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   /* Estilos para el formulario */
-  .formularioventa {
-    margin-top: 24vw;
-    width: 85vw;
-    height: 138vh;
-    background-color: rgba(255, 255, 255, 0.884);
+  .formularioinspec {
+    width: 52vw;
+    height: 51vh;
+    background-color: rgba(255, 255, 255, 0.933);
     padding: 20px;
     border-radius: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.603);
     user-select: none;
   }
   
-/* Contenedor de grid para los poner en 2 columnas los campos */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 0px;
-  }
-  
-  /* Estilos para la primera columna */
-  .grid-container > :first-child {
-    margin-right: 1px; 
-  }
-
   /* Estilos para el título */
   h1 {
-    margin-top: 1px;
+    margin-top: -2px;
     text-align: center;
-    margin-bottom: 1px;
-    font-size: 40px;
+    margin-bottom: 55px;
+    font-size: 35px;
     margin-left: 1vw;
   }
   
@@ -53,7 +41,7 @@
   input {
     width: 20vw;
     padding: 1vh;
-    margin-left: 1vw;
+    margin-left: 0.5vw; /* Ajustado para mover más a la izquierda */
     margin-top: -1vw;
     margin-bottom: 1vw;
     border: 1px solid #676666;
@@ -65,51 +53,39 @@
     display: flex; 
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    margin-right: 34px; 
+    margin-top: 15px;
+    gap: 5px; /* Reducido el gap entre botones */
+    margin-bottom: 20px;
+    flex-wrap: wrap;
   }
   
   /* Estilos para los botones */
   button {
-    width: 25%;
-    padding: 10px;
-    margin: 10px;
-    margin-left: 70px;
-    border: none;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    width: 25%; /* Ancho del botón */
+    padding: 10px; /* Espaciado interno */
+    margin: 5px; /* Reducido el margen */
+    border: none; /* Sin borde */
+    background-color: #e8c289; /* Color de fondo */
+    color: #ffffff; /* Color de texto */
+    border-radius: 5px; /* Radio de borde */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    transition: background-color 0.2s ease-in-out; /* Transición de color de fondo */
+    margin-left: 10px; /* Reducido margen izquierdo para juntar más los botones */
   }
   
-  /* Estilos para cada botón */
-  #prepararven {
-    background-color: #e8c289;
+  
+  /* Estilos al pasar el ratón sobre el botón */
+  .cancelarre:hover {
+    background-color: #d12a2a;
   }
+  
+  .actualizarre:hover { 
+    background-color: #52c750;
+  }
+  
+  
 
   
-  #generarven{
-    background-color: #e8c289;
-  }
-
-  #limpiarven {
-    background-color: #e8c289;
-  }
-
-
-  /* Estilos al pasar el ratón sobre cada botón */
-  #prepararven:hover {
-    background-color: #d7aa56;
-  }
-
-  #generarven:hover {
-    background-color: #58d756;
-  }
-
-  #limpiarven:hover {
-    background-color: #56b0d7;
-  }
-
   /* Estilos para los campos de entrada */
   .campo {
     margin-bottom: -0.2vw;
@@ -118,7 +94,7 @@
     margin-top: 3%;
   }
   
-  /* Estilos para los label de los campos */
+  /* Estilos para los labels de los campos */
   .campo label {
     margin-left: -1.5vw;
     width: 16vw;
@@ -126,6 +102,7 @@
     padding: 6px;
     text-align: right;
     font-size: 12px;
-    margin-left: 8px;
+    margin-left: 7px;
   }
+  
   

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Gestión de datos {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styleeditreporte.css' %}">
+    </head>
+    <body id="bg14" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+        {% block body %}
+        <div class="contenedorinspec">
+            <div class="formularioinspec">
+                <h1>Agregar Reporte</h1>
+                <div class="card">
+                    <div class="card-body">         
+                        <form action="/inspeccion/editarReport/{{inspeccion.ID}}/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="grid-container">
+                                <div class="campo">
+                                    <label for="registro13">ID:</label>
+                                    <input type="text" id="txtregistrore" name="regisre" value="{{inspeccion.ID}}"  class="form-control"  required readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="prog13">N°PROG:</label>
+                                    <input type="text" id="txtproginspecre" name="progre" value="{{inspeccion.nprog}}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="nombre13">Nombre:</label>
+                                    <input type="text" id="txtnombrere" name="nombrere" value="{{ inspeccion.nombre }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="archivo_pdf13">Nuevo archivo PDF:</label>
+                                    <input type="file" id="txtarchivo_pdfre" name="archivo_pdfre" value="{{ inspeccion.archivo_pdf }}" class="form-control">
+                                </div>
+                                {% if inspeccion.archivo_pdf %}
+                                <p>Archivo actual: <a href="{{ inspeccion.archivo_pdf.url }}" target="_blank">  <img src="{% static 'images/pdf_icon.png' %}" alt="ver pdf" style="width: 24px; height: 24px;"></a></p>
+                            {% endif %}
+                            {{ form.archivo_pdf }}
+                            </div>
+                            <div class="button-container">
+                                <button type="submit" class="actualizarre">Actualizar</button>
+                                <button type="button" class="cancelarre" onclick="goToinspeciones()">Cancelar</button>        
+                            </div>
+                        </form>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            setTimeout(function() {
+                                var messages = document.querySelector('.messages');
+                                messages.style.display = 'none';
+                            }, 5000);
+                        </script>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/edicionreporte.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>

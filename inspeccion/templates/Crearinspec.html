@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspeccion</title>
+    <link rel="stylesheet" href="{% static 'css/stylecrearinspec.css' %}">  
+  </head>
+  
+  <body id="bg11" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+    <div class="contenedorcrearinsp"> 
+      <div class="formulariocrearinsp">  
+        <h1>Seleccion de registro</h1> 
+        <button type="button" class="btn-lista">
+          <img src="{% static 'images/lista_icon.png' %}" alt="Iconolista"> Lista de reportes
+        </button>
+        <div class="buscador">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit">Buscar</button>
+        </div>
+        <div class="tabla-contenedor">
+          <table id="tableedi">
+            <thead>
+                <thead>
+                    <tr>
+                      <th colspan="1"> Acciones </th> 
+                      <th >N°PROG</th>
+                      <th>Clave Catastral</th>
+                      <th>Nombre</th>
+                      <th>Curp</th>
+                      <th>Manzana</th>
+                      <th>Lote</th>
+                      <th>Calle</th>
+                      <th>Barrio o Colonia</th>
+                      <th>Entidad</th>
+                      <th>Municipio</th>
+                      <th>Cert.Clave</th>
+                      <th>Cert.de plano mz</th>
+                      <th>Levantamien topo</th>
+                      <th>Verificacion de linderos</th>
+                      <th>Const de ident.catastral</th>
+                      <th>c.c.c.v</th>
+                      <th>Fecha</th>
+                      <th>Folio</th>
+                      <th>N° Recibo</th>
+                      <th>Importe</th>
+                      <th>Reviso</th>
+                      <th>Motivo</th>
+                      <th>Solicitud de serviciocatastral(cod)</th>
+                      <th>Superficie terreno(M2)</th>
+                      <th>Superficie Construccion Resultante(M2)</th>
+                      <th>Fecha de elaboracion</th>
+                      <th>Observaciones aten.</th>
+                      <th>Hora de recepcion</th>
+                      <th>Pago</th>
+                      <th>$Extra$</th>               
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for ventanilla in ventanilla  %}      
+                <tr>  
+                  <td><a href="/inspeccion/edicionInspec/{{ ventanilla.nprog}}" class="btngeneins">
+                  <img src="{% static 'images/reporte_icon.png' %}" alt="Iconoedi"> Generar Reporte</a></td>
+                  <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
+                  <td>{{ ventanilla.clave_catastral }}</td>
+                  <td class="buscarcolumna">{{ ventanilla.nombre }}</td>
+                  <td>{{ ventanilla.curp }}</td>
+                  <td>{{ ventanilla.manzana }}</td>
+                  <td>{{ ventanilla.lote }}</td>
+                  <td>{{ ventanilla.calle }}</td>
+                  <td>{{ ventanilla.barrio_colonia }}</td>
+                  <td>{{ ventanilla.entidad }}</td> 
+                  <td>{{ ventanilla.municipio }}</td>
+                  <td>{{ ventanilla.cert_clave }}</td>
+                  <td>{{ ventanilla.cert_plano_mz }}</td>
+                  <td>{{ ventanilla.levantamiento_topo }}</td>
+                  <td>{{ ventanilla.verificacion_linderos }}</td>
+                  <td>{{ ventanilla.const_ident_catastral }}</td>
+                  <td>{{ ventanilla.ccvc }}</td>
+                  <td>{{ ventanilla.fecha }}</td>
+                  <td>{{ ventanilla.folio }}</td>
+                  <td>{{ ventanilla.recibo }}</td>
+                  <td>{{ ventanilla.importe }}</td>
+                  <td>{{ ventanilla.reviso }}</td>
+                  <td>{{ ventanilla.motivo }}</td>
+                  <td>{{ ventanilla.solicitud_servicio_catastral }}</td>
+                  <td>{{ ventanilla.superficie_terreno }}</td>
+                  <td>{{ ventanilla.superficie_construccion_resultante }}</td>
+                  <td>{{ ventanilla.fecha_elaboracion }}</td>
+                  <td>{{ ventanilla.observaciones_atencion }}</td>
+                  <td>{{ ventanilla.hora_recepcion }}</td>
+                  <td>{{ ventanilla.pago }}</td>
+                  <td>{{ ventanilla.extras }}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            setTimeout(function() {
+                var messages = document.querySelector('.messages');
+                messages.style.display = 'none';
+            }, 5000);
+        </script>
+      {% endif %}
+      <script src="{% static 'js/crearinspec.js' %}"></script> 
+  </body>
+</html>

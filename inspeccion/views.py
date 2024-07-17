@@ -1,68 +1,141 @@
 from django.shortcuts import render, redirect
-from inspeccion.models import Inspeccion
+from rest_framework.views import APIView
+from .models import Inspeccion, Ventanilla
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.views.decorators.http import require_GET
-
+from django.shortcuts import render, get_object_or_404, redirect
+from django.conf import settings
+import os
+from django.shortcuts import redirect, reverse
 
 
 def inspeccion(request):
-    if request.method == 'POST':
-        nprogv = request.POST.get('prog')  
-        clave_catastralv = request.POST.get('clavera')
-        nombrev = request.POST.get('nombre')
-        manzanav = request.POST.get('manzana')
-        lotev = request.POST.get('lote')
-        callev = request.POST.get('calle')
-        barrio_coloniav = request.POST.get('barrio')
-        municipiov = request.POST.get('municipio')
-        fechav = request.POST.get('fecha')
-        motivov = request.POST.get('motivo')
-        
-        # Crear un nuevo objeto Inspeccion y guardar en la base de datos
-        inspeccion_nueva = Inspeccion(
-            nprog=nprogv,
-            clave_catastral=clave_catastralv,
-            nombre=nombrev,
-            manzana=manzanav,
-            lote=lotev,
-            calle=callev,
-            barrio_colonia=barrio_coloniav,
-            municipio=municipiov,
-            fecha=fechav,
-            motivo=motivov,
-        )
-        inspeccion_nueva.save()
-        messages.success(request, '✅ Datos guardados exitosamente.', extra_tags='success-message')
-        return redirect('Inspeccion')
-     # Mantener los datos del formulario ingresados por el usuario
-    datos_formulario = {
-        'prog': request.POST.get('prog', ''),
-        'clavera': request.POST.get('clavera', ''),
-        'nombre': request.POST.get('nombre', ''),
-        'manzana': request.POST.get('manzana', ''),
-        'lote': request.POST.get('lote', ''),
-        'calle': request.POST.get('calle', ''),
-        'barrio': request.POST.get('barrio', ''),
-        'municipio': request.POST.get('municipio', ''),
-        'fecha': request.POST.get('fecha', ''),
-        'motivo': request.POST.get('motivo', ''),
-    }
+    inspecciones = Inspeccion.objects.all()
+    return render(request, 'inspecciones.html', {'inspecciones': inspecciones})
+
+class Crearinspec(APIView): 
+    template_name="Crearinspec.html"
+    def get(self, request):
+        ventanilla = Ventanilla.objects.all()
+        return render(request, self.template_name, {'ventanilla': ventanilla})
     
-    return render(request, 'inspeccion.html', {'datos_formulario': datos_formulario})
-@require_GET
-def obtener_siguiente_id(request):
-    try:
-        ultimo_registro = Inspeccion.objects.latest('nprog')
-        siguiente_id = int(ultimo_registro.nprog) + 1  # Suponiendo que `nprog` es numérico
-    except Inspeccion.DoesNotExist:
-        siguiente_id = 1  # Si no hay registros, el siguiente ID es 1
+def edicionInspec(request, codigo):
+    ventanilla = Ventanilla.objects.get(nprog=codigo)
+    return render(request, "edicionInspec.html", {"ventanilla": ventanilla})
+    
+def agregarInspec(request):
+    if request.method == 'POST':
+        IDi = request.POST.get('regisin')
+        nprogi_id = request.POST.get('progin')  
+        nombrei = request.POST.get('nombrein')
+        archivo_pdfi = request.FILES.get('archivo_pdfin')
+
+        # Verificar si todos los campos están llenos
+        if not all([IDi, nprogi_id, nombrei, archivo_pdfi]):
+            messages.error(request, '⚠️ Por favor, complete todos los campos del formulario.', extra_tags='warning-message')
+        else:
+            # Verificar si ya existe un reporte con el mismo nprogi_id
+            if Inspeccion.objects.filter(nprog_id=nprogi_id).exists():
+                messages.error(request, '❌ Ya se ha realizado un reporte para este número de programa.', extra_tags='error-message')
+            else:
+                # Obtener la instancia de Ventanilla correspondiente
+                nprogi = get_object_or_404(Ventanilla, pk=nprogi_id)
+
+                # Crear un nuevo objeto Inspeccion
+                nueva_inspeccion = Inspeccion(
+                    ID=IDi,
+                    nprog=nprogi,
+                    nombre=nombrei,
+                    archivo_pdf=archivo_pdfi,
+                )
+
+                # Guardar la nueva inspección en la base de datos
+                try:
+                    nueva_inspeccion.save()
+                    messages.success(request, '✅ Reporte guardado exitosamente.', extra_tags='success-message')
+                except Exception as e:
+                    messages.error(request, f'❌ Error al guardar los datos: {e}', extra_tags='error-message')
+
+            return redirect('Crearinspec')  # Redirige a la página deseada después de guardar
+    
+    # Obtener todos los datos del formulario
+    datos_formulario = {
+        'regisin': request.POST.get('regisin', ''),
+        'nombrein': request.POST.get('nombrein', ''),
+        'archivo_pdfin': request.FILES.get('archivo_pdfin', None),
+    }
+
+    # Obtener la instancia de Ventanilla correspondiente
+    ventanilla = Ventanilla.objects.get(pk=request.POST.get('progin'))
+
+    # Agregar el valor de progin al contexto
+    datos_formulario['progin'] = ventanilla.nprog
+
+    return render(request, 'edicionInspec.html', {'datos_formulario': datos_formulario, 'ventanilla': ventanilla})
+
+def obtener_siguiente_idins(request):
+    last_id = Inspeccion.objects.order_by('-ID').first()
+    if last_id is None:
+        siguiente_id = 'REP-1'
+    else:
+        last_id_number = int(last_id.ID.split('-')[-1])
+        siguiente_id_number = last_id_number + 1
+        siguiente_id = f'REP-{siguiente_id_number}'
     return JsonResponse({'siguiente_id': siguiente_id})
 
+def eliminarInspec(request, codigo):
+    inspeccion = get_object_or_404(Inspeccion, ID=codigo)
+    
+    if request.method == 'POST':
+        try:
+            # Obtén la ruta del archivo PDF
+            archivo_pdf_path = os.path.join(settings.MEDIA_ROOT, str(inspeccion.archivo_pdf))
+            
+            # Elimina el archivo PDF si existe
+            if os.path.exists(archivo_pdf_path):
+                os.remove(archivo_pdf_path)
+                
+            
+            inspeccion.delete()
+            
+            # Redirigir de vuelta a la página de inspecciones después de eliminar
+            return redirect('inspecciones')  
+        
+        except Exception as e:
+            # Manejo de errores si algo sale mal al eliminar
+            print(f"Error al eliminar inspección: {e}")
+            
+        
+    # Si la solicitud no es POST, simplemente renderiza la página de confirmación de eliminación
+    return render(request, 'inspecciones.html', {'inspeccion': inspeccion})
 
+def edicionReport(request, codigo):
+    reporte = Inspeccion.objects.get(ID=codigo)
+    return render(request, "editarReport.html", {"inspeccion": reporte})
+def editarReport(request, codigo):
+    if request.method == 'POST':
+        nombrer = request.POST.get('nombrere')
+        archivo_pdfr = request.FILES.get('archivo_pdfre')
 
+        try:
+            reporte = Inspeccion.objects.get(ID=codigo)
+            reporte.nombre = nombrer
 
-
-
+            # Manejo del archivo PDF
+            if archivo_pdfr:
+                # Eliminar el archivo anterior si existe
+                if reporte.archivo_pdf and os.path.isfile(reporte.archivo_pdf.path):
+                    os.remove(reporte.archivo_pdf.path)
+                reporte.archivo_pdf = archivo_pdfr
+            
+            reporte.save()
+            messages.success(request, '✅ ¡Reporte actualizado!', extra_tags='success-message')
+            return redirect('Inspeccion')
+        except Inspeccion.DoesNotExist:
+            messages.error(request, 'El reporte no existe')
+            return redirect('Inspeccion')
+    else:
+        messages.error(request, 'La solicitud no es válida')
+        return redirect('Inspeccion')

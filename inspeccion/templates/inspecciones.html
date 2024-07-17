@@ -1,0 +1,89 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspeccion</title>
+    <link rel="stylesheet" href="{% static 'css/styleinspecciones.css' %}">  
+  </head>
+  
+  <body >
+    <div class="contenedorinspec"> 
+      <div class="formularioinspec">  
+        <h1>Inspeccion</h1>
+        <button type="button" class="btn-generar">
+          <img src="{% static 'images/reporte_icon.png' %}" alt="Iconolista"> Generar
+        </button>
+        <div class="buscador">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit">Buscar</button>
+        </div>
+        <div class="tabla-contenedor">
+          <table id="tableedi">
+            <thead>
+                <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>N°PROG:</th>
+                      <th>Nombre</th>
+                      <th>Reporte</th>
+                      <th colspan="1"> Acciones </th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for inspeccion in inspecciones  %}      
+                <tr>  
+                  <td>{{ inspeccion.ID }} </td> 
+                  <td class="buscarcolumna">{{ inspeccion.nprog }}</td>
+                  <td >{{ inspeccion.nombre }}</td>
+                  <td>
+                    <a href="{{ inspeccion.archivo_pdf.url }}" target="_blank">
+                        <img src="{% static 'images/pdf_icon.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
+                    </a>
+                </td>
+                  <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarins">
+                    <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
+                    <a href="#" class="btneliminarins" data-url="{% url 'eliminarIns' codigo=inspeccion.ID %}" >
+                    <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
+                    
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="confirmacionEliminar" class="modal">
+      <div class="modal-contenido">
+        <p>¿Estás seguro de que deseas eliminar este reporte?</p>
+        <div>
+          <button id="confirmarEliminar">Confirmar</button>
+          <button id="cancelarEliminar">Cancelar</button>
+        </div>
+      </div>
+    </div>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            setTimeout(function() {
+                var messages = document.querySelector('.messages');
+                messages.style.display = 'none';
+            }, 5000);
+        </script>
+      {% endif %}
+      <script src="{% static 'js/Inspecciones.js' %}"></script> 
+  </body>
+</html>
+
+{% endblock %}

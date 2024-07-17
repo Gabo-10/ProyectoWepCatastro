@@ -1,19 +1,28 @@
+from ventanilla.models import Ventanilla
 from django.db import models
-from django.contrib.auth.models import User
 
 class Inspeccion(models.Model):
-    nprog = models.AutoField(primary_key=True)  # Cambiar a AutoField para que sea autoincremental
-    clave_catastral = models.CharField(max_length=150)  
-    nombre = models.CharField(max_length=150)  
-    manzana = models.CharField(max_length=150)  
-    lote = models.CharField(max_length=150)  
-    calle = models.CharField(max_length=150)  
-    barrio_colonia = models.CharField(max_length=150)  
-    municipio = models.CharField(max_length=25)
-    fecha = models.CharField(max_length=25)
-    motivo = models.CharField(max_length=150)
-    
-    class Meta:
-        db_table = 'instpeccion'
-    
+    id_prefix = 'REP-'  # Prefijo deseado para el ID
+    ID = models.CharField(max_length=10, primary_key=True)
+    nprog = models.ForeignKey(Ventanilla, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=255)
+    archivo_pdf = models.FileField(upload_to='media/')
 
+
+    class Meta:
+        db_table = 'inspeccion'
+
+    def save(self, *args, **kwargs):
+        if self.ID is None:
+            self.ID = ''  # Inicializa self.ID si es None
+
+        if not self.ID.startswith(self.id_prefix):
+            last_id = Inspeccion.objects.order_by('-ID').first()
+            if last_id is None or last_id.ID is None:
+                self.ID = f'{self.id_prefix}1'
+            else:
+                last_id_number = int(last_id.ID.split(self.id_prefix)[-1])
+                new_id_number = last_id_number + 1
+                self.ID = f'{self.id_prefix}{new_id_number}'
+        
+        super().save(*args, **kwargs)

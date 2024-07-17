@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Gestión de datos {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styleedicioninspec.css' %}">
+    </head>
+    <body id="bg13" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+        {% block body %}
+        <div class="contenedorinspec">
+            <div class="formularioinspec">
+                <h1>Agregar Reporte</h1>
+                <div class="card">
+                    <div class="card-body">         
+                        <form method="POST" action="{% url 'AgregarInspec' %}" enctype="multipart/form-data"> {% csrf_token %}
+                            <div class="grid-container">
+                                <div class="campo">
+                                    <label for="registro13">ID:</label>
+                                    <input type="text" id="txtregistro" name="regisin" value="{{ datos_formulario.regisin }}"  class="form-control"  required readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="prog13">N°PROG:</label>
+                                    <input type="text" id="txtproginspec" name="progin" value="{{ ventanilla.nprog }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="nombre13">Nombre:</label>
+                                    <input type="text" id="txtnombre" name="nombrein" value="{{ datos_formulario.nombrein }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="archivo_pdf13">Archivo PDF:</label>
+                                    <input type="file" id="txtarchivo_pdf" name="archivo_pdfin" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="button-container">
+                                <button type="button" id="prepararins">Preparar</button>
+                                <button type="submit" class="agregarins">Agregar Reporte</button>
+                                <button type="button" class="cancelarins" onclick="goToediinspec()">Cancelar</button>        
+                            </div>
+                        </form>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            setTimeout(function() {
+                                var messages = document.querySelector('.messages');
+                                messages.style.display = 'none';
+                            }, 5000);
+                        </script>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlObtenerSiguienteId = "{% url 'obtener_siguiente_idins' %}";
+        
+                document.getElementById('prepararins').addEventListener('click', function() {
+                    fetch(urlObtenerSiguienteId)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('txtregistro').value = data.siguiente_id;  
+                        })
+                        .catch(error => {
+                            console.error('Error al obtener el siguiente ID:', error);
+                        });
+                });
+            });
+        </script>
+        <script src="{% static 'js/edicioninspec.js' %}"></script>
+        <script src="{% static 'js/obteneridins.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>
