@@ -1,12 +1,4 @@
-/* Estilos generales para el cuerpo del documento */
-#bg4 {
-    font-family: sans-serif;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-  
+ 
   /* Estilos para el contenedor principal */
   .contenedorventa {
     width: 97vw;
@@ -18,7 +10,7 @@
   
   /* Estilos para el formulario */
   .formularioventa {
-    margin-top: 24vw;
+    margin-top: 27vw;
     width: 85vw;
     height: 138vh;
     background-color: rgba(255, 255, 255, 0.884);
@@ -128,4 +120,23 @@
     font-size: 12px;
     margin-left: 8px;
   }
-  
+  .campo-input {
+    width: 91%; /* Ajusta el ancho según tus necesidades */
+    margin-bottom: 0.5vw;
+    display: flex;
+    align-items: center;
+    margin-top: -3%;
+}
+
+.success-message {
+  background-color: #d4edda; /* Color de fondo verde claro */
+  color: #155724; /* Color de texto verde oscuro */
+  border: 1px solid #c3e6cb; /* Borde verde */
+  padding: 7px; /* Espacio alrededor del mensaje */
+  margin-bottom: 10px; /* Espacio debajo del mensaje */
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: -713px;
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center;
+}
