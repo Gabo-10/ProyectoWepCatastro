@@ -57,7 +57,7 @@ input {
   border-radius: 4px; 
   cursor: pointer; 
   margin-left: 59vw; 
-  margin-top: 3%;
+  margin-top: -3vh;
   margin-bottom: 3.5vh;
 }
 .btn-generar:hover {
