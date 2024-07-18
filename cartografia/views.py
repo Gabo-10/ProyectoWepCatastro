@@ -22,7 +22,7 @@ def eliminarCarto(request, codigo):
     ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
     if request.method == 'POST':
         ventanilla.delete()
-        messages.success(request, '✅ El registro ha sido eliminado correctamente.', extra_tags='success-messagess')
+        messages.success(request, '✅ El registro ha sido eliminado correctamente.', extra_tags='success-messages')
         return redirect('editorcar')
     return render(request, 'Careditor.html', {'ventanilla': ventanilla})  
 
