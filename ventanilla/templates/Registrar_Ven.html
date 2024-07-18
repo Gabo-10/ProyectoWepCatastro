@@ -68,12 +68,12 @@
                             <label for="tramite" style="margin-right: 2px;"  >TRAMITE:</label>
                             <select id="tramite" name="tramite"  class="form-control campo-input"  required>
                                 <option value="" {% if not datos_formulario.tramite %}selected{% endif %}>Selecciona un trámite</option>
-                                <option value="cert_clave" {% if datos_formulario.tramite == "cert_clave" %}selected{% endif %}>Certificado de Clave</option>
-                                <option value="cert_plano_mz" {% if datos_formulario.tramite == "cert_plano_mz" %}selected{% endif %}>Certificado de Plano Mz</option>
-                                <option value="levantamiento_topo" {% if datos_formulario.tramite == "levantamiento_topo" %}selected{% endif %}>Levantamiento Topográfico</option>
-                                <option value="verificacion_linderos" {% if datos_formulario.tramite == "verificacion_linderos" %}selected{% endif %}>Verificación de Linderos</option>
-                                <option value="const_ident_catastral" {% if datos_formulario.tramite == "const_ident_catastral" %}selected{% endif %}>Constancia de Identificación Catastral</option>
-                                <option value="ccvc" {% if datos_formulario.tramite == "ccvc" %}selected{% endif %}>CCVC</option>
+                                <option value="CERTIFICADO DE CLAVE" {% if datos_formulario.tramite == "CERTIFICADO DE CLAVE" %}selected{% endif %}>CERTIFICADO DE CLAVE</option>
+                                <option value="CERTIFICADO DE PLANO MZ" {% if datos_formulario.tramite == "CERTIFICADO DE PLANO MZ" %}selected{% endif %}>CERTIFICADO DE PLANO MZ</option>
+                                <option value="LEVANTAMINETO TOPOGRÁFICO" {% if datos_formulario.tramite == "LEVANTAMINETO TOPOGRÁFICO" %}selected{% endif %}>LEVANTAMINETO TOPOGRÁFICO</option>
+                                <option value="vVERIFICACIÓN DE LINDEROS" {% if datos_formulario.tramite == "VERIFICACIÓN DE LINDEROS" %}selected{% endif %}>VERIFICACIÓN DE LINDEROS</option>
+                                <option value="CONSTANCIA DE IDENTIFICACIÓN CATASTRAL" {% if datos_formulario.tramite == "CONSTANCIA DE IDENTIFICACIÓN CATASTRAL" %}selected{% endif %}>CONSTANCIA DE IDENTIFICACIÓN CATASTRAL</option>
+                                <option value="ccvc" {% if datos_formulario.tramite == "C.C.V.C" %}selected{% endif %}>C.C.V.C</option>
                             </select>
                         </div>
                         <div class="campo">
