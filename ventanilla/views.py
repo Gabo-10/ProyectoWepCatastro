@@ -21,12 +21,7 @@ def ventanilla(request):
         barrio_coloniav = request.POST.get('barrio')
         entidadv = request.POST.get('tentidad')
         municipiov = request.POST.get('municipio')
-        cert_clavev = request.POST.get('cert')
-        cert_plano_mzv = request.POST.get('planomz')
-        levantamiento_topov = request.POST.get('topo')
-        verificacion_linderosv = request.POST.get('linderos')
-        const_ident_catastralv = request.POST.get('ident')
-        ccvcv = request.POST.get('ccvc')
+        tramitev = request.POST.get('tramite')
         fechav = request.POST.get('fecha')
         foliov = request.POST.get('folio')
         recibov = request.POST.get('recibo')
@@ -54,12 +49,7 @@ def ventanilla(request):
             barrio_colonia=barrio_coloniav,
             entidad=entidadv,
             municipio=municipiov,
-            cert_clave=cert_clavev,
-            cert_plano_mz=cert_plano_mzv,
-            levantamiento_topo=levantamiento_topov,
-            verificacion_linderos=verificacion_linderosv,
-            const_ident_catastral=const_ident_catastralv,
-            ccvc=ccvcv,
+            tramite=tramitev,
             fecha=fechav,
             folio=foliov,
             recibo=recibov,
@@ -91,12 +81,7 @@ def ventanilla(request):
         'barrio': request.POST.get('barrio', ''),
         'tentidad': request.POST.get('tentidad', ''),
         'municipio': request.POST.get('municipio', ''),
-        'cert': request.POST.get('cert', ''),
-        'planomz': request.POST.get('planomz', ''),
-        'topo': request.POST.get('topo', ''),
-        'linderos': request.POST.get('linderos', ''),
-        'ident': request.POST.get('ident', ''),
-        'ccvc': request.POST.get('ccvc', ''),
+        'tramite': request.POST.get('tramite', ''),
         'fecha': request.POST.get('fecha', ''),
         'folio': request.POST.get('folio', ''),
         'recibo': request.POST.get('recibo', ''),

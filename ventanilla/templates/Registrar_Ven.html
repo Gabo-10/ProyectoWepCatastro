@@ -65,28 +65,16 @@
                             <input type="text" id="txtmunicipio" name="municipio" value="{{ datos_formulario.municipio }}" class="form-control">
                         </div>
                         <div class="campo">
-                            <label for="certc3">CERT.CLAVE:</label>
-                            <input type="text" id="txtcert" name="cert" value="{{ datos_formulario.cert }}" class="form-control" >
-                        </div>
-                         <div class="campo">
-                            <label for="planomz3">CERT.DE PLANO MZ:</label>
-                            <input type="text" id="txtplanomz" name="planomz" value="{{ datos_formulario.planomz }}"  class="form-control">
-                        </div>
-                        <div class="campo">
-                            <label for="topo3">LEVANTAMIENTO TOPO:</label>
-                            <input type="text" id="txttopo" name="topo" value="{{ datos_formulario.topo }}" class="form-control" >
-                        </div>
-                        <div class="campo">
-                            <label for="linderos3">VERIFICACION DE LINDEROS:</label>
-                            <input type="text" id="txtlinderos" name="linderos" value="{{ datos_formulario.linderos }}" class="form-control" >
-                        </div>
-                        <div class="campo">
-                            <label for="ident3">CONST DE IDENT.CATASTRAL:</label>
-                            <input type="text" id="txtident" name="ident" value="{{ datos_formulario.ident }}" class="form-control" >
-                        </div>
-                        <div class="campo">
-                            <label for="ccvc3">C.C.V.C:</label>
-                            <input type="text" id="txtccvc" name="ccvc" value="{{ datos_formulario.ccvc }}" class="form-control" >
+                            <label for="tramite">TRAMITE:</label>
+                            <select id="tramite" name="tramite" class="form-control">
+                                <option value="" {% if not datos_formulario.tramite %}selected{% endif %}>Selecciona un trámite</option>
+                                <option value="cert_clave" {% if datos_formulario.tramite == "cert_clave" %}selected{% endif %}>Certificado de Clave</option>
+                                <option value="cert_plano_mz" {% if datos_formulario.tramite == "cert_plano_mz" %}selected{% endif %}>Certificado de Plano Mz</option>
+                                <option value="levantamiento_topo" {% if datos_formulario.tramite == "levantamiento_topo" %}selected{% endif %}>Levantamiento Topográfico</option>
+                                <option value="verificacion_linderos" {% if datos_formulario.tramite == "verificacion_linderos" %}selected{% endif %}>Verificación de Linderos</option>
+                                <option value="const_ident_catastral" {% if datos_formulario.tramite == "const_ident_catastral" %}selected{% endif %}>Constancia de Identificación Catastral</option>
+                                <option value="ccvc" {% if datos_formulario.tramite == "ccvc" %}selected{% endif %}>CCVC</option>
+                            </select>
                         </div>
                         <div class="campo">
                             <label for="fecha3">FECHA:</label>
