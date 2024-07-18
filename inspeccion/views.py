@@ -78,12 +78,12 @@ def agregarInspec(request):
 def obtener_siguiente_idins(request):
     last_id = Inspeccion.objects.order_by('-ID').first()
     if last_id is None:
-        siguiente_id = 'REP-1'
+        siguiente_idins = 'REP-1'
     else:
         last_id_number = int(last_id.ID.split('-')[-1])
         siguiente_id_number = last_id_number + 1
-        siguiente_id = f'REP-{siguiente_id_number}'
-    return JsonResponse({'siguiente_id': siguiente_id})
+        siguiente_idins = f'REP-{siguiente_id_number}'
+    return JsonResponse({'siguiente_idins': siguiente_idins})
 
 def eliminarInspec(request, codigo):
     inspeccion = get_object_or_404(Inspeccion, ID=codigo)
