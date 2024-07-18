@@ -65,7 +65,7 @@
                             <input type="text" id="txtmunicipio" name="municipio" value="{{ datos_formulario.municipio }}" class="form-control">
                         </div>
                         <div class="campo">
-                            <label for="tramite" style="margin-left: -10px;"  >TRAMITE:</label>
+                            <label for="tramite" style="margin-right: 2px;"  >TRAMITE:</label>
                             <select id="tramite" name="tramite"  class="form-control campo-input"  required>
                                 <option value="" {% if not datos_formulario.tramite %}selected{% endif %}>Selecciona un trámite</option>
                                 <option value="cert_clave" {% if datos_formulario.tramite == "cert_clave" %}selected{% endif %}>Certificado de Clave</option>

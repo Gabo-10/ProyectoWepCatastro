@@ -10,9 +10,9 @@
   
   /* Estilos para el formulario */
   .formularioventa {
-    margin-top: 27vw;
+    margin-top: 20vw;
     width: 85vw;
-    height: 138vh;
+    height: 118vh;
     background-color: rgba(255, 255, 255, 0.884);
     padding: 20px;
     border-radius: 50px;
@@ -121,12 +121,12 @@
     margin-left: 8px;
   }
   .campo-input {
-    width: 91%; /* Ajusta el ancho según tus necesidades */
+    width: 103%; /* Ajusta el ancho según tus necesidades */
     margin-bottom: 0.5vw;
     display: flex;
     align-items: center;
     margin-top: -3%;
-    margin-left: 2.5vw;
+    margin-left: 1.1vw;
   }
   
 
@@ -139,7 +139,7 @@
   margin-bottom: 10px; /* Espacio debajo del mensaje */
   margin-right: 40px;
   margin-left: 3px;
-  margin-top: -713px;
+  margin-top: -924px;
   border-radius: 5px; /* Bordes redondeados */
   text-align: center;
 }
