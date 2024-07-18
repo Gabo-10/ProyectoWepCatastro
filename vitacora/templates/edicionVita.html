@@ -57,28 +57,16 @@
                                     <input type="text" id="municipiovita" name="municipiovita" value="{{ ventanilla.municipio }}" class="form-control">
                                 </div>
                                 <div class="campo">
-                                    <label for="certc3">CERT.CLAVE:</label>
-                                    <input type="text" id="certvita" name="certvita" value="{{ ventanilla.cert_clave }}" class="form-control" >
-                                </div>
-                                 <div class="campo">
-                                    <label for="planomz3">CERT.DE PLANO MZ:</label>
-                                    <input type="text" id="planomzvita" name="planomzvita" value="{{ ventanilla.cert_plano_mz }}"  class="form-control">
-                                </div>
-                                <div class="campo">
-                                    <label for="topo3">LEVANTAMIENTO TOPO:</label>
-                                    <input type="text" id="topovita" name="topovita" value="{{ ventanilla.levantamiento_topo }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="linderos3">VERIFICACION DE LINDEROS:</label>
-                                    <input type="text" id="linderosvita" name="linderosvita" value="{{ ventanilla.verificacion_linderos }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="ident3">CONST DE IDENT.CATASTRAL:</label>
-                                    <input type="text" id="identvita" name="identvita" value="{{ ventanilla.const_ident_catastral }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="ccvc3">C.C.V.C:</label>
-                                    <input type="text" id="ccvcvita" name="ccvcvita" value="{{ ventanilla.ccvc }}" class="form-control" >
+                                    <label for="tramite" style="margin-right: 2px;"  >TRAMITE:</label>
+                                    <select id="tramitevita" name="tramitevita"  class="form-control campo-input"  required>
+                                        <option value="" {% if not datos_formulario.tramite %}selected{% endif %}>Selecciona un trámite</option>
+                                        <option value="CERTIFICADO DE CLAVE" {% if datos_formulario.tramite == "CERTIFICADO DE CLAVE" %}selected{% endif %}>CERTIFICADO DE CLAVE</option>
+                                        <option value="CERTIFICADO DE PLANO MZ" {% if datos_formulario.tramite == "CERTIFICADO DE PLANO MZ" %}selected{% endif %}>CERTIFICADO DE PLANO MZ</option>
+                                        <option value="LEVANTAMINETO TOPOGRÁFICO" {% if datos_formulario.tramite == "LEVANTAMINETO TOPOGRÁFICO" %}selected{% endif %}>LEVANTAMINETO TOPOGRÁFICO</option>
+                                        <option value="VERIFICACIÓN DE LINDEROS" {% if datos_formulario.tramite == "VERIFICACIÓN DE LINDEROS" %}selected{% endif %}>VERIFICACIÓN DE LINDEROS</option>
+                                        <option value="CONSTANCIA DE IDENTIFICACIÓN CATASTRAL" {% if datos_formulario.tramite == "CONSTANCIA DE IDENTIFICACIÓN CATASTRAL" %}selected{% endif %}>CONSTANCIA DE IDENTIFICACIÓN CATASTRAL</option>
+                                        <option value="ccvc" {% if datos_formulario.tramite == "C.C.V.C" %}selected{% endif %}>C.C.V.C</option>
+                                    </select>
                                 </div>
                                 <div class="campo">
                                     <label for="fecha3">FECHA:</label>

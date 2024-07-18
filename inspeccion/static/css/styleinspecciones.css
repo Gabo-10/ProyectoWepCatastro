@@ -259,14 +259,14 @@ tbody tr:nth-child(even) {
 
 
 .success-message {
-  background-color: #d4edda; /* Color de fondo verde claro */
-  color: #155724; /* Color de texto verde oscuro */
-  border: 1px solid #c3e6cb; /* Borde verde */
-  padding: 7px; /* Espacio alrededor del mensaje */
-  margin-bottom: 10px; /* Espacio debajo del mensaje */
+  background-color: #d4edda; 
+  color: #155724; 
+  border: 1px solid #c3e6cb; 
+  padding: 9px; 
+  margin-bottom: 88vh; 
   margin-right: 40px;
   margin-left: 3px;
-  margin-top: -713px;
-  border-radius: 5px; /* Bordes redondeados */
+  margin-top: -700px;
+  border-radius: 5px; 
   text-align: center;
 }

@@ -42,12 +42,7 @@ def editarVita(request, codigo):
         barriov = request.POST.get('barriovita')
         entidadv = request.POST.get('entidadvita')
         municipiov = request.POST.get('municipiovita')
-        certv = request.POST.get('certvita')
-        planomzv = request.POST.get('planomzvita')
-        topov = request.POST.get('topovita')
-        linderosv = request.POST.get('linderosvita')
-        identv = request.POST.get('identvita')
-        ccvcv = request.POST.get('ccvcvita')
+        tramitev = request.POST.get('tramitevita')
         fechav = request.POST.get('fechavita')
         foliov = request.POST.get('foliovita')
         recibov = request.POST.get('recibovita')
@@ -74,12 +69,7 @@ def editarVita(request, codigo):
             vita.barrio_colonia = barriov
             vita.entidad = entidadv
             vita.municipio = municipiov
-            vita.cert_clave = certv
-            vita.cert_plano_mz = planomzv 
-            vita.levantamiento_topo = topov 
-            vita.verificacion_linderos = linderosv
-            vita.const_ident_catastral = identv 
-            vita.ccvc = ccvcv 
+            vita.tramite = tramitev
             vita.fecha = fechav 
             vita.folio = foliov
             vita.recibo = recibov 
