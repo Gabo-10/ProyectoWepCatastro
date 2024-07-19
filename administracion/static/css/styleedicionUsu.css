@@ -1,0 +1,115 @@
+/* Estilos generales para el cuerpo del documento */
+#bg3 {
+    font-family: sans-serif; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover; 
+    background-attachment: fixed; 
+    font-family: sans-serif; 
+}
+
+/* Estilos para el contenedor principal */
+.contenedoredici {
+    width: 99vw;  
+    height: 96vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* Estilos para el formulario*/
+.formularioedici {
+    width: 41vw;  
+    height: 53vh; 
+    background-color: rgba(255, 255, 255, 0.927);
+    padding: 20px;  
+    border-radius: 50px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.603); 
+    user-select: none;  
+
+}
+
+/* Estilos para el título */
+h1 {
+    margin-top: 17px;
+    text-align: center; 
+    margin-bottom: 60px; 
+    font-size:40px;  
+    margin-left: 1vw;
+}
+
+  
+/* Estilos para los campos de entrada */
+input {
+    width: 20vw; 
+    padding: 1vh;  
+    margin-left: 2vw; 
+    margin-top: -1vw;
+    margin-bottom: 1vw; 
+    border: 1px solid #676666; 
+    border-radius: 5px; 
+}
+
+
+/* Estilos para los botones */
+button {
+    width: 25%; 
+    padding: 10px; 
+    margin: 10px; 
+    border: none; 
+    margin-left: 38%; 
+    background-color: #e8c289; 
+    color: #ffffff; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.2s ease-in-out;   
+}
+
+
+/* Estilos al pasar el ratón sobre el botón */
+button:hover {
+    background-color: #491411; 
+}
+
+
+/* Estilos para los campos de entrada */
+.campo {
+    margin-bottom: 1vw;
+    display: flex; 
+    align-items: center; 
+    margin-top: 3%;
+ 
+} 
+/* Estilos para los label de los campos  */
+.campo label {
+    margin-left: 6vw; 
+    width: 4vw; 
+    margin-top: -4vh;
+    padding: 6px;  
+}
+
+/* Estilos para los iconos de mostrar contraseña */
+.password-container {
+    position: relative;
+}
+
+.password-container .togglePassword {
+    position: absolute;
+    left: 155px;
+    top: 10%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.password-container .eye-icon {
+    width: 20px; 
+    height: auto;
+}
+
+.eye-icon {
+   
+    outline: none; 
+}
+

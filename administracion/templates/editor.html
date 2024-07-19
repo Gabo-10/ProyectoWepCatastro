@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="{% static 'css/styleditor.css' %}">  
+  </head>
+  
+  <body id="bg2" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+    <div class="contenedoredi"> 
+      <div class="formularioedi">  
+        <h1>Usuarios</h1>  
+        <div class="buscador">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit">Buscar</button>
+        </div>
+        <div class="tabla-contenedor">
+          <table id="tableedi">
+            <thead>
+              <tr>
+                <th class="buscarcolumna">Folio</th>
+                <th class="buscarcolumna">Nombres</th>
+                <th class="buscarcolumna">Apellidos</th>
+                <th class="buscarcolumna">Usuario</th>
+                <th colspan="3"> Opciones </th> 
+              </tr>
+            </thead>
+            <tbody>
+              {% for usuario in usuarios %}
+                <tr>  
+                  <td class="buscarcolumna">{{ usuario.idUsuarios }}</td>
+                  <td class="buscarcolumna">{{ usuario.nombresu }}</td>
+                  <td class="buscarcolumna">{{ usuario.apellidosu }}</td>
+                  <td class="buscarcolumna">{{ usuario.usuariou }}</td>
+                  <td><a href="/administracion/edicionContra/{{ usuario.idUsuarios}}" class="btncambiar">
+                      <img src="{% static 'images/contrasena.png' %}" alt="Iconocambiar"> Cambiar Contraseña</a>
+                  <a href="/administracion/edicionUsuario/{{ usuario.idUsuarios}}" class="btneditaredi">
+                      <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
+                  <a href="#" class="btneliminaredi" data-url="{% url 'eliminar' codigo=usuario.idUsuarios %}">
+                      <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="confirmacionEliminar" class="modal">
+      <div class="modal-contenido">
+        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+        <div>
+          <button id="confirmarEliminar">Confirmar</button>
+          <button id="cancelarEliminar">Cancelar</button>
+        </div>
+      </div>
+    </div>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            setTimeout(function() {
+                var messages = document.querySelector('.messages');
+                messages.style.display = 'none';
+            }, 5000);
+        </script>
+      {% endif %}
+    <script src="{% static 'js/editor.js' %}"></script> 
+  </body>
+</html>

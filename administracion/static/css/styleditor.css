@@ -1,0 +1,259 @@
+/* Estilos generales para el cuerpo del documento */
+#bg2 {
+  font-family: sans-serif; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  background-size: cover; 
+  background-attachment: fixed; 
+  font-family: sans-serif; 
+}
+
+/* Estilos para el contenedor principal */
+.contenedoredi {
+  width: 99vw;  
+  height: 96vh; 
+  display: flex;  
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* Estilos para el formulario de edicion de usuarios */
+.formularioedi {
+  width: 90vw;  
+  height: 70vh; 
+  background-color: rgba(255, 255, 255, 0.889); 
+  padding: 20px;  
+  border-radius: 50px;  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.603);
+  user-select: none;  
+
+}
+
+/* Estilos para el título */
+h1 {
+  margin-top: -1px;
+  text-align: center; 
+  margin-bottom: 75px; 
+  font-size:40px; 
+}
+
+
+/* Estilos para el campo de entrada de buscador */
+input {
+  width: 20vw;  
+  padding: 1vh;  
+  margin-left: 2vw; 
+  margin-bottom: 1vw; 
+  border-radius: 5px; 
+}
+
+
+/* Estilos para los botones */
+button {
+  width: 25%; 
+  padding: 10px; 
+  margin: 10px; 
+  margin-left: 16%; 
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+
+/* Estilos para el buscador */
+.buscador {
+  display: flex;
+  align-items: center;
+  width: 40vw;
+  height: 4vh;
+  margin-left: 6vw;
+  margin-top: -4%;
+  border: 1px solid #491411;
+  border-radius: 5px;
+  justify-content: space-between;
+}
+  
+  
+.buscador input {
+  width: 40vw;
+  height: 1vh;
+  margin: auto;
+  border: #000000;
+  outline: none;
+}
+
+/* Estilos para el boton de buscador */
+.buscador button {
+  padding: 1%;
+  width: 7vw;
+  height: 3.5vh;
+  background-color: #491411;
+  color: #fff;
+  border: #491411;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Estilos para la tabla */
+table {
+  width: 80vw;
+  border-collapse: collapse;
+  margin-right: 1vw;
+}
+
+
+/* Estilos para las celdas */
+th, td {
+  border: 1px solid #ccc;
+  padding: 5.5px; 
+  text-align: center;
+  width: 30px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+  
+th {
+  background-color: #f2f2f2;
+}
+  
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tabla-contenedor {
+  margin-top: 20px;
+  max-height: 500px; 
+  overflow-y: auto; 
+  margin-left: 5.5%;
+}
+
+.selected-row {
+  outline: 4px solid #b99866; 
+}
+
+ 
+/* Estilos para el botón eliminar usuario*/
+.btneliminaredi {
+  background-color: #d12a2a; 
+  color: #ffffff; 
+  padding: 4.5px 11px; 
+  text-decoration: none;
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer; 
+}
+
+/* Estilos cuando se pasa el cursor sobre el botón */
+.btneliminaredi:hover {
+  background-color: #511512; 
+}
+
+
+/* Estilos para el botón eliminar usuario*/
+.btneditaredi {
+  background-color: #2a99d1; 
+  color: #ffffff; 
+  padding: 4.5px 11px; 
+  text-decoration: none; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer; 
+}
+
+/* Estilos cuando se pasa el cursor sobre el botón */
+.btneditaredi:hover {
+  background-color: #511512; 
+}
+
+
+/* Estilos para el botón  cambiar contraseña*/
+.btncambiar {
+  background-color: #dac33f; 
+  color: #ffffff;
+  padding: 4.5px 11px; 
+  text-decoration: none; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer; 
+}
+
+/* Estilos cuando se pasa el cursor sobre el botón */
+.btncambiar:hover {
+  background-color: #511512; /* Color de fondo rojo más oscuro */
+}
+
+
+/* Estilos para los iconos de mostrar contraseña */
+.btncambiar img,
+.btneditaredi img,
+.btneliminaredi img {
+    width: 20px;
+    height: 23px;
+    vertical-align: middle; 
+}
+
+/* Estilos para la ventana mensaje de confirmación */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-contenido {
+  background-color: #fefefeec;
+  margin: 15% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 40%; 
+  height: 20%; 
+  text-align: center;
+  border-radius: 15px;
+}
+
+.modal-contenido button {
+  display: inline-block; 
+  margin: 0 auto; 
+}
+
+/* Estilos para los boton de confirmar */
+#confirmarEliminar  {
+  background-color: #8bcd51;
+  color: white;
+  padding: 10px 15px;
+  margin: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para los boton de cancelar */
+#cancelarEliminar{
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#confirmarEliminar:hover, #cancelarEliminar:hover {
+  background-color: #e8c289;
+}
+
+
+.success-messages {
+  background-color: #d4edda; 
+  color: #155724; 
+  border: 1px solid #c3e6cb; 
+  padding: 9px; 
+  margin-bottom: 10px; 
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: -80px;
+  border-radius: 5px; 
+  text-align: center;
+}

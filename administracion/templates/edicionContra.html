@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Cambio de contraseña {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styleedicionContra.css' %}">
+</head>
+<body id="bg4" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+    {% block body %}
+    <div class="contenedoredici">
+        <div class="formularioedici">
+            <h1>Restablecer Contraseña</h1>
+            <div class="card">
+                <div class="card-body">     
+                    <form id="passwordForm" action="/administracion/editarContra/{{usuario.idUsuarios}}/" method="POST">
+                        {% csrf_token %}
+                        <div class="campo">
+                            <label for="usuario2">Usuario:</label>
+                            <input type="text" id="txtUser" name="txtUser" value="{{usuario.usuariou}}" class="form-control" disabled required>
+                        </div>
+                        <div class="campo">
+                            <label for="contrasena2">Nueva Contraseña: </label>
+                            <div class="password-container">
+                                <input type="password" id="txtContra" name="txtContra" class="form-control" required>
+                                <button type="button" class="togglePassword" data-target="txtContra">
+                                    <img src="{% static 'images/eye.png' %}" alt="Mostrar" class="eye-icon">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label for="contrasena2">Confirmar Contraseña: </label>
+                            <div class="password-container">
+                                <input type="password" id="txtConfir" name="txtConfir" class="form-control" required>
+                                <button type="button" class="togglePassword" data-target="txtConfir">
+                                    <img src="{% static 'images/eye.png' %}" alt="Mostrar" class="eye-icon">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <button type="button" id="openModal" class="btn btn-success btn-block text-white">Guardar</button>
+                            <button type="button" id="cancelButton" class="btn btn-danger btn-block text-white" onclick="goToEditor()">Cancelar</button>
+                        </div>
+                    </form>
+                    
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            setTimeout(function() {
+                                var messages = document.querySelector('.messages');
+                                messages.style.display = 'none';
+                            }, 5000);
+                        </script>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="adminPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Confirmación de Administrador</h2>
+            <p>Para guardar la nueva contraseña, por favor ingrese su nombre de usuario y contraseña actual:</p>
+            <form id="adminPasswordForm">
+                <input type="text" id="adminUsername" name="adminUsername" class="form-control" placeholder="Usuario del Administrador" required>
+                <input type="password" id="adminPassword" name="adminPassword" class="form-control" placeholder="Contraseña del Administrador" required>
+                <button type="submit" id="confirmPassword" class="btn btn-primary custom-btn">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/edicionContra.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

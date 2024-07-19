@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Gestión de usuarios {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styleedicionUsu.css' %}">
+    </head>
+    <body id="bg3" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+        {% block body %}
+        <div class="contenedoredici">
+            <div class="formularioedici">
+                <h1>Edición De Usuario</h1>
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <form action="/administracion/editarUsuario/{{usuario.idUsuarios}}/" method="POST">{% csrf_token %}
+                            <div class="campo">
+                                <label for="folio2">Folio:</label>
+                                <input type="text" id="txtFolio" name="txtFolio" value="{{usuario.idUsuarios}}" class="form-control"  disabled required>
+                            </div>
+                            <div class="campo">
+                                <label for="nombres2">Nombres:</label>
+                                <input type="text" id="txtNombres" name="txtNombres" value="{{usuario.nombresu}}" class="form-control"required>
+                            </div>
+                            <div class="campo">
+                                <label for="apelli2">Apellidos:</label>
+                                <input type="text" id="txtApelli" name="txtApelli" value="{{usuario.apellidosu}}" class="form-control" required>
+                            </div>
+                            <div class="campo">
+                                <label for="usuario2">Usuario:</label>
+                                <input type="text" id="txtUser" name="txtUser" value="{{usuario.usuariou}}" class="form-control" disabled required>
+                            </div>
+                            
+                            <div class="campo">
+                                <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                            </div>
+                        </form>
+                                    
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <script>
+                                    setTimeout(function() {
+                                        var messages = document.querySelector('.messages');
+                                        messages.style.display = 'none';
+                                    }, 5000);
+                                </script>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/edicionUsuario.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>

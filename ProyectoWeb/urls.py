@@ -30,6 +30,10 @@ urlpatterns = [
     path('direccion/', include('direccion.urls')),
     
     path('ventanilla/', include('ventanilla.urls')),
+
+    path('administracion/', include('administracion.urls')),
+    
+    path('login/', include('login.urls')),
     
     #path('ProyectoWebApp/', include('ProyectoWebApp.urls')),
     

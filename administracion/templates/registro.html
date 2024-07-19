@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'css/styregis.css' %}">
+</head>
+<body id="bg1" style="background-image: url('{% static 'images/catareg.png' %}')">
+    <div class="contenedorre">
+        <div class="formulariore">
+            <h1>Registrar</h1>
+
+            <form method="POST" action="{% url 'Registro' %}">
+                {% csrf_token %}
+                <input type="text" placeholder="Nombres" id="nombres" name="name" value="{{ datos_formulario.name }}" > 
+                <input type="text" placeholder="Apellidos" id="apelli" name="ape" value="{{ datos_formulario.ape }}"> 
+                <input type="text" placeholder="Usuario" id="usuariore" name="usu" value="{{ datos_formulario.usu }}"> 
+
+                <!-- Combo box para el rol -->
+                <select id="rol" name="rol">
+                    <option value="" selected disabled>Selecciona un rol</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Ventanilla">Ventanilla</option>
+                </select>
+
+                <div class="password-container">
+                    <input type="password" placeholder="Contraseña" id="contrasenare" name="contra" value="{{ datos_formulario.contra }}" maxlength="45"> 
+                    <button type="button" class="togglePassword" data-target="contrasenare" >
+                        <img src="{% static 'images/eye.png' %}" alt="Mostrar" class="eye-icon">
+                    </button>
+                </div>
+                <div class="password-container">
+                    <input type="password" placeholder="Confirmar Contraseña" id="conficontra" name="concontra" value="{{ datos_formulario.concontra }}" maxlength="45">
+                    <button type="button" class="togglePassword" data-target="conficontra" >
+                        <img src="{% static 'images/eye.png' %}" alt="Mostrar" class="eye-icon">
+                    </button>
+                </div>
+                <button type="submit">Registrar</button>
+                <button type="button" id="limpiarre">Limpiar</button>
+            </form>
+        
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <script>
+                    setTimeout(function() {
+                        var messages = document.querySelector('.messages');
+                        messages.style.display = 'none';
+                    }, 5000);
+                </script>
+             {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'js/registro.js' %}"></script>
+</body>
+</html>

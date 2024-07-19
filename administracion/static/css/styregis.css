@@ -1,0 +1,160 @@
+/* Estilos generales para el cuerpo del documento */
+#bg1 {
+    font-family: sans-serif; /* Tipo de fuente sans-serif */
+    background-repeat: no-repeat; /* Evitar que la imagen de fondo se repita */
+    background-position: center; /* Posición del fondo */
+    background-size: cover; /* Tamaño del fondo que cubra completamente el contenedor */
+    background-attachment: fixed; /* Fondo fijo */
+    font-family: sans-serif; /* Tipo de fuente sans-serif */
+}
+
+/* Estilos para el contenedor principal */
+.contenedorre {
+    width: 99vw;  /* Ancho igual al 100% del viewport */
+    height: 86vh; /* Altura igual al 86% del viewport */
+    display: flex;  /*alinear elementos */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    
+}
+
+/* Estilos para el formulario de registro */
+.formulariore {
+    width: 700px;  /* Ancho del formulario */
+    height: 460px; /* Altura del formulario */
+    background-color: rgba(255, 255, 255, 0.762); /* Transparente con un poco de opacidad */
+    padding: 20px;  /* Espaciado interno */
+    border-radius: 50px;  /* Radio de borde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.673); /* Sombra */
+    user-select: none;  /* Evitar la selección de texto */
+    margin-top: 100px;
+
+}
+
+/* Estilos para el título del formulario */
+h1 {
+    text-align: center; /* Alinear al centro */
+    margin-bottom: 24px; /* Margen inferior */
+    font-size:50px;  /* Tamaño de fuente */
+}
+
+
+/* Estilos para los campos de entrada */
+input {
+    width: 75%;  /* Ancho del campo */
+    padding: 10px;  /* Espaciado interno */
+    margin-left: 70px; /* Margen izquierdo */
+    margin-bottom: 10px; /* Margen inferior */
+    border: 1px solid #676666; /* Borde */
+    border-radius: 5px; /* Radio de borde */
+}
+
+
+/* Estilos para los botones */
+button {
+    width: 25%; /* Ancho del botón */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px; /* Margen */
+    border: none; /* Sin borde */
+    margin-left: 16%; /* Margen izquierdo */
+    background-color: #e8c289; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    border-radius: 5px; /* Radio de borde */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
+  }
+
+
+/* Estilos al pasar el ratón sobre el botón */
+  button:hover {
+    background-color: #491411; /* Cambiar color de fondo */
+  }
+
+
+/* Estilos para enlaces */
+a {
+    
+    margin-top: 110px;  /* Margen superior */
+    color: #000; /* Color de texto */
+    text-decoration: none; /* Sin decoración de texto */
+}
+
+/* Estilos para los mensajes de registro */
+.success-message {
+    background-color: #d4edda; /* Color de fondo verde claro */
+    color: #155724; /* Color de texto verde oscuro */
+    border: 1px solid #c3e6cb; /* Borde verde */
+    padding: 7px; /* Espacio alrededor del mensaje */
+    margin-bottom: 10px; /* Espacio debajo del mensaje */
+    margin-right: 40px;
+    margin-left: 3px;
+    margin-top: -13px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+}
+
+.error-message {
+    background-color: #f8d7da; /* Color de fondo rojo claro para mensajes de error */
+    color: #721c24; /* Color de texto rojo oscuro */
+    border: 1px solid #f5c6cb; /* Borde rojo */
+    padding: 7px; /* Espacio alrededor del mensaje */
+    margin-bottom: 10px; /* Espacio debajo del mensaje */
+    margin-right: 40px;
+    margin-left: 3px;
+    margin-top: -13px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+}
+
+.warning-message {
+    background-color: #fff3cd; /* Color de fondo amarillo claro para mensajes de advertencia */
+    color: #856404; /* Color de texto marrón oscuro */
+    border: 1px solid #ffeeba; /* Borde amarillo */
+    padding: 7px; /* Espacio alrededor del mensaje */
+    margin-bottom: 10px; /* Espacio debajo del mensaje */
+    margin-right: 40px;
+    margin-left: 3px;
+    margin-top: -13px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+}
+
+/* Estilos para los iconos de mostrar contraseña */
+.password-container {
+    position: relative;
+}
+
+.password-container .togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 25%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.password-container .eye-icon {
+    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
+    height: auto;
+}
+
+.eye-icon {
+    /* Estilos existentes para el ícono */
+    outline: none; /* Excluye el delineado de enfoque */
+  }
+
+  
+  #rol {
+    width: 78%; /* Ancho del combo box igual al de los campos de entrada */
+    padding: 10px; /* Espaciado interno */
+    margin-left: 70px; /* Margen izquierdo igual al de los campos de entrada */
+    margin-bottom: 10px; /* Margen inferior igual al de los campos de entrada */
+    border: 1px solid #676666; /* Borde igual al de los campos de entrada */
+    border-radius: 5px; /* Radio de borde igual al de los campos de entrada */
+    box-sizing: border-box; /* Caja de tamaño igual al de los campos de entrada */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    position: relative; /* Posición relativa para elementos internos */
+}
+
+

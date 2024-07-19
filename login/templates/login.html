@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/stylelog.css' %}"> <!-- Enlazar la hoja de estilos CSS -->
+</head>
+<body id="bg" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+    <div class="contenedor">  <!-- Contenedor principal -->
+        <div class="formulario"> <!-- Formulario de inicio de sesión -->
+            <h1>Iniciar Sesión</h1> <!-- Título del formulario -->
+            <form method="POST" action="{% url 'inicio_de_sesion' %}" id="login-form">
+                {% csrf_token %}
+                <input type="text" placeholder="Usuario" id="usuario" name="usuario"> <!-- Campo para ingresar nombre de usuario -->
+                <div class="password-container">
+                    <input type="password" placeholder="Contraseña" id="contrasena" name="contrasena"> <!-- Campo para ingresar contraseña -->
+                    <button type="button" class="togglePassword" data-target="contrasena" >
+                        <img src="{% static 'images/eye.png' %}" alt="Mostrar" class="eye-icon">
+                    </button>
+                </div>
+                <button type="submit" id="btn-ingresar">Ingresar</button> <!-- Botón para enviar el formulario -->
+                <button type="button" id="limpiar">Limpiar</button> <!-- Botón para limpiar los campos del formulario -->
+            </form>
+            <div class="flex-container"><!-- Contenedor flexible para alinear el enlace -->
+                <a href="#" id="recuperar">¿Olvidaste tu contraseña?</a> <!-- Enlace para recuperar contraseña -->
+            </div>
+                        {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <script>
+                    setTimeout(function() {
+                        var messages = document.querySelector('.messages');
+                        messages.style.display = 'none';
+                    }, 5000);
+                </script>
+             {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'js/login.js' %}"></script> <!-- Enlazar el archivo JavaScript -->
+    <script>
+    </script>
+</body>
+</html>

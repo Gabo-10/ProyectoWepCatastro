@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'direccion',
     'inspeccion',   
     'ventanilla', 
+    'administracion',
+    'login',
     'carro',
 ]
 
