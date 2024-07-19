@@ -1,3 +1,10 @@
+{% extends "ProyectoWebApp/base4.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
 <!DOCTYPE html>
 {% load static %}
 <html lang="es">
@@ -7,7 +14,6 @@
     <title>Registro</title>
     <link rel="stylesheet" href="{% static 'css/styregis.css' %}">
 </head>
-<body id="bg1" style="background-image: url('{% static 'images/catareg.png' %}')">
     <div class="contenedorre">
         <div class="formulariore">
             <h1>Registrar</h1>
@@ -59,3 +65,6 @@
     <script src="{% static 'js/registro.js' %}"></script>
 </body>
 </html>
+
+
+{% endblock %}

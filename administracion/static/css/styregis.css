@@ -1,17 +1,7 @@
-/* Estilos generales para el cuerpo del documento */
-#bg1 {
-    font-family: sans-serif; /* Tipo de fuente sans-serif */
-    background-repeat: no-repeat; /* Evitar que la imagen de fondo se repita */
-    background-position: center; /* Posición del fondo */
-    background-size: cover; /* Tamaño del fondo que cubra completamente el contenedor */
-    background-attachment: fixed; /* Fondo fijo */
-    font-family: sans-serif; /* Tipo de fuente sans-serif */
-}
-
 /* Estilos para el contenedor principal */
 .contenedorre {
     width: 99vw;  /* Ancho igual al 100% del viewport */
-    height: 86vh; /* Altura igual al 86% del viewport */
+    height: 66vh; /* Altura igual al 86% del viewport */
     display: flex;  /*alinear elementos */
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
@@ -21,13 +11,14 @@
 /* Estilos para el formulario de registro */
 .formulariore {
     width: 700px;  /* Ancho del formulario */
-    height: 460px; /* Altura del formulario */
+    height: 70vh; /* Altura del formulario */
     background-color: rgba(255, 255, 255, 0.762); /* Transparente con un poco de opacidad */
     padding: 20px;  /* Espaciado interno */
     border-radius: 50px;  /* Radio de borde */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.673); /* Sombra */
     user-select: none;  /* Evitar la selección de texto */
-    margin-top: 100px;
+    margin-top: 23vh;
+    
 
 }
 
@@ -43,7 +34,7 @@ h1 {
 input {
     width: 75%;  /* Ancho del campo */
     padding: 10px;  /* Espaciado interno */
-    margin-left: 70px; /* Margen izquierdo */
+    margin-left: 85px; /* Margen izquierdo */
     margin-bottom: 10px; /* Margen inferior */
     border: 1px solid #676666; /* Borde */
     border-radius: 5px; /* Radio de borde */
@@ -56,12 +47,13 @@ button {
     padding: 10px; /* Espaciado interno */
     margin: 10px; /* Margen */
     border: none; /* Sin borde */
-    margin-left: 16%; /* Margen izquierdo */
+    margin-left: 16.5%; /* Margen izquierdo */
     background-color: #e8c289; /* Color de fondo */
     color: #fff; /* Color de texto */
     border-radius: 5px; /* Radio de borde */
     cursor: pointer; /* Cambiar cursor al pasar el ratón */
     transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
+   
   }
 
 
@@ -71,13 +63,7 @@ button {
   }
 
 
-/* Estilos para enlaces */
-a {
-    
-    margin-top: 110px;  /* Margen superior */
-    color: #000; /* Color de texto */
-    text-decoration: none; /* Sin decoración de texto */
-}
+
 
 /* Estilos para los mensajes de registro */
 .success-message {
@@ -88,7 +74,7 @@ a {
     margin-bottom: 10px; /* Espacio debajo del mensaje */
     margin-right: 40px;
     margin-left: 3px;
-    margin-top: -13px;
+    margin-top: -570px;
     border-radius: 5px; /* Bordes redondeados */
     text-align: center;
 }
@@ -101,7 +87,7 @@ a {
     margin-bottom: 10px; /* Espacio debajo del mensaje */
     margin-right: 40px;
     margin-left: 3px;
-    margin-top: -13px;
+    margin-top: -570px;
     border-radius: 5px; /* Bordes redondeados */
     text-align: center;
 }
@@ -114,7 +100,7 @@ a {
     margin-bottom: 10px; /* Espacio debajo del mensaje */
     margin-right: 40px;
     margin-left: 3px;
-    margin-top: -13px;
+    margin-top: -570px;
     border-radius: 5px; /* Bordes redondeados */
     text-align: center;
 }
@@ -126,7 +112,7 @@ a {
 
 .password-container .togglePassword {
     position: absolute;
-    right: 10px;
+    right: 15px;
     top: 25%;
     transform: translateY(-50%);
     background: none;
@@ -142,19 +128,19 @@ a {
 .eye-icon {
     /* Estilos existentes para el ícono */
     outline: none; /* Excluye el delineado de enfoque */
-  }
+}
 
   
-  #rol {
-    width: 78%; /* Ancho del combo box igual al de los campos de entrada */
+#rol {
+    width: 75%; /* Ancho del combo box igual al de los campos de entrada */
     padding: 10px; /* Espaciado interno */
-    margin-left: 70px; /* Margen izquierdo igual al de los campos de entrada */
+    margin-left: 85px; /* Margen izquierdo igual al de los campos de entrada */
     margin-bottom: 10px; /* Margen inferior igual al de los campos de entrada */
-    border: 1px solid #676666; /* Borde igual al de los campos de entrada */
-    border-radius: 5px; /* Radio de borde igual al de los campos de entrada */
-    box-sizing: border-box; /* Caja de tamaño igual al de los campos de entrada */
-    cursor: pointer; /* Cambiar cursor al pasar el ratón */
-    position: relative; /* Posición relativa para elementos internos */
+    border: 1px solid #676666; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    cursor: pointer; 
+    position: relative; 
 }
 
 
