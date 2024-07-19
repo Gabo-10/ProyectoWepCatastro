@@ -46,7 +46,7 @@ def inicio_de_sesion(request):
                     return redirect('Registro')
                 else:
                     # Redirige al usuario normal a otra página, por ejemplo 'dashboard'
-                    return redirect('Ventanilla')
+                    return redirect('Home')
             else:
                 # Manejar el caso de credenciales incorrectas
                 messages.error(request, '❌ Contraseña incorrecta. Por favor, inténtalo de nuevo.', extra_tags='error-message')

@@ -33,10 +33,10 @@ urlpatterns = [
 
     path('administracion/', include('administracion.urls')),
     
-    path('login/', include('login.urls')),
+    path('', include('login.urls')),
     
     #path('ProyectoWebApp/', include('ProyectoWebApp.urls')),
     
-    path('', include('ProyectoWebApp.urls')),# para que directamente se dirija a esta url sin nececidad de cololar ProyectoWebApp/
+    path('inicial/', include('ProyectoWebApp.urls')),# para que directamente se dirija a esta url sin nececidad de cololar ProyectoWebApp/
    
 ]
