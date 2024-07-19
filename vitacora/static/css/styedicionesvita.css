@@ -18,9 +18,9 @@
   
   /* Estilos para el formulario */
   .formulariovita {
-    margin-top: 24vw;
+    margin-top: 17vh;
     width: 85vw;
-    height: 115vh;
+    height: 102vh;
     background-color: rgba(255, 255, 255, 0.884);
     padding: 20px;
     border-radius: 50px;
@@ -60,41 +60,7 @@
     border-radius: 5px;
   }
   
-  /* Contenedor para los botones */
-  .button-container {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-right: 34px; 
-  }
-  
-  /* Estilos para los botones */
-  button {
-    width: 25%;
-    padding: 10px;
-    margin: 10px;
-    margin-left: 70px;
-    border: none;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  /* Estilos para cada botón */
-  #prepararven {
-    background-color: #e8c289;
-  }
-
-  
-  #generarven{
-    background-color: #e8c289;
-  }
-
-  #limpiarven {
-    background-color: #e8c289;
-  }
+ 
 
 
   /* Estilos para los campos de entrada */
@@ -129,6 +95,7 @@ button {
   border-radius: 5px; /* Radio de borde */
   cursor: pointer; /* Cambiar cursor al pasar el ratón */
   transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
+  margin-bottom: 6vh;
 }
 
 
