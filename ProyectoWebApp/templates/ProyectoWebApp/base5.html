@@ -21,14 +21,15 @@
 </head>
 
 <body>
-  
-  <h1 class="site-heading text-center text-white d-none d-lg-block" style="margin-top:40px;">
-    <span class="site-heading-lower" style="color: #5E1834; font-size: 32px;"  > Comunicate con Administración </span>
-  </h1>
-  
 
+  <!-- whatsapp -->
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://api.whatsapp.com/send?phone=5195508107&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>-->
+  <br>
  <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" style="margin-top: -3%;">
+ <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" style="margin-top: -10px;">
   <img src="{%  static 'ProyectoWebApp/img/LOGO_C.png' %}" style="position: absolute; margin-left: 7%; width: 80PX;"> 
     <div class="container">
       <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'Home' %}">CHIMALHUACAN</a>
@@ -38,25 +39,14 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
 
-          <li class="nav-item {% if request.path == '/ventanilla/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Ventanilla' %}">Ventanilla</a>
+          <li class="nav-item {% if request.path == '/admintracion/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Registro' %}">Registrar</a>
           </li>
 
-          <li class="nav-item {% if request.path == '/cartografia/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'editorcar' %}">Cartografia</a>
+          <li class="nav-item {% if request.path == '/administracion/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'editor' %}">Editar Usuarios</a>
           </li>
 
-          <li class="nav-item {% if request.path == '/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'editorvit' %}">Vitacora</a>
-          </li>
-                            
-          <li class="nav-item {% if request.path|slice:':6' == '/inspeccion/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Inspeccion' %}">Inspección</a>
-          </li>
-
-          <li class="nav-item {% if request.path == '/direccion/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Direccion' %}">Ayuda</a>
-          </li>
           <li class="nav-item {% if request.path == '/login/' %} active {% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio_de_sesion' %}">Cerrar Sesión</a>
           </li>
@@ -70,9 +60,9 @@
   {% endblock %}
 
     <!-- Footer -->
-     <br><br>
+     <br><br><br><br><br><br>
     <footer class="footer text-faded text-center py-5">
-      <div class="container">
+      <div class="container " style="margin-top: 45px;">
         <p class="m-0">
 	        <a href="#" class="link">
 	          <span class="fa-stack fa-lg">

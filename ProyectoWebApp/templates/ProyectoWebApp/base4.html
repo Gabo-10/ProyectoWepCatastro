@@ -43,22 +43,13 @@
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Registro' %}">Registrar</a>
           </li>
 
-          <li class="nav-item {% if request.path == '/cartografia/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'editorcar' %}">Editar Usuarios</a>
+          <li class="nav-item {% if request.path == '/administracion/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'editor' %}">Editar Usuarios</a>
           </li>
 
-          <li class="nav-item {% if request.path == '/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'editorvit' %}">Vitacora</a>
+          <li class="nav-item {% if request.path == '/login/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio_de_sesion' %}">Cerrar Sesión</a>
           </li>
-                            
-          <li class="nav-item {% if request.path|slice:':6' == '/inspeccion/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Inspeccion' %}">Inspección</a>
-          </li>
-
-          <li class="nav-item {% if request.path == '/direccion/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Direccion' %}">Ayuda</a>
-          </li>
-         
         </ul>
       </div>
     </div>
@@ -69,9 +60,9 @@
   {% endblock %}
 
     <!-- Footer -->
-     <br><br><br><br><br><br>
+     <br><br><br><br>
     <footer class="footer text-faded text-center py-5">
-      <div class="container">
+      <div class="container " style="margin-top: 45px;">
         <p class="m-0">
 	        <a href="#" class="link">
 	          <span class="fa-stack fa-lg">

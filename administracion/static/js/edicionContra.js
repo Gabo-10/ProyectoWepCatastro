@@ -72,7 +72,7 @@ document.getElementById('adminPasswordForm').addEventListener('submit', function
     const adminPassword = document.getElementById('adminPassword').value;
     const userId = '{{ usuario.idUsuarios }}';
     
-    fetch('/direccion/verificarAdmin/', {
+    fetch('/administracion/verificarAdmin/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -103,5 +103,5 @@ document.getElementById('adminPasswordForm').addEventListener('submit', function
 });
 
 function goToEditor() {
-  window.location.href = '/direccion/editar/';
+  window.location.href = '/administracion/editar/';
 }

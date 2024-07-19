@@ -68,7 +68,7 @@ document.querySelectorAll('.btneliminaredi').forEach(btn => {
       .then(response => {
         if (response.ok) {
           // Redirigir a la página de edición después de eliminar el usuario
-          window.location.href = '/direccion/editar/';
+          window.location.href = '/administracion/editar/';
         } else {
           // Manejar errores de eliminación
           console.error('Error al eliminar el usuario');

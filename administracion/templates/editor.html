@@ -1,3 +1,9 @@
+{% extends "ProyectoWebApp/base4.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="es">
@@ -8,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/styleditor.css' %}">  
   </head>
   
-  <body id="bg2" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+  <body>
     <div class="contenedoredi"> 
       <div class="formularioedi">  
         <h1>Usuarios</h1>  
@@ -71,3 +77,4 @@
     <script src="{% static 'js/editor.js' %}"></script> 
   </body>
 </html>
+{% endblock %}

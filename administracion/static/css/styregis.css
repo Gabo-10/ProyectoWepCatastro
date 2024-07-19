@@ -54,15 +54,13 @@ button {
     cursor: pointer; /* Cambiar cursor al pasar el ratón */
     transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
    
-  }
+}
 
 
 /* Estilos al pasar el ratón sobre el botón */
   button:hover {
     background-color: #491411; /* Cambiar color de fondo */
   }
-
-
 
 
 /* Estilos para los mensajes de registro */
