@@ -58,8 +58,8 @@
                 <tr>  
                   <td><a href="/vitacora/edicionVita/{{ ventanilla.nprog}}" class="btneditarvita">
                   <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
-                  <!-- <a href="#" class="btneliminarvit" data-url="{% url 'eliminarvit' codigo=ventanilla.nprog %}">
-                  <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td> -->
+                  <a href="#" class="btneliminarvit" data-url="{% url 'eliminarvit' codigo=ventanilla.nprog %}">
+                  <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
                   <td>{{ ventanilla.clave_catastral }}</td>
                   <td>{{ ventanilla.nombre }}</td>
@@ -91,7 +91,7 @@
         </div>
       </div>
     </div>
-    <!-- <div id="confirmacionEliminar" class="modal">
+    <div id="confirmacionEliminar" class="modal">
       <div class="modal-contenido">
         <p>¿Estás seguro de que deseas eliminar este usuario?</p>
         <div>
@@ -99,7 +99,7 @@
           <button id="cancelarEliminar">Cancelar</button>
         </div>
       </div>
-    </div> -->
+    </div>
       {% if messages %}
         <ul class="messages">
             {% for message in messages %}
