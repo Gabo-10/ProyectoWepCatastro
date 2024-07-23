@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import Ventanilla
+from inspeccion.models import Inspeccion
 from django.db.models import Q
 from django.contrib import messages
 import re
@@ -9,6 +10,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
+
 
 
 class Editorcar(APIView):    
@@ -20,11 +22,19 @@ class Editorcar(APIView):
 
 def eliminarCarto(request, codigo):
     ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
+    inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+    
+    if inspeccion_exists:
+        messages.error(request, 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.', extra_tags='error-message')
+        return redirect('editorcar')
+    
     if request.method == 'POST':
         ventanilla.delete()
         messages.success(request, '✅ El registro ha sido eliminado correctamente.', extra_tags='success-messages')
         return redirect('editorcar')
+    
     return render(request, 'Careditor.html', {'ventanilla': ventanilla})  
+
 
 def edicionCarto(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
