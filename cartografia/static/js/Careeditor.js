@@ -31,60 +31,64 @@ inputBusqueda.addEventListener('input', function() {
 });
 
 
-// Agregamos un evento de clic a cada fila de la tabla
-document.querySelector('.tabla-contenedor table tbody').addEventListener("click", function(event) {
-  if (event.target.tagName === "TD") {
-    // Eliminar la clase 'selected-row' de todas las filas
-    for (const fila of filasCartografia) {
-      fila.classList.remove('selected-row');
-    }
-
-    // Agregar la clase 'selected-row' a la fila seleccionada
-    var row = event.target.parentNode;
-    row.classList.add('selected-row');
-
-  }
-  
-});
-
-// Mostrar el modal de confirmación
 document.querySelectorAll('.btneliminarcar').forEach(btn => {
   btn.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-    const url = btn.getAttribute('data-url'); // Obtener la URL de eliminación del atributo personalizado
-    document.getElementById('confirmacionEliminar').style.display = 'block';
-
-    // Función para confirmar la eliminación de los usuarios 
-    document.getElementById('confirmarEliminar').onclick = () => {
-      // Enviar una solicitud POST al servidor para eliminar el registro
+      event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+      const url = btn.getAttribute('data-url'); // Obtener la URL de eliminación del atributo personalizado
+      
+      // Enviar una solicitud GET para verificar si se puede eliminar
       fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': getCookie('csrftoken'), // Asegúrate de incluir el token CSRF en la solicitud
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({}) // No necesitas enviar ningún dato en el cuerpo de la solicitud POST
+          method: 'GET',
+          headers: {
+              'X-CSRFToken': getCookie('csrftoken'), // Asegúrate de incluir el token CSRF en la solicitud
+              'Content-Type': 'application/json'
+          }
       })
-      .then(response => {
-        if (response.ok) {
-          // Redirigir a la página de edición después de eliminar el usuario
-          window.location.href = '/cartografia/editarcar/';
-        } else {
-          // Manejar errores de eliminación
-          console.error('Error al eliminar el usuario');
-        }
-      })
-      .catch(error => {
-        console.error('Error al eliminar el usuario:', error);
-      });
-    };
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              // Si no hay registros asociados, mostrar el modal
+              document.getElementById('confirmacionEliminar').style.display = 'block';
 
-    // Función para cancelar la eliminación
-    document.getElementById('cancelarEliminar').onclick = (event) => {
-      event.stopPropagation(); // Detener la propagación del evento al enlace padre
-      document.getElementById('confirmacionEliminar').style.display = 'none';
-      event.preventDefault(); // Prevenir la solicitud AJAX
-    };
+              // Función para confirmar la eliminación
+              document.getElementById('confirmarEliminar').onclick = () => {
+                  // Enviar una solicitud POST para eliminar el registro
+                  fetch(url, {
+                      method: 'POST',
+                      headers: {
+                          'X-CSRFToken': getCookie('csrftoken'),
+                          'Content-Type': 'application/json'
+                      }
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          // Ocultar el modal
+                          document.getElementById('confirmacionEliminar').style.display = 'none';
+                          // Redirigir a la página de edición
+                          window.location.href = '/cartografia/editarcar/';
+                      } else {
+                          // Mostrar mensaje si no se pudo eliminar
+                          document.getElementById('confirmacionEliminar').style.display = 'none';
+                          alert(data.message);
+                      }
+                  })
+                  .catch(error => console.error('Error al eliminar el registro:', error));
+              };
+
+              // Función para cancelar la eliminación
+              document.getElementById('cancelarEliminar').onclick = (event) => {
+                  event.stopPropagation(); // Detener la propagación del evento al enlace padre
+                  document.getElementById('confirmacionEliminar').style.display = 'none';
+                  event.preventDefault(); // Prevenir la solicitud AJAX
+              };
+          } else {
+              // Si no se puede eliminar, mostrar el mensaje y ocultar el modal si está visible
+              document.getElementById('confirmacionEliminar').style.display = 'none';
+              alert(data.message);
+          }
+      })
+      .catch(error => console.error('Error al verificar la eliminación:', error));
   });
 });
 
@@ -92,18 +96,17 @@ document.querySelectorAll('.btneliminarcar').forEach(btn => {
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
       }
-    }
   }
   return cookieValue;
-
-
-  
 }
+
+
 

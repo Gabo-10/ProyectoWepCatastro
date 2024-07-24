@@ -22,18 +22,26 @@ class Editorcar(APIView):
 
 def eliminarCarto(request, codigo):
     ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
-    inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-    
-    if inspeccion_exists:
-        messages.error(request, 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.', extra_tags='error-message')
-        return redirect('editorcar')
-    
+
+    if request.method == 'GET':
+        # Verificar si hay registros asociados
+        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
+        
+        # Si no hay registros asociados, indicar que se puede eliminar
+        return JsonResponse({'success': True})
+
     if request.method == 'POST':
+        # Verificar si hay registros asociados antes de eliminar
+        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
+
+        # Eliminar el registro
         ventanilla.delete()
-        messages.success(request, '✅ El registro ha sido eliminado correctamente.', extra_tags='success-messages')
-        return redirect('editorcar')
-    
-    return render(request, 'Careditor.html', {'ventanilla': ventanilla})  
+        return JsonResponse({'success': True, 'message': '✅ El registro ha sido eliminado correctamente.'})
+
 
 
 def edicionCarto(request, codigo):
