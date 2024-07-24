@@ -40,15 +40,15 @@
         <ul class="navbar-nav mx-auto">
 
           <li class="nav-item {% if request.path == '/admintracion/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Registro' %}">Registrar</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Registro' %}"><img src="{% static 'ProyectoWebApp/img/agregar.png' %}" alt="Iconore" style="width: 26px; height: 26px; margin-top: -6px; margin-right: 5px;">Registrar</a>
           </li>
 
           <li class="nav-item {% if request.path == '/administracion/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'editor' %}">Editar Usuarios</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'editor' %}"><img src="{% static 'ProyectoWebApp/img/usuarios.png' %}" alt="Iconousu" style="width: 31px; height: 31px; margin-top: -1px; margin-right: 5px;">Usuarios</a>
           </li>
 
           <li class="nav-item {% if request.path == '/login/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio_de_sesion' %}">Cerrar Sesión</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio_de_sesion' %}"><img src="{% static 'ProyectoWebApp/img/cerrar-sesion.png' %}" alt="Iconore" style="width: 25px; height: 25px; margin-top: -8px; margin-right: 5px;">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
