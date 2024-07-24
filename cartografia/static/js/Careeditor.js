@@ -35,7 +35,7 @@ document.querySelectorAll('.btneliminarcar').forEach(btn => {
   btn.addEventListener('click', (event) => {
       event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
       const url = btn.getAttribute('data-url'); // Obtener la URL de eliminación del atributo personalizado
-      
+
       // Enviar una solicitud GET para verificar si se puede eliminar
       fetch(url, {
           method: 'GET',
@@ -47,7 +47,7 @@ document.querySelectorAll('.btneliminarcar').forEach(btn => {
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              // Si no hay registros asociados, mostrar el modal
+              // Si no hay registros asociados, mostrar el modal de confirmación
               document.getElementById('confirmacionEliminar').style.display = 'block';
 
               // Función para confirmar la eliminación
@@ -63,14 +63,14 @@ document.querySelectorAll('.btneliminarcar').forEach(btn => {
                   .then(response => response.json())
                   .then(data => {
                       if (data.success) {
-                          // Ocultar el modal
+                          // Ocultar el modal de confirmación
                           document.getElementById('confirmacionEliminar').style.display = 'none';
                           // Redirigir a la página de edición
                           window.location.href = '/cartografia/editarcar/';
                       } else {
-                          // Mostrar mensaje si no se pudo eliminar
+                          // Mostrar mensaje en el modal de error
                           document.getElementById('confirmacionEliminar').style.display = 'none';
-                          alert(data.message);
+                          showMessageModal(data.message);
                       }
                   })
                   .catch(error => console.error('Error al eliminar el registro:', error));
@@ -83,14 +83,38 @@ document.querySelectorAll('.btneliminarcar').forEach(btn => {
                   event.preventDefault(); // Prevenir la solicitud AJAX
               };
           } else {
-              // Si no se puede eliminar, mostrar el mensaje y ocultar el modal si está visible
-              document.getElementById('confirmacionEliminar').style.display = 'none';
-              alert(data.message);
+              // Mostrar mensaje en el modal de error
+              showMessageModal(data.message);
           }
       })
       .catch(error => console.error('Error al verificar la eliminación:', error));
   });
 });
+
+// Función para mostrar el modal de mensaje personalizado
+function showMessageModal(message) {
+  const mensajeModal = document.getElementById('mensajeModal');
+  const mensajeTexto = document.getElementById('mensajeTexto');
+  mensajeTexto.textContent = message;
+  mensajeModal.style.display = 'block';
+
+  // Función para cerrar el modal con el botón Aceptar
+  document.getElementById('aceptarMensaje').onclick = () => {
+      mensajeModal.style.display = 'none';
+  };
+
+  // Función para cerrar el modal con la cruz
+  document.querySelector('#mensajeModal .close').onclick = () => {
+      mensajeModal.style.display = 'none';
+  };
+
+  // Cerrar el modal si se hace clic fuera del contenido
+  window.onclick = (event) => {
+      if (event.target == mensajeModal) {
+          mensajeModal.style.display = 'none';
+      }
+  };
+}
 
 // Función para obtener el token CSRF de las cookies
 function getCookie(name) {
@@ -107,6 +131,5 @@ function getCookie(name) {
   }
   return cookieValue;
 }
-
 
 
