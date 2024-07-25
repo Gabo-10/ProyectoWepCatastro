@@ -38,7 +38,7 @@ def ventanilla(request):
 
         # Verificar que el campo nprog no esté vacío
         if not nprogv:
-            messages.error(request, '❌ Por favor, rellene el campo N°PROG.', extra_tags='error-message')
+            messages.error(request, '❌ Por favor, rellene los campos restantes con el boton "Preparar".', extra_tags='error-message')
             # Mantener los datos del formulario en caso de error
             datos_formulario = {
                 'prog': nprogv,
