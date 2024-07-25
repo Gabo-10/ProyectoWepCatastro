@@ -11,6 +11,7 @@ from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
+from inspeccion.models import Inspeccion
 
 
 def ventanilla(request):
@@ -218,3 +219,25 @@ def editarVenta(request, codigo):
         # Manejar casos donde no es una solicitud POST
         messages.error(request, 'La solicitud no es válida')
         return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación
+
+def eliminarVenta(request, codigo):
+    ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
+
+    if request.method == 'GET':
+        # Verificar si hay registros asociados
+        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados con las demas areas.'})
+        
+        # Si no hay registros asociados, indicar que se puede eliminar
+        return JsonResponse({'success': True})
+
+    if request.method == 'POST':
+        # Verificar si hay registros asociados antes de eliminar
+        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
+
+        # Eliminar el registro
+        ventanilla.delete()
+        return JsonResponse({'success': True, 'message': '✅ El registro ha sido eliminado correctamente.'})

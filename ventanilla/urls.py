@@ -11,6 +11,7 @@ urlpatterns = [
     path('editarven/', Editorven.as_view(), name='editorven'),
     path('edicionVenta/<codigo>', views.edicionVenta),
     path('editarVenta/<int:codigo>/', views.editarVenta),
+    path('eliminacionVenta/<codigo>', views.eliminarVenta, name='eliminarven'),
 
 ]
 

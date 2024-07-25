@@ -8,7 +8,7 @@
   }
   
   /* Estilos para el contenedor principal */
-  .contenedorcarto {
+  .contenedorventa {
     width: 97vw;
     height: 99vh;
     display: flex;
@@ -17,7 +17,7 @@
   }
   
   /* Estilos para el formulario */
-  .formulariocarto {
+  .formularioediventa {
     margin-top: 17vh;
     width: 85vw;
     height: 102vh;
@@ -61,29 +61,9 @@
     border-radius: 5px;
   }
   
-  /* Contenedor para los botones */
-  .button-container {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-right: 34px; 
-  }
-  
-  
-  /* Estilos para cada botón */
-  #prepararven {
-    background-color: #e8c289;
-  }
 
   
-  #generarven{
-    background-color: #e8c289;
-  }
 
-  #limpiarven {
-    background-color: #e8c289;
-  }
 
 
   /* Estilos para los campos de entrada */
@@ -134,3 +114,4 @@ button:hover {
   gap: 7px; /* Espacio entre los botones */
   margin-right: 10%;
 }
+

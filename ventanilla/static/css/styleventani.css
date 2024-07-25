@@ -1,13 +1,4 @@
-#bg18 {
-  font-family: sans-serif; 
-  background-repeat: no-repeat; 
-  background-position: center; 
-  background-size: cover; 
-  background-attachment: fixed; 
-  font-family: sans-serif; 
-} 
-  
-  
+ 
   /* Estilos para el contenedor principal */
   .contenedorventa {
     width: 97vw;
@@ -18,10 +9,10 @@
   }
   
   /* Estilos para el formulario */
-  .formularioediventa {
-    margin-top: 10vh;
+  .formularioventa {
+    margin-top: 40vh;
     width: 85vw;
-    height: 99vh;
+    height: 118vh;
     background-color: rgba(255, 255, 255, 0.884);
     padding: 20px;
     border-radius: 50px;

@@ -4,21 +4,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartografia</title>
+    <title>Listado de Registros</title>
     <link rel="stylesheet" href="{% static 'css/styleventoedi.css' %}">  
   </head>
   
   <body id="bg28" style="background-image: url('{% static 'images/catadef.jpg' %}')">
-    <div class="contenedorcarto"> 
-      <div class="formulariocarto">  
-        <h1>Cartografia</h1> 
+    <div class="contenedorvento"> 
+      <div class="formulariovento">  
+        <h1>Listado de registros</h1> 
         <div class="buscador">
           <input type="search" placeholder="Buscar...">
           <button type="submit">Buscar</button>
         </div>
         <div class="tabla-contenedor">
           <table id="tableedi">
-            <thead>
                 <thead>
                   <tr>
                     <th colspan="1"> Acciones </th> 
@@ -54,7 +53,7 @@
               <tr>  
                 <td><a href="/ventanilla/edicionVenta/{{ ventanilla.nprog}}" class="btneditarventa">
                 <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
-                <a href="#" class="btneliminarven" data-url="{% url 'eliminarcar' codigo=ventanilla.nprog %}">
+                <a href="#" class="btneliminarven" data-url="{% url 'eliminarven' codigo=ventanilla.nprog %}">
                 <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                 <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
                 <td>{{ ventanilla.clave_catastral }}</td>
@@ -87,6 +86,22 @@
         </div>
       </div>
     </div>
+    <div id="confirmacionEliminar" class="modal">
+      <div class="modal-contenido">
+        <p>¿Estás seguro de que deseas eliminar este registro?</p>
+        <div>
+          <button id="confirmarEliminar">Confirmar</button>
+          <button id="cancelarEliminar">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <div id="mensajeModal" class="mensajeModal">
+      <div class="mensajeModal-content">
+          <span class="close">&times;</span>
+          <p id="mensajeTexto"></p>
+          <button id="aceptarMensaje">Aceptar</button>
+      </div>
+    </div>
       {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -100,6 +115,6 @@
             }, 5000);
         </script>
       {% endif %}
-      <script src="{% static 'js/Careeditor.js' %}"></script> 
+      <script src="{% static 'js/Veneditor.js' %}"></script> 
   </body>
 </html>

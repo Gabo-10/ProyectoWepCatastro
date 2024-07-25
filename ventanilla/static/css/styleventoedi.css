@@ -8,7 +8,7 @@
   }
   
   /* Estilos para el contenedor principal */
-  .contenedorcarto {
+  .contenedorvento {
     width: 99vw;  
     height: 81vh; 
     display: flex;  
@@ -17,7 +17,7 @@
   }
   
   /* Estilos para el formulario de edicion de usuarios */
-  .formulariocarto {
+  .formulariovento {
     width: 90vw;  
     height: 85vh; 
     margin-top: 16vh;
@@ -270,7 +270,7 @@
   }
   
   .mensajeModal-content p {
-    margin: -3px 0; /* Espaciado arriba y abajo */
+    margin:14px 0; /* Espaciado arriba y abajo */
   }
   
   .mensajeModal .close {
