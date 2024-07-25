@@ -5,6 +5,12 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
+from rest_framework.views import APIView
+import re
+from django.urls import reverse
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 
 def ventanilla(request):
@@ -138,3 +144,77 @@ def obtener_siguiente_id(request):
     except Ventanilla.DoesNotExist:
         siguiente_id = 1  # Si no hay registros, el siguiente ID es 1
     return JsonResponse({'siguiente_id': siguiente_id})
+
+class Editorven(APIView):    
+    template_name="Veneditor.html"
+    def get(self, request):
+        ventanilla = Ventanilla.objects.all()
+        return render(request, self.template_name, {'ventanilla': ventanilla})
+
+def edicionVenta(request, codigo):
+    ventanilla = Ventanilla.objects.get(nprog=codigo)
+    return render(request, "Editar_Ven.html", {"ventanilla": ventanilla})
+
+def editarVenta(request, codigo):
+    if request.method == 'POST':
+        claveraev = request.POST.get('claveraa')
+        nombreev = request.POST.get('nombree')
+        curpev = request.POST.get('curpp')
+        manzanaev = request.POST.get('manzanaa')
+        loteev = request.POST.get('lotee')
+        calleev = request.POST.get('callee')
+        barrioev = request.POST.get('barrioo')
+        entidadev = request.POST.get('tentidadd')
+        municipioev = request.POST.get('municipioo')
+        tramiteev = request.POST.get('tramitee')
+        fechaev = request.POST.get('fechaa')
+        folioev = request.POST.get('folioo')
+        reciboev = request.POST.get('reciboo')
+        importeev = request.POST.get('importee')
+        revisoev = request.POST.get('trevisoo')
+        motivoev = request.POST.get('motivoo')
+        soliserviev = request.POST.get('soliservii')
+        terrenoev = request.POST.get('terrenoo')
+        construcev = request.POST.get('construcc')
+        elaboracionev= request.POST.get('elaboracionn')
+        atencionev = request.POST.get('atencionn')
+        horaev = request.POST.get('horaa')
+        pagoev = request.POST.get('pagoo')
+        extrasev = request.POST.get('extrass')
+
+        try:
+            ediven = Ventanilla.objects.get(nprog=codigo)
+            ediven.clave_catastral = claveraev
+            ediven.nombre = nombreev
+            ediven.curp =  curpev
+            ediven.manzana = manzanaev
+            ediven.lote = loteev
+            ediven.calle = calleev
+            ediven.barrio_colonia = barrioev
+            ediven.entidad = entidadev
+            ediven.municipio = municipioev
+            ediven.tramite = tramiteev
+            ediven.fecha = fechaev 
+            ediven.folio = folioev
+            ediven.recibo = reciboev 
+            ediven.importe = importeev 
+            ediven.reviso = revisoev 
+            ediven.motivo = motivoev 
+            ediven.solicitud_servicio_catastral = soliserviev
+            ediven.superficie_terreno = terrenoev 
+            ediven.superficie_construccion_resultante = construcev 
+            ediven.fecha_elaboracion = elaboracionev 
+            ediven.observaciones_atencion = atencionev 
+            ediven.hora_recepcion = horaev 
+            ediven.pago = pagoev 
+            ediven.extras = extrasev 
+            ediven.save()
+            messages.success(request, '✅ ¡Datos del registro actualizado!', extra_tags='success-messages')
+            return redirect('editorven')
+        except Ventanilla.DoesNotExist:
+            messages.error(request, 'El Registro no existe')
+            return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación
+    else:
+        # Manejar casos donde no es una solicitud POST
+        messages.error(request, 'La solicitud no es válida')
+        return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación

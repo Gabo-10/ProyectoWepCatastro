@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventanilla</title>
+    <link rel="stylesheet" href="{% static 'css/styleventani.css' %}">
+</head>
+    <body id="bg18" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+        {% block body %}
+        <div class="contenedorventa">
+            <div class="formularioediventa">
+                <h1>Editar</h1>
+                <div class="card">
+                    <div class="card-body"> 
+                        <form action="/ventanilla/editarVenta/{{ventanilla.nprog}}/" method="POST">{% csrf_token %}
+                            <div class="grid-container">
+                                <div class="campo">
+                                    <label for="prog3">N°PROG:</label>
+                                    <input type="text" id="teteprog" name="progg" value="{{ ventanilla.nprog }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="claveca3" >CLAVE CATASTRAL:</label>
+                                    <input type="text" id="tetclavera" name="claveraa" value="{{ ventanilla.clave_catastral }}" class="form-control" >
+                                </div>
+                                <div class="campo">
+                                    <label for="nombre3">NOMBRE:</label>
+                                    <input type="text" id="tetnombre" name="nombree" value="{{  ventanilla.nombre }}" class="form-control" >
+                                </div>
+                                <div class="campo">
+                                    <label for="curp3">CURP:</label>
+                                    <input type="text" id="tetcurp" name="curpp" value="{{ ventanilla.curp }}"  class="form-control" >
+                                </div>
+                                <div class="campo">
+                                    <label for="manzana3">MANZANA:</label>
+                                    <input type="text" id="tetmanzana" name="manzanaa" value="{{ ventanilla.manzana }}"  class="form-control">
+                                </div>
+                                <div class="campo">
+                                    <label for="lote3">LOTE:</label>
+                                    <input type="text" id="tetlote" name="lotee" value="{{ ventanilla.lote }}" class="form-control" >
+                                </div>
+                                <div class="campo">
+                                    <label for="calle3">CALLE:</label>
+                                    <input type="text" id="tetcalle" name="callee" value="{{ ventanilla.calle }}"  class="form-control">
+                                </div>
+                                <div class="campo">
+                                    <label for="barrio3">BARRIO O COLONIA:</label>
+                                    <input type="text" id="tetbarrio" name="barrioo" value="{{ ventanilla.barrio_colonia }}" class="form-control">
+                                </div>
+                                <div class="campo">
+                                    <label for="entidad3">ENTIDAD:</label>
+                                    <input type="text" id="tetentidad" name="tentidadd" value="{{ ventanilla.entidad }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="municipio3">MUNICIPIO:</label>
+                                    <input type="text" id="tetmunicipio" name="municipioo" value="{{ ventanilla.municipio }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="tramite3">TRAMITE:</label>
+                                    <input type="text" id="tettramite" name="tramitee" value="{{ ventanilla.tramite }}" class="form-control" readonly >
+                                </div>
+                                <div class="campo">
+                                    <label for="fecha3">FECHA:</label>
+                                    <input type="text" id="tetfecha" name="fechaa" value="{{ ventanilla.fecha }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="folio3">FOLIO:</label>
+                                    <input type="text" id="tetfolio" name="folioo" value="{{ ventanilla.folio }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="recibo3">N°RECIBO:</label>
+                                    <input type="text" id="tetrecibo" name="reciboo" value="{{ ventanilla.recibo }}"  class="form-control"  >
+                                </div>
+                                <div class="campo">
+                                    <label for="importe3">IMPORTE:</label>
+                                    <input type="text" id="tetimporte" name="importee"  value="{{ ventanilla.importe }}" class="form-control" >
+                                </div>
+                                <div class="campo">
+                                    <label for="reviso3">REVISO:</label>
+                                    <input type="text" id="tetreviso" name="trevisoo" value="{{ ventanilla.treviso }}"  class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="motivo3">MOTIVO:</label>
+                                    <input type="text" id="tetmotivo" name="motivoo" value="{{ ventanilla.motivo }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="soliservi3">SOLICITUD DE SERVICIO CATASTRAL(codigos):</label>
+                                    <input type="text" id="tetsoliservi" name="soliservii" value="{{ ventanilla.soliservi }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="terrreno3">SUPERFICIE TERRENO (M2):</label>
+                                    <input type="text" id="tetterrreno" name="terrenoo" value="{{ ventanilla.terreno }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="construc3">SUPERFICIE CONSTRUCCION RESULTANTE (M2):</label>
+                                    <input type="text" id="tetconstruc" name="construcc" value="{{ ventanilla.construc }}"  class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="elaboracion3">FECHA ELABORACION:</label>
+                                    <input type="text" id="tetelaboracion" name="elaboracionn" value="{{ ventanilla.elaboracion }}" class="form-control" readonly >
+                                </div>
+                                <div class="campo">
+                                    <label for="atencion3">OBSERVACIONES ATENCION:</label>
+                                    <input type="text" id="tetatencion" name="atencionn" value="{{ ventanilla.observaciones_atencion }}" class="form-control" >
+                                </div>
+                                <div class="campo">
+                                    <label for="hora3">HORA DE RECEPCION:</label>
+                                    <input type="text" id="tethora" name="horaa" value="{{ ventanilla.hora_recepcion }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="pago3">PAGO:</label>
+                                    <input type="text" id="tetpago" name="pagoo" value="{{ ventanilla.pago }}" class="form-control"  >
+                                </div>
+                                <div class="campo">
+                                    <label for="extras3">$EXTRA$:</label>
+                                    <input type="text" id="tetextras" name="extrass" value="{{ ventanilla.extras }}" class="form-control" >
+                                </div>
+                            </div>    
+                            <div class="button-container">
+                                <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                                <button type="button" id="cancelButton" class="btn btn-danger btn-block text-white" onclick="goToEditor()">Cancelar</button>
+                            </div>
+                        </form>
+                    
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <script>
+                                    setTimeout(function() {
+                                        var messages = document.querySelector('.messages');
+                                        messages.style.display = 'none';
+                                    }, 5000);
+                                </script>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </script>
+        <script src="{% static 'js/ventanilla.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>
+
+
