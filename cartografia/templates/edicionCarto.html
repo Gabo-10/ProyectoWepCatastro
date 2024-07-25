@@ -97,8 +97,8 @@
                                     <input type="text" id="construccarto" name="construccarto" value="{{ ventanilla.superficie_construccion_resultante }}"  class="form-control" >
                                 </div>
                                 <div class="campo">
-                                    <label for="elaboracion3">FECHA ELABORACION:</label>
-                                    <input type="text" id="elaboracioncarto" name="elaboracioncarto" value="{{ ventanilla.fecha_elaboracion }}" class="form-control" >
+                                    <label for="elaboracioncarto">FECHA ELABORACION:</label>
+                                    <input type="date" id="elaboracioncarto" name="elaboracioncarto" value="{{ ventanilla.fecha_elaboracion }}" class="form-control" min="01/01/1980" max="31-12-2099">
                                 </div>
                                 <div class="campo">
                                     <label for="atencion3">OBSERVACIONES ATENCION:</label>
