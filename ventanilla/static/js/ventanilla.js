@@ -271,4 +271,3 @@ const seconds = ('0' + today.getSeconds()).slice(-2);
    const formattedTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
    document.getElementById('txthora').value = formattedTime;
 });
-

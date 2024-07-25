@@ -143,3 +143,16 @@
   border-radius: 5px; /* Bordes redondeados */
   text-align: center;
 }
+
+.error-message {
+  background-color: #f8d7da; /* Color de fondo rojo claro para mensajes de error */
+  color: #721c24; /* Color de texto rojo oscuro */
+  border: 1px solid #f5c6cb; /* Borde rojo */
+  padding: 7px; /* Espacio alrededor del mensaje */
+  margin-bottom: 10px; /* Espacio debajo del mensaje */
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: -924px;
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center;
+}

@@ -37,6 +37,11 @@ def ventanilla(request):
         pagov = request.POST.get('pago')
         extrasv = request.POST.get('extras')
 
+                # Verificar que el campo nprog no esté vacío
+        if not nprogv:
+            messages.error(request, '❌ Por favor, rellene el campo N°PROG.', extra_tags='error-message')
+            return redirect('Ventanilla')
+
         # Crear un nuevo objeto Ventanilla y guardar en la base de datos
         ventanilla_nueva = Ventanilla(
             nprog=nprogv,
