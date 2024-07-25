@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const txthora = document.getElementById('txthora');
   const txtpago = document.getElementById('txtpago');
   const txtextras = document.getElementById('txtextras');
+  const selectTramite = document.getElementById('tramite');
   const btnLimpiarven = document.getElementById("limpiarven");
 
   // Agregar evento limpiarEspacioFinal al presionar una tecla en los campos 
@@ -218,6 +219,7 @@ function convertirMayusculas(event) {
     txtpago.value = "";
     txtextras.value ="";
     txtatencion.value = "";
+    selectTramite.value = "";
 
   });
 });
