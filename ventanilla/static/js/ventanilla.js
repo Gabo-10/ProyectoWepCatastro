@@ -250,3 +250,5 @@ document.querySelector('.btn-listaven').addEventListener('click', function(event
   window.location.href = '/ventanilla/editarven/'; 
 });
 
+
+

@@ -166,4 +166,8 @@ function getCookie(name) {
   return cookieValue;
 }
 
+document.querySelector('.btn-generar').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  window.location.href = '/ventanilla/'; 
+});
 
