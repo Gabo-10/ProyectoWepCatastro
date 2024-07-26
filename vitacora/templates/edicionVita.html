@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="button-container">
-                                <button type="button" id="prepararins">Preparar</button>
+                                <button type="button" id="prepararvita">Preparar</button>
                                 <button type="submit" class="agregarins">Agregar Reporte</button>
                                 <button type="button" class="cancelarins" onclick="goToediinspec()">Cancelar</button>        
                             </div>
@@ -98,13 +98,13 @@
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const urlObtenerSiguienteId = "{% url 'obtener_siguiente_idins' %}";
+                const urlObtenerSiguienteId = "{% url 'obtener_siguiente_idvit' %}";
         
-                document.getElementById('prepararins').addEventListener('click', function() {
+                document.getElementById('prepararvita').addEventListener('click', function() {
                     fetch(urlObtenerSiguienteId)
                         .then(response => response.json())
                         .then(data => {
-                            document.getElementById('txtregistro').value = data.siguiente_idins;  
+                            document.getElementById('txtid').value = data.siguiente_idins;  
                         })
                         .catch(error => {
                             console.error('Error al obtener el siguiente ID:', error);
