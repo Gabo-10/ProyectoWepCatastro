@@ -22,55 +22,55 @@
                                 </div>
                                 <div class="campo">
                                     <label for="foliovita">Folio:</label>
-                                    <input type="text" id="txtfoliore" name="foliovi" value="{{ vitacora.folio }}" class="form-control" readonly>
+                                    <input type="text" id="txtfoliore" name="foliovire" value="{{ vitacora.folio }}" class="form-control" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="nombrevita">Nombre del propetario:</label>
-                                    <input type="text" id="txtnombrere" name="nombrevi" value="{{ vitacora.nombre_propietario }}" class="form-control" required >
+                                    <input type="text" id="txtnombrere" name="nombrevire" value="{{ vitacora.nombre_propietario }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="fechavita">Fecha de revisión:</label>
-                                    <input type="date" id="txtfechare" name="fechavi" value="{{ vitacora.fecha_revision}}" class="form-control"min="01/01/1980" max="31-12-2099" required required >
+                                    <input type="date" id="txtfechare" name="fechavire" value="{{ vitacora.fecha_revision}}" class="form-control"min="01/01/1980" max="31-12-2099" required required >
                                 </div>
                                 <div class="campo">
                                     <label for="carpetavita">Carpeta:</label>
-                                    <input type="text" id="txtcarpetare" name="carpetavi" value="{{ vitacora.carpeta }}" class="form-control" required >
+                                    <input type="text" id="txtcarpetare" name="carpetavire" value="{{ vitacora.carpeta }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="areavita">Área:</label>
-                                    <input type="text" id="txtareare" name="areavi" value="{{ vitacora.area }}" class="form-control" required >
+                                    <input type="text" id="txtareare" name="areavire" value="{{ vitacora.area }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="foliovita">Folio de manifestación:</label>
-                                    <input type="text" id="txtfoliomare" name="foliomavi" value="{{ vitacora.folio_manifestacion }}" class="form-control" required >
+                                    <input type="text" id="txtfoliomare" name="foliomavire" value="{{ vitacora.folio_manifestacion }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="diavita">Dia que sale:</label>
-                                    <input type="date" id="txtdiare" name="diavi" value="{{ vitacora.dia_que_sale }}" class="form-control" min="01/01/1980" max="31-12-2099" required >
+                                    <input type="date" id="txtdiare" name="diavire" value="{{ vitacora.dia_que_sale }}" class="form-control" min="01/01/1980" max="31-12-2099" required >
                                 </div>
                                 <div class="campo">
                                     <label for="archivo_pdfvita">Nuevo plano manzaner:</label>
-                                    <input type="file" id="txtarchivore" name="archivovi" value="{{ vitacora.plano_manzanero }}"class="form-control" required>
+                                    <input type="file" id="txtarchivore" name="archivovire" value="{{ vitacora.plano_manzanero }}"class="form-control" >
                                 </div>
                                 <div class="campo">
                                     <label for="verivita">Verificación de linderos:</label>
-                                    <input type="text" id="txtverire" name="verivi" value="{{ vitacora.verificacion_linderos }}" class="form-control" required >
+                                    <input type="text" id="txtverire" name="verivire" value="{{ vitacora.verificacion_linderos }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="tipovita">Tipo de captura:</label>
-                                    <input type="text" id="txttipore" name="tipovi" value="{{ vitacora.tipo_captura }}" class="form-control" required >
+                                    <input type="text" id="txttipore" name="tipovire" value="{{ vitacora.tipo_captura }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="clavevita">Clave catastral:</label>
-                                    <input type="text" id="txtclavere" name="clavevi" value="{{ vitacora.clave_catastral }}" class="form-control" required >
+                                    <input type="text" id="txtclavere" name="clavevire" value="{{ vitacora.clave_catastral }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="costovita">Costo de translado:</label>
-                                    <input type="text" id="txtcostore" name="costovi" value="{{ vitacora.costo_traslado }}" class="form-control" required >
+                                    <input type="text" id="txtcostore" name="costovire" value="{{ vitacora.costo_traslado }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="observita">Observaciones:</label>
-                                    <input type="text" id="txtobsre" name="obsvi" value="{{ vitacora.observacion }}" class="form-control" required >
+                                    <input type="text" id="txtobsre" name="obsvire" value="{{ vitacora.observacion }}" class="form-control" required >
                                 </div>
                                 {% if vitacora.plano_manzanero %}
                                 <p>Plano actual: <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">  <img src="{% static 'images/pdf_icon.png' %}" alt="ver pdf" style="width: 24px; height: 24px;"></a></p>

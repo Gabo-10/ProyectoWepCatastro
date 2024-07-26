@@ -165,24 +165,22 @@ def edicionReportv(request, codigo):
 
 def editarReportv(request, codigo):
     if request.method == 'POST':
-        folior = request.POST.get('txtfoliore')
-        nombrer = request.POST.get('txtnombrere')
-        fechar = request.POST.get('txtfechare')
-        carpetar = request.POST.get('txtcarpetare')
-        arear = request.POST.get('txtareare')
-        foliomar = request.POST.get('txtfoliomare')
-        diar = request.POST.get('txtdiare')
-        plano_manzaneror = request.FILES.get('archivo_pdfre')
-        verier = request.POST.get('txtverire')
-        tipor = request.POST.get('txttipore')
-        claver = request.POST.get('txtclavere')
-        costor = request.POST.get('txtcostore')
-        obsr = request.POST.get('txtobsre')
+        nombrer = request.POST.get('nombrevire')
+        fechar = request.POST.get('fechavire')
+        carpetar = request.POST.get('carpetavire')
+        arear = request.POST.get('areavire')
+        foliomar = request.POST.get('foliomavire')
+        diar = request.POST.get('diavire')
+        plano_manzaneror = request.FILES.get('archivovire')
+        verier = request.POST.get('verivire')
+        tipor = request.POST.get('tipovire')
+        claver = request.POST.get('clavevire')
+        costor = request.POST.get('costovire')
+        obsr = request.POST.get('obsvire')
         
 
         try:
             reportev = Vitacora.objects.get(idvit=codigo)
-            reportev.folio = folior
             reportev.nombre_propietario = nombrer
             reportev.fecha_revision = fechar
             reportev.carpeta = carpetar
@@ -205,12 +203,12 @@ def editarReportv(request, codigo):
             
             reportev.save()
             messages.success(request, '✅ ¡Reporte actualizado!', extra_tags='success-message')
-            return redirect('Inspeccion')
+            return redirect('Vitacora')
         except Vitacora.DoesNotExist:
             messages.error(request, 'El reporte no existe')
-            return redirect('Inspeccion')
+            return redirect('Vitacora')
     else:
         messages.error(request, 'La solicitud no es válida')
-        return redirect('Inspeccion')
+        return redirect('Vitacora')
     
 
