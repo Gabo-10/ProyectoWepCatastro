@@ -58,8 +58,6 @@
                 <tr>  
                   <td><a href="/cartografia/edicionCarto/{{ ventanilla.nprog}}" class="btneditarcarto">
                   <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
-                  <a href="#" class="btneliminarcar" data-url="{% url 'eliminarcar' codigo=ventanilla.nprog %}">
-                  <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
                   <td>{{ ventanilla.clave_catastral }}</td>
                   <td>{{ ventanilla.nombre }}</td>
@@ -89,22 +87,6 @@
               {% endfor %}
           </table>
         </div>
-      </div>
-    </div>
-    <div id="confirmacionEliminar" class="modal">
-      <div class="modal-contenido">
-        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
-        <div>
-          <button id="confirmarEliminar">Confirmar</button>
-          <button id="cancelarEliminar">Cancelar</button>
-        </div>
-      </div>
-    </div>
-    <div id="mensajeModal" class="mensajeModal">
-      <div class="mensajeModal-content">
-          <span class="close">&times;</span>
-          <p id="mensajeTexto"></p>
-          <button id="aceptarMensaje">Aceptar</button>
       </div>
     </div>
       {% if messages %}

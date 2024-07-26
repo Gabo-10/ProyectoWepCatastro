@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import Ventanilla
-from inspeccion.models import Inspeccion
 from django.db.models import Q
 from django.contrib import messages
 import re
@@ -18,30 +17,6 @@ class Editorcar(APIView):
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
-
-
-def eliminarCarto(request, codigo):
-    ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
-
-    if request.method == 'GET':
-        # Verificar si hay registros asociados
-        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-        if inspeccion_exists:
-            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
-        
-        # Si no hay registros asociados, indicar que se puede eliminar
-        return JsonResponse({'success': True})
-
-    if request.method == 'POST':
-        # Verificar si hay registros asociados antes de eliminar
-        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-        if inspeccion_exists:
-            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
-
-        # Eliminar el registro
-        ventanilla.delete()
-        return JsonResponse({'success': True, 'message': '✅ El registro ha sido eliminado correctamente.'})
-
 
 
 def edicionCarto(request, codigo):
