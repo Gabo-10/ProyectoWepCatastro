@@ -157,5 +157,5 @@ def eliminarVitac(request, codigo):
             
         
     # Si la solicitud no es POST, simplemente renderiza la página de confirmación de eliminación
-    return render(request, 'inspecciones.html', {'inspeccion': inspeccion})
+    return render(request, 'vitacoras.html', {'vitacora': vitacora})
 

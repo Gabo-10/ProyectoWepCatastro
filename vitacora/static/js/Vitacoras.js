@@ -53,7 +53,7 @@ document.querySelector('.btn-generar').addEventListener('click', function(event)
 
 
 // Mostrar el modal de confirmación
-document.querySelectorAll('.btneliminarins').forEach(btn => {
+document.querySelectorAll('.btneliminarvita').forEach(btn => {
   btn.addEventListener('click', (event) => {
     event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
     const url = btn.getAttribute('data-url'); // Obtener la URL de eliminación del atributo 
@@ -73,7 +73,7 @@ document.querySelectorAll('.btneliminarins').forEach(btn => {
       .then(response => {
         if (response.ok) {
           // Redirigir a la página de edición después de eliminar el usuario
-          window.location.href = '/inspeccion/inspeccion/';
+          window.location.href = '/vitacora/vitacora/';
         } else {
           // Manejar errores de eliminación
           console.error('Error al eliminar el usuario');
