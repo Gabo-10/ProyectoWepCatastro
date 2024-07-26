@@ -9,12 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const txtbarrio = document.getElementById("txtbarrio");
   const txtentidad = document.getElementById("txtentidad"); 
   const txtmunicipio = document.getElementById("txtmunicipio");
-  const txtcert = document.getElementById("txtcert");
-  const txtplanomz = document.getElementById("txtplanomz");
-  const txttopo = document.getElementById("txttopo");
-  const txtlinderos = document.getElementById("txtlinderos");
-  const txtident = document.getElementById("txtident");
-  const txtccvc = document.getElementById('txtccvc');
   const txtfecha = document.getElementById('txtfecha');
   const txtfolio = document.getElementById('txtfolio');
   const txtrecibo = document.getElementById('txtrecibo');
@@ -29,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const txthora = document.getElementById('txthora');
   const txtpago = document.getElementById('txtpago');
   const txtextras = document.getElementById('txtextras');
+  const selectTramite = document.getElementById('tramite');
   const btnLimpiarven = document.getElementById("limpiarven");
 
   // Agregar evento limpiarEspacioFinal al presionar una tecla en los campos 
@@ -42,12 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtbarrio.addEventListener("blur", limpiarEspacioFinal);
   txtentidad.addEventListener("blur", limpiarEspacioFinal);
   txtmunicipio.addEventListener("blur", limpiarEspacioFinal);
-  txtcert.addEventListener("blur", limpiarEspacioFinal);
-  txtplanomz.addEventListener("blur", limpiarEspacioFinal);
-  txttopo.addEventListener("blur", limpiarEspacioFinal);
-  txtlinderos.addEventListener("blur", limpiarEspacioFinal);
-  txtident.addEventListener("blur", limpiarEspacioFinal);
-  txtccvc.addEventListener("blur", limpiarEspacioFinal);
   txtfecha.addEventListener("blur", limpiarEspacioFinal);
   txtfolio.addEventListener("blur", limpiarEspacioFinal);
   txtrecibo.addEventListener("blur", limpiarEspacioFinal);
@@ -71,12 +60,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtcalle.addEventListener("keyup", validarCampo);
   txtbarrio.addEventListener("keyup", validarCampo);
   txtentidad.addEventListener("keyup", validarCampo);
-  txtcert.addEventListener("keyup", validarCampo);
-  txtplanomz.addEventListener("keyup", validarCampo);
-  txttopo.addEventListener("keyup", validarCampo);
-  txtlinderos.addEventListener("keyup", validarCampo);
-  txtident.addEventListener("keyup", validarCampo);
-  txtccvc.addEventListener("keyup", validarCampo);
   txtfolio.addEventListener("keyup", validarCampo);
   txtrecibo.addEventListener("keyup", validarCampo);
   txtreviso.addEventListener("keyup", validarCampo);
@@ -110,12 +93,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtbarrio.addEventListener("blur", convertirMayusculas);
   txtentidad.addEventListener("blur", convertirMayusculas);
   txtmunicipio.addEventListener("blur", convertirMayusculas);
-  txtcert.addEventListener("blur", convertirMayusculas);
-  txtplanomz.addEventListener("blur", convertirMayusculas);
-  txttopo.addEventListener("blur", convertirMayusculas);
-  txtlinderos.addEventListener("blur", convertirMayusculas);
-  txtident.addEventListener("blur", convertirMayusculas);
-  txtccvc.addEventListener("blur", convertirMayusculas);
   txtfecha.addEventListener("blur", convertirMayusculas);
   txtfolio.addEventListener("blur", convertirMayusculas);
   txtrecibo.addEventListener("blur", convertirMayusculas);
@@ -228,12 +205,6 @@ function convertirMayusculas(event) {
     txtbarrio.value = "";
     txtentidad.value = "";
     txtmunicipio.value = "";
-    txtcert.value = "";
-    txtplanomz.value = "";
-    txttopo.value = "";
-    txtlinderos.value = "";
-    txtident.value = "";
-    txtccvc.value = "";
     txtfecha.value = "";
     txtfolio.value = "";
     txtrecibo.value = "";
@@ -248,6 +219,7 @@ function convertirMayusculas(event) {
     txtpago.value = "";
     txtextras.value ="";
     txtatencion.value = "";
+    selectTramite.value = "";
 
   });
 });
@@ -271,4 +243,12 @@ const seconds = ('0' + today.getSeconds()).slice(-2);
    const formattedTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
    document.getElementById('txthora').value = formattedTime;
 });
+
+
+document.querySelector('.btn-listaven').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  window.location.href = '/ventanilla/editarven/'; 
+});
+
+
 

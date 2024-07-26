@@ -11,21 +11,13 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 
 
+
 class Editorcar(APIView):    
     template_name="Careditor.html"
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
 
-
-def eliminarCarto(request, codigo):
-    ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
-    if request.method == 'POST':
-        ventanilla.delete()
-        # Redirigir de vuelta a la página de edición después de eliminar el usuario
-        return redirect('editorcar')
-    # Si la solicitud no es POST, simplemente renderiza la página de confirmación de eliminación
-    return render(request, 'Careditor.html', {'ventanilla': ventanilla})    
 
 def edicionCarto(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
@@ -42,12 +34,7 @@ def editarCarto(request, codigo):
         barrioc = request.POST.get('barriocarto')
         entidadc = request.POST.get('entidadcarto')
         municipioc = request.POST.get('municipiocarto')
-        certc = request.POST.get('certcarto')
-        planomzc = request.POST.get('planomzcarto')
-        topoc = request.POST.get('topocarto')
-        linderosc = request.POST.get('linderoscarto')
-        identc = request.POST.get('identcarto')
-        ccvcc = request.POST.get('ccvccarto')
+        tramitec = request.POST.get('tramitecarto')
         fechac = request.POST.get('fechacarto')
         folioc = request.POST.get('foliocarto')
         reciboc = request.POST.get('recibocarto')
@@ -74,12 +61,7 @@ def editarCarto(request, codigo):
             cartos.barrio_colonia = barrioc
             cartos.entidad = entidadc
             cartos.municipio = municipioc
-            cartos.cert_clave = certc
-            cartos.cert_plano_mz = planomzc 
-            cartos.levantamiento_topo = topoc 
-            cartos.verificacion_linderos = linderosc
-            cartos.const_ident_catastral = identc 
-            cartos.ccvc = ccvcc 
+            cartos.tramite = tramitec
             cartos.fecha = fechac 
             cartos.folio = folioc
             cartos.recibo = reciboc 

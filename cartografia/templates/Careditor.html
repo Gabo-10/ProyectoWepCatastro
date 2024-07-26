@@ -1,4 +1,4 @@
-{% extends "ProyectoWebApp/base.html" %}
+{% extends "ProyectoWebApp/base2.html" %}
 
 
 {% block content %}
@@ -36,12 +36,7 @@
                       <th>Barrio o Colonia</th>
                       <th>Entidad</th>
                       <th>Municipio</th>
-                      <th>Cert.Clave</th>
-                      <th>Cert.de plano mz</th>
-                      <th>Levantamien topo</th>
-                      <th>Verificacion de linderos</th>
-                      <th>Const de ident.catastral</th>
-                      <th>c.c.c.v</th>
+                      <th>Tramite</th>
                       <th>Fecha</th>
                       <th>Folio</th>
                       <th>N° Recibo</th>
@@ -63,8 +58,6 @@
                 <tr>  
                   <td><a href="/cartografia/edicionCarto/{{ ventanilla.nprog}}" class="btneditarcarto">
                   <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
-                  <a href="#" class="btneliminarcar" data-url="{% url 'eliminarcar' codigo=ventanilla.nprog %}">
-                  <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
                   <td>{{ ventanilla.clave_catastral }}</td>
                   <td>{{ ventanilla.nombre }}</td>
@@ -75,12 +68,7 @@
                   <td>{{ ventanilla.barrio_colonia }}</td>
                   <td>{{ ventanilla.entidad }}</td> 
                   <td>{{ ventanilla.municipio }}</td>
-                  <td>{{ ventanilla.cert_clave }}</td>
-                  <td>{{ ventanilla.cert_plano_mz }}</td>
-                  <td>{{ ventanilla.levantamiento_topo }}</td>
-                  <td>{{ ventanilla.verificacion_linderos }}</td>
-                  <td>{{ ventanilla.const_ident_catastral }}</td>
-                  <td>{{ ventanilla.ccvc }}</td>
+                  <td>{{ ventanilla.tramite }}</td>
                   <td>{{ ventanilla.fecha }}</td>
                   <td>{{ ventanilla.folio }}</td>
                   <td>{{ ventanilla.recibo }}</td>
@@ -98,15 +86,6 @@
                 </tr>
               {% endfor %}
           </table>
-        </div>
-      </div>
-    </div>
-    <div id="confirmacionEliminar" class="modal">
-      <div class="modal-contenido">
-        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
-        <div>
-          <button id="confirmarEliminar">Confirmar</button>
-          <button id="cancelarEliminar">Cancelar</button>
         </div>
       </div>
     </div>

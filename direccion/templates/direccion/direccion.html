@@ -1,4 +1,4 @@
-{% extends "ProyectoWebApp/base.html" %}
+{% extends "ProyectoWebApp/base3.html" %}
 
 {% load static %}
 
@@ -10,6 +10,7 @@
     
 
     <link rel="stylesheet" href="{% static 'direccion/css/whatsapp.css' %}">
+    <link rel="stylesheet" href="{% static 'direccion/css/styless.css' %}">
   
     
   </head>
@@ -26,21 +27,34 @@
 
     {% if "valido" in request.GET %}
 
-    <p style="color: white;">Informacion envíada correctamente, gracias</p>
+    <p id="mensajeExito" class="mensaje-recuadro" style="color: rgb(0, 0, 0);">Informacion envíada correctamente, gracias</p>
 
     {% endif %}
     
-    <form action="" method="POST" style="text-align: center;">
+    <form action="" method="POST" >
         {% csrf_token %}
 
-        <table style="color: white; margin: 20px auto;">{{miFormulario.as_table}}</table>
+        <table >{{miFormulario.as_table}}</table>
 
-        <input type="submit" value="Enviar" style="width: 150px;">
+        <input type="submit" class="btnenviar" value="Enviar" >
 
-        <input type="submit" value="Limpiar" style="width: 150px;">
+        <input type="reset" class="btnlimpiar" value="Limpiar">
+
+
 
     </form>
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var mensaje = document.getElementById("mensajeExito");
+        if (mensaje) {
+            setTimeout(function() {
+                mensaje.style.display = 'none';
+            }, 5000); // 5000 milisegundos = 5 segundos
+        }
+    });
+</script>
 
 {% endblock %}

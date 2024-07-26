@@ -1,7 +1,4 @@
-{% extends "ProyectoWebApp/base.html" %}
 
-
-{% block content %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="es">
@@ -12,10 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/stylevitaedi.css' %}">  
   </head>
   
-  <body>
+  <body id="bg21" style="background-image: url('{% static 'images/catadef.jpg' %}')">
     <div class="contenedorvita"> 
       <div class="formulariovita">  
         <h1>Vitacora</h1> 
+        <button type="button" class="btn-lista">
+          <img src="{% static 'images/lista_icon.png' %}" alt="Iconolista"> Lista de reportes
+        </button>
         <div class="buscador">
           <input type="search" placeholder="Buscar...">
           <button type="submit">Buscar</button>
@@ -36,12 +36,7 @@
                       <th>Barrio o Colonia</th>
                       <th>Entidad</th>
                       <th>Municipio</th>
-                      <th>Cert.Clave</th>
-                      <th>Cert.de plano mz</th>
-                      <th>Levantamien topo</th>
-                      <th>Verificacion de linderos</th>
-                      <th>Const de ident.catastral</th>
-                      <th>c.c.c.v</th>
+                      <th>Tramite</th>
                       <th>Fecha</th>
                       <th>Folio</th>
                       <th>N° Recibo</th>
@@ -61,13 +56,11 @@
                   <tbody>
                     {% for ventanilla in ventanilla  %}      
                 <tr>  
-                  <td><a href="/vitacora/edicionVita/{{ ventanilla.nprog}}" class="btneditarvita">
-                  <img src="{% static 'images/edi.png' %}" alt="Iconoedi"> Editar</a>
-                  <a href="#" class="btneliminarvit" data-url="{% url 'eliminarvit' codigo=ventanilla.nprog %}">
-                  <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
+                  <td><a href="/vitacora/edicionVita/{{ ventanilla.nprog}}" class="btngeneins">
+                  <img src="{% static 'images/reporte_icon.png' %}" alt="Iconoedi"> Generar Reporte</a></td>
                   <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
                   <td>{{ ventanilla.clave_catastral }}</td>
-                  <td>{{ ventanilla.nombre }}</td>
+                  <td class="buscarcolumna">{{ ventanilla.nombre }}</td>
                   <td>{{ ventanilla.curp }}</td>
                   <td>{{ ventanilla.manzana }}</td>
                   <td>{{ ventanilla.lote }}</td>
@@ -75,12 +68,7 @@
                   <td>{{ ventanilla.barrio_colonia }}</td>
                   <td>{{ ventanilla.entidad }}</td> 
                   <td>{{ ventanilla.municipio }}</td>
-                  <td>{{ ventanilla.cert_clave }}</td>
-                  <td>{{ ventanilla.cert_plano_mz }}</td>
-                  <td>{{ ventanilla.levantamiento_topo }}</td>
-                  <td>{{ ventanilla.verificacion_linderos }}</td>
-                  <td>{{ ventanilla.const_ident_catastral }}</td>
-                  <td>{{ ventanilla.ccvc }}</td>
+                  <td>{{ ventanilla.tramite }}</td>
                   <td>{{ ventanilla.fecha }}</td>
                   <td>{{ ventanilla.folio }}</td>
                   <td>{{ ventanilla.recibo }}</td>
@@ -126,5 +114,3 @@
       <script src="{% static 'js/Vitaeditor.js' %}"></script> 
   </body>
 </html>
-
-{% endblock %}

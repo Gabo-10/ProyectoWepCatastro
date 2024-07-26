@@ -1,0 +1,332 @@
+#bg28 {
+    font-family: sans-serif; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-size: cover; 
+    background-attachment: fixed; 
+    font-family: sans-serif; 
+  }
+  
+  /* Estilos para el contenedor principal */
+  .contenedorvento {
+    width: 99vw;  
+    height: 81vh; 
+    display: flex;  
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  /* Estilos para el formulario de edicion de usuarios */
+  .formulariovento {
+    width: 90vw;  
+    height: 75vh; 
+    margin-top: 16vh;
+    background-color: rgba(255, 255, 255, 0.889); 
+    padding: 20px;  
+    border-radius: 50px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.603);
+    user-select: none;  
+  
+  }
+  
+  /* Estilos para el título */
+  h1 {
+    margin-top: -1px;
+    text-align: center; 
+    margin-bottom: 23px; 
+    font-size:40px; 
+  }
+  
+  
+  /* Estilos para el campo de entrada de buscador */
+  input {
+    width: 20vw;  
+    padding: 1vh;  
+    margin-left: 2vw; 
+    margin-bottom: 1vw; 
+    border-radius: 5px; 
+  }
+  
+  
+  /* Estilos para los botones */
+  button {
+    width: 25%; 
+    padding: 10px; 
+    margin: 10px; 
+    margin-left: 16%; 
+    border-radius: 5px;
+    cursor: pointer; 
+  }
+  
+  
+  /* Estilos para el buscador */
+  .buscador {
+    display: flex;
+    align-items: center;
+    width: 40vw;
+    height: 4vh;
+    margin-left: 6vw;
+    margin-top: -4%;
+    border: 1px solid #491411;
+    border-radius: 5px;
+    justify-content: space-between;
+  }
+    
+    
+  .buscador input {
+    width: 40vw;
+    height: 1vh;
+    margin: auto;
+    border: #000000;
+    outline: none;
+  }
+  
+  /* Estilos para el boton de buscador */
+  .buscador button {
+    padding: 1%;
+    width: 7vw;
+    height: 3.5vh;
+    background-color: #491411;
+    color: #fff;
+    border: #491411;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos para la tabla */
+  table {
+    width: 80vw;
+    border-collapse: collapse;
+    margin-right: 1vw;
+  }
+  
+  
+  /* Estilos para las celdas */
+  th, td {
+    border: 1px solid #ccc;
+    padding: 5.5px; 
+    text-align: center;
+    width: 30px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+    
+  th {
+    background-color: #f2f2f2;
+  }
+    
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .tabla-contenedor {
+    margin-top: 20px;
+    max-height: 430px; 
+    overflow-y: auto; 
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+  
+  .selected-row {
+    outline: 4px solid #b99866; 
+  }
+  
+   
+  /* Estilos para el botón eliminar usuario*/
+  .btneliminarven {
+    background-color: #d12a2a; 
+    color: #ffffff; 
+    padding: 4.5px 11px; 
+    text-decoration: none;
+    border-radius: 5px; 
+    border: none; 
+    cursor: pointer; 
+  }
+  
+  /* Estilos cuando se pasa el cursor sobre el botón */
+  .btneliminarven:hover {
+    background-color: #511512; 
+  }
+  
+  
+  /* Estilos para el botón eliminar usuario*/
+  .btneditarventa {
+    background-color: #2a99d1; 
+    color: #ffffff; 
+    padding: 4.5px 11px; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    border: none; 
+    cursor: pointer; 
+  }
+  
+  /* Estilos cuando se pasa el cursor sobre el botón */
+  .btneditarventa:hover {
+    background-color: #511512; 
+  }
+  
+  
+  /* Estilos para los iconos de mostrar contraseña */
+  .btneditarventa img,
+  .btneliminarven img {
+      width: 20px;
+      height: 23px;
+      vertical-align: middle; 
+  }
+  
+  /* Estilos para la ventana mensaje de confirmación */
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+  }
+  
+  .modal-contenido {
+    background-color: #fefefeec;
+    margin: 15% auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 40%; 
+    height: 20%; 
+    text-align: center;
+    border-radius: 15px;
+  }
+  
+  .modal-contenido button {
+    display: inline-block; 
+    margin: 0 auto; 
+  }
+  
+  /* Estilos para los boton de confirmar */
+  #confirmarEliminar  {
+    background-color: #8bcd51;
+    color: white;
+    padding: 10px 15px;
+    margin: 25px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos para los boton de cancelar */
+  #cancelarEliminar{
+    background-color: #f44336;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #confirmarEliminar:hover, #cancelarEliminar:hover {
+    background-color: #e8c289;
+  }
+  
+  
+  .success-messages {
+    background-color: #d4edda; 
+    color: #155724; 
+    border: 1px solid #c3e6cb; 
+    padding: 9px; 
+    margin-bottom: 88vh; 
+    margin-right: 40px;
+    margin-left: 3px;
+    margin-top: -610px;
+    border-radius: 5px; 
+    text-align: center;
+  }
+  .mensajeModal {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .mensajeModal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 45%; 
+    height: 20%; 
+    border-radius: 5px; /* Añadir borde redondeado si se desea */
+    text-align: center; /* Centrar el texto */
+    display: flex;
+    flex-direction: column; /* Permitir que los elementos hijos se alineen en una columna */
+    align-items: center; /* Centrar los elementos hijos horizontalmente */
+    border-radius: 15px;
+    margin-bottom: 4px;
+  }
+  
+  .mensajeModal-content p {
+    margin:14px 0; /* Espaciado arriba y abajo */
+  }
+  
+  .mensajeModal .close {
+    color: #aaa;
+    align-self: flex-end; /* Alinear el botón de cerrar a la derecha */
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+  }
+  
+  .mensajeModal .close:hover,
+  .mensajeModal .close:focus {
+    color: black;
+    text-decoration: none;
+  }
+  
+  #aceptarMensaje {
+    background-color: #e8c289;
+    border: none;
+    color: white; /* Color del texto */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0 0; /* Espaciado arriba y cero a los lados */
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #aceptarMensaje:hover {
+    background-color: #511512; 
+  }
+  
+
+  /* Estilos para el botón Generar */
+.btn-generar {
+  background-color:  #e8c289; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 8px 16px; /* Padding interno */
+  border: none; /* Sin borde */
+  border-radius: 4px; 
+  cursor: pointer; 
+  margin-left: 59vw; 
+  margin-top: -3vh;
+  margin-bottom: 3.5vh;
+}
+.btn-generar:hover {
+  background-color:  #249e20; /* Color de fondo al pasar el mouse */
+}
+
+.btn-generar:focus {
+  outline: none; 
+}
+.btn-generar img {
+  width: 20px;
+  height: 23px;
+  vertical-align: middle; 
+}

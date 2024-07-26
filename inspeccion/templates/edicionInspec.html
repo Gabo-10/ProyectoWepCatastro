@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="campo">
                                     <label for="prog13">N°PROG:</label>
-                                    <input type="text" id="txtproginspec" name="progin" value="{{ ventanilla.nprog }}" class="form-control" readonly>
+                                    <input type="text" id="txtproginspec" name="progin" value="{{ ventanilla.folio }}" class="form-control" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="nombre13">Nombre:</label>
@@ -64,7 +64,7 @@
                     fetch(urlObtenerSiguienteId)
                         .then(response => response.json())
                         .then(data => {
-                            document.getElementById('txtregistro').value = data.siguiente_id;  
+                            document.getElementById('txtregistro').value = data.siguiente_idins;  
                         })
                         .catch(error => {
                             console.error('Error al obtener el siguiente ID:', error);

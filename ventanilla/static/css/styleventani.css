@@ -1,12 +1,4 @@
-/* Estilos generales para el cuerpo del documento */
-#bg4 {
-    font-family: sans-serif;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-  
+ 
   /* Estilos para el contenedor principal */
   .contenedorventa {
     width: 97vw;
@@ -18,9 +10,9 @@
   
   /* Estilos para el formulario */
   .formularioventa {
-    margin-top: 24vw;
+    margin-top: 40vh;
     width: 85vw;
-    height: 138vh;
+    height: 118vh;
     background-color: rgba(255, 255, 255, 0.884);
     padding: 20px;
     border-radius: 50px;
@@ -128,4 +120,67 @@
     font-size: 12px;
     margin-left: 8px;
   }
+  .campo-input {
+    width: 103%; /* Ajusta el ancho según tus necesidades */
+    margin-bottom: 0.5vw;
+    display: flex;
+    align-items: center;
+    margin-top: -3%;
+    margin-left: 1.1vw;
+  }
   
+
+
+.success-message {
+  background-color: #d4edda; /* Color de fondo verde claro */
+  color: #155724; /* Color de texto verde oscuro */
+  border: 1px solid #c3e6cb; /* Borde verde */
+  padding: 7px; /* Espacio alrededor del mensaje */
+  margin-bottom: 10px; /* Espacio debajo del mensaje */
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: -924px;
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center;
+}
+
+.error-message {
+  background-color: #f8d7da; /* Color de fondo rojo claro para mensajes de error */
+  color: #721c24; /* Color de texto rojo oscuro */
+  border: 1px solid #f5c6cb; /* Borde rojo */
+  padding: 7px; /* Espacio alrededor del mensaje */
+  margin-bottom: 10px; /* Espacio debajo del mensaje */
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: -924px;
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center;
+}
+
+ /* Estilos para el botón Lista */
+ .btn-listaven {
+  width: 16vw;
+  background-color:  #e8c289; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 8px 15px; /* Padding interno */
+  border: none; /* Sin borde */
+  border-radius: 4px; 
+  cursor: pointer; 
+  margin-left: 59vw; 
+  margin-top: -3.5%;
+  margin-bottom: .5vh;
+  margin-left: 72%;
+}
+.btn-listaven:hover {
+  background-color: #56bfd7;; /* Color de fondo al pasar el mouse */
+}
+
+.btn-listaven:focus {
+  outline: none; 
+}
+
+.btn-listaven img {
+  width: 20px;
+  height: 23px;
+  vertical-align: middle; 
+}

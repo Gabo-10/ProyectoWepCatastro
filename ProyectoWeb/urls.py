@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -30,9 +33,17 @@ urlpatterns = [
     path('direccion/', include('direccion.urls')),
     
     path('ventanilla/', include('ventanilla.urls')),
+
+    path('administracion/', include('administracion.urls')),
+    
+    path('', include('login.urls')),
     
     #path('ProyectoWebApp/', include('ProyectoWebApp.urls')),
     
-    path('', include('ProyectoWebApp.urls')),# para que directamente se dirija a esta url sin nececidad de cololar ProyectoWebApp/
+    path('inicial/', include('ProyectoWebApp.urls')),# para que directamente se dirija a esta url sin nececidad de cololar ProyectoWebApp/
    
-]
+] # Configuración para servir archivos estáticos en desarrollo
+urlpatterns += staticfiles_urlpatterns()
+
+# Configuración para servir archivos multimedia en desarrollo
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

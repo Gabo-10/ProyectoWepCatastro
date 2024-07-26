@@ -11,156 +11,109 @@
         {% block body %}
         <div class="contenedorvita">
             <div class="formulariovita">
-                <h1>Edición De Datos</h1>
+                <h1>Agregar Reporte</h1>
                 <div class="card">
                     <div class="card-body">         
-                        <form action="/vitacora/editarVita/{{ventanilla.nprog}}/" method="POST">{% csrf_token %}
+                        <form method="POST" action="{% url 'AgregarInspec' %}" enctype="multipart/form-data"> {% csrf_token %}
                             <div class="grid-container">
                                 <div class="campo">
-                                    <label for="prog3">N°PROG:</label>
-                                    <input type="text" id="progvita" name="progvita" value="{{ ventanilla.nprog }}" class="form-control"  disabled>
+                                    <label for="idvita">ID_Vitacora:</label>
+                                    <input type="text" id="txtid" name="idvi" value="{{ datos_formulario.idvi }}"  class="form-control"  required readonly>
                                 </div>
                                 <div class="campo">
-                                    <label for="claveca3" >CLAVE CATASTRAL:</label>
-                                    <input type="text" id="claveravita" name="claveravita" value="{{ ventanilla.clave_catastral }}" class="form-control" >
+                                    <label for="foliovita">Folio:</label>
+                                    <input type="text" id="txtfolio" name="foliovi" value="{{ ventanilla.nprog }}" class="form-control" readonly>
                                 </div>
                                 <div class="campo">
-                                    <label for="nombre3">NOMBRE:</label>
-                                    <input type="text" id="nombrevita" name="nombrevita" value="{{ ventanilla.nombre }}" class="form-control" >
+                                    <label for="nombrevita">Nombre del propetario:</label>
+                                    <input type="text" id="txtnombre" name="nombrevi" value="{{ datos_formulario.nombrevi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="curp3">CURP:</label>
-                                    <input type="text" id="curpvita" name="curpvita" value="{{ ventanilla.curp }}"  class="form-control" >
+                                    <label for="fechavita">Fecha de revisión:</label>
+                                    <input type="date" id="txtfecha" name="fechavi" value="{{ datos_formulario.fechavi}}" class="form-control"min="01/01/1980" max="31-12-2099" required required >
                                 </div>
                                 <div class="campo">
-                                    <label for="manzana3">MANZANA:</label>
-                                    <input type="text" id="manzanavita" name="manzanavita" value="{{ ventanilla.manzana }}"  class="form-control">
+                                    <label for="carpetavita">Carpeta:</label>
+                                    <input type="text" id="txtcarpeta" name="carpetavi" value="{{ datos_formulario.carpetavi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="lote3">LOTE:</label>
-                                    <input type="text" id="lotevita" name="lotevita" value="{{ ventanilla.lote }}" class="form-control" >
+                                    <label for="areavita">Área:</label>
+                                    <input type="text" id="txtarea" name="areavi" value="{{ datos_formulario.areavi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="calle3">CALLE:</label>
-                                    <input type="text" id="callevita" name="callevita" value="{{ ventanilla.calle }}"  class="form-control">
+                                    <label for="foliovita">Folio de manifestación:</label>
+                                    <input type="text" id="txtfolioma" name="foliomavi" value="{{ datos_formulario.foliomavi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="barrio3">BARRIO O COLONIA:</label>
-                                    <input type="text" id="barriovita" name="barriovita" value="{{ ventanilla.barrio_colonia }}" class="form-control">
+                                    <label for="diavita">Dia que sale:</label>
+                                    <input type="date" id="txtdia" name="diavi" value="{{ datos_formulario.diavi }}" class="form-control" min="01/01/1980" max="31-12-2099" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="entidad3">ENTIDAD:</label>
-                                    <input type="text" id="entidadvita" name="entidadvita" value="{{ ventanilla.entidad }}" class="form-control">
+                                    <label for="archivo_pdfvita">Plano manzaner:</label>
+                                    <input type="file" id="txtarchivo" name="archivovi" class="form-control" required>
                                 </div>
                                 <div class="campo">
-                                    <label for="municipio3">MUNICIPIO:</label>
-                                    <input type="text" id="municipiovita" name="municipiovita" value="{{ ventanilla.municipio }}" class="form-control">
+                                    <label for="verivita">Verificación de linderos:</label>
+                                    <input type="text" id="txtveri" name="verivi" value="{{ datos_formulario.verivi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="certc3">CERT.CLAVE:</label>
-                                    <input type="text" id="certvita" name="certvita" value="{{ ventanilla.cert_clave }}" class="form-control" >
-                                </div>
-                                 <div class="campo">
-                                    <label for="planomz3">CERT.DE PLANO MZ:</label>
-                                    <input type="text" id="planomzvita" name="planomzvita" value="{{ ventanilla.cert_plano_mz }}"  class="form-control">
+                                    <label for="tipovita">Tipo de captura:</label>
+                                    <input type="text" id="txttipo" name="tipovi" value="{{ datos_formulario.tipovi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="topo3">LEVANTAMIENTO TOPO:</label>
-                                    <input type="text" id="topovita" name="topovita" value="{{ ventanilla.levantamiento_topo }}" class="form-control" >
+                                    <label for="clavevita">Clave catastral:</label>
+                                    <input type="text" id="txtclave" name="clavevi" value="{{ datos_formulario.clavevi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="linderos3">VERIFICACION DE LINDEROS:</label>
-                                    <input type="text" id="linderosvita" name="linderosvita" value="{{ ventanilla.verificacion_linderos }}" class="form-control" >
+                                    <label for="costovita">Costo de translado:</label>
+                                    <input type="text" id="txtcosto" name="costovi" value="{{ datos_formulario.costovi }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
-                                    <label for="ident3">CONST DE IDENT.CATASTRAL:</label>
-                                    <input type="text" id="identvita" name="identvita" value="{{ ventanilla.const_ident_catastral }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="ccvc3">C.C.V.C:</label>
-                                    <input type="text" id="ccvcvita" name="ccvcvita" value="{{ ventanilla.ccvc }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="fecha3">FECHA:</label>
-                                    <input type="text" id="fechavita" name="fechavita" value="{{ ventanilla.fecha }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="folio3">FOLIO:</label>
-                                    <input type="text" id="foliovita" name="foliovita" value="{{ ventanilla.folio }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="recibo3">N°RECIBO:</label>
-                                    <input type="text" id="recibovita" name="recibovita" value="{{ ventanilla.recibo }}"  class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="importe3">IMPORTE:</label>
-                                    <input type="text" id="importevita" name="importevita"  value="{{ ventanilla.importe }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="reviso3">REVISO:</label>
-                                    <input type="text" id="revisovita" name="revisovita" value="{{ ventanilla.reviso }}"  class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="motivo3">MOTIVO:</label>
-                                    <input type="text" id="motivovita" name="motivovita" value="{{ ventanilla.motivo }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="soliservi3">SOLICITUD DE SERVICIO CATASTRAL(codigos):</label>
-                                    <input type="text" id="soliservivita" name="soliservivita" value="{{ ventanilla.solicitud_servicio_catastral }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="terrreno3">SUPERFICIE TERRENO (M2):</label>
-                                    <input type="text" id="terrenovita" name="terrenovita" value="{{ ventanilla.superficie_terreno }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="construc3">SUPERFICIE CONSTRUCCION RESULTANTE (M2):</label>
-                                    <input type="text" id="construcvita" name="construcvita" value="{{ ventanilla.superficie_construccion_resultante }}"  class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="elaboracion3">FECHA ELABORACION:</label>
-                                    <input type="text" id="elaboracionvita" name="elaboracionvita" value="{{ ventanilla.fecha_elaboracion }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="atencion3">OBSERVACIONES ATENCION:</label>
-                                    <input type="text" id="atencionvita" name="atencionvita" value="{{ ventanilla.observaciones_atencion }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="hora3">HORA DE RECEPCION:</label>
-                                    <input type="text" id="horavita" name="horavita" value="{{ ventanilla.hora_recepcion }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="pago3">PAGO:</label>
-                                    <input type="text" id="pagovita" name="pagovita" value="{{ ventanilla.pago }}" class="form-control" >
-                                </div>
-                                <div class="campo">
-                                    <label for="extras3">$EXTRA$:</label>
-                                    <input type="text" id="extrasvita" name="extrasvita" value="{{ ventanilla.extras }}" class="form-control" >
+                                    <label for="observita">Observaciones:</label>
+                                    <input type="text" id="txtobs" name="obsvi" value="{{ datos_formulario.obsvi }}" class="form-control" required >
                                 </div>
                             </div>
                             <div class="button-container">
-                                <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
-                                <button type="button" id="cancelButton" class="btn btn-danger btn-block text-white" onclick="goToEditor()">Cancelar</button>
+                                <button type="button" id="prepararvita">Preparar</button>
+                                <button type="submit" class="agregarins">Agregar Reporte</button>
+                                <button type="button" class="cancelarins" onclick="goToediinspec()">Cancelar</button>        
                             </div>
-                        </form>
-                                    
-                            {% if messages %}
-                                <ul class="messages">
-                                    {% for message in messages %}
-                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                    {% endfor %}
-                                </ul>
-                                <script>
-                                    setTimeout(function() {
-                                        var messages = document.querySelector('.messages');
-                                        messages.style.display = 'none';
-                                    }, 5000);
-                                </script>
-                            {% endif %}
+                        </form>      
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            setTimeout(function() {
+                                var messages = document.querySelector('.messages');
+                                messages.style.display = 'none';
+                            }, 5000);
+                        </script>
+                    {% endif %}
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlObtenerSiguienteId = "{% url 'obtener_siguiente_idvit' %}";
+        
+                document.getElementById('prepararvita').addEventListener('click', function() {
+                    fetch(urlObtenerSiguienteId)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('txtid').value = data.siguiente_idins;  
+                        })
+                        .catch(error => {
+                            console.error('Error al obtener el siguiente ID:', error);
+                        });
+                });
+            });
+        </script>
         <script src="{% static 'js/EdicionVita.js' %}"></script>
+        <script src="{% static 'js/obteneridins.js' %}"></script>
         {% endblock %}
     </body>
 </html>

@@ -5,7 +5,13 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-
+from rest_framework.views import APIView
+import re
+from django.urls import reverse
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
+from inspeccion.models import Inspeccion
 
 
 def ventanilla(request):
@@ -21,12 +27,7 @@ def ventanilla(request):
         barrio_coloniav = request.POST.get('barrio')
         entidadv = request.POST.get('tentidad')
         municipiov = request.POST.get('municipio')
-        cert_clavev = request.POST.get('cert')
-        cert_plano_mzv = request.POST.get('planomz')
-        levantamiento_topov = request.POST.get('topo')
-        verificacion_linderosv = request.POST.get('linderos')
-        const_ident_catastralv = request.POST.get('ident')
-        ccvcv = request.POST.get('ccvc')
+        tramitev = request.POST.get('tramite')
         fechav = request.POST.get('fecha')
         foliov = request.POST.get('folio')
         recibov = request.POST.get('recibo')
@@ -42,6 +43,38 @@ def ventanilla(request):
         pagov = request.POST.get('pago')
         extrasv = request.POST.get('extras')
 
+        # Verificar que el campo nprog no esté vacío
+        if not nprogv:
+            messages.error(request, '❌ Por favor, rellene los campos restantes con el boton "Preparar".', extra_tags='error-message')
+            # Mantener los datos del formulario en caso de error
+            datos_formulario = {
+                'prog': nprogv,
+                'clavera': clave_catastralv,
+                'nombre': nombrev,
+                'curp': curpv,
+                'manzana': manzanav,
+                'lote': lotev,
+                'calle': callev,
+                'barrio': barrio_coloniav,
+                'tentidad': entidadv,
+                'municipio': municipiov,
+                'fecha': fechav,
+                'folio': foliov,
+                'recibo': recibov,
+                'importe': importev,
+                'treviso': revisov,
+                'motivo': motivov,
+                'soliservi': solicitud_servicio_catastralv,
+                'terreno': superficie_terrenov,
+                'construc': superficie_construccion_resultantev,
+                'elaboracion': fecha_elaboracionv,
+                'atencion': observaciones_atencionv,
+                'hora': hora_recepcionv,
+                'pago': pagov,
+                'extras': extrasv,
+            }
+            return render(request, 'Registrar_Ven.html', {'datos_formulario': datos_formulario})
+
         # Crear un nuevo objeto Ventanilla y guardar en la base de datos
         ventanilla_nueva = Ventanilla(
             nprog=nprogv,
@@ -54,12 +87,7 @@ def ventanilla(request):
             barrio_colonia=barrio_coloniav,
             entidad=entidadv,
             municipio=municipiov,
-            cert_clave=cert_clavev,
-            cert_plano_mz=cert_plano_mzv,
-            levantamiento_topo=levantamiento_topov,
-            verificacion_linderos=verificacion_linderosv,
-            const_ident_catastral=const_ident_catastralv,
-            ccvc=ccvcv,
+            tramite=tramitev,
             fecha=fechav,
             folio=foliov,
             recibo=recibov,
@@ -79,38 +107,32 @@ def ventanilla(request):
         messages.success(request, '✅ Datos guardados exitosamente.', extra_tags='success-message')
         return redirect('Ventanilla')  # Redirecciona a la misma página o a donde sea necesario
 
-    # Mantener los datos del formulario ingresados por el usuario
+    # Manejar el caso GET y renderizar el formulario vacío
     datos_formulario = {
-        'prog': request.POST.get('prog', ''),
-        'clavera': request.POST.get('clavera', ''),
-        'nombre': request.POST.get('nombre', ''),
-        'curp': request.POST.get('curp', ''),
-        'manzana': request.POST.get('manzana', ''),
-        'lote': request.POST.get('lote', ''),
-        'calle': request.POST.get('calle', ''),
-        'barrio': request.POST.get('barrio', ''),
-        'tentidad': request.POST.get('tentidad', ''),
-        'municipio': request.POST.get('municipio', ''),
-        'cert': request.POST.get('cert', ''),
-        'planomz': request.POST.get('planomz', ''),
-        'topo': request.POST.get('topo', ''),
-        'linderos': request.POST.get('linderos', ''),
-        'ident': request.POST.get('ident', ''),
-        'ccvc': request.POST.get('ccvc', ''),
-        'fecha': request.POST.get('fecha', ''),
-        'folio': request.POST.get('folio', ''),
-        'recibo': request.POST.get('recibo', ''),
-        'importe': request.POST.get('importe', ''),
-        'treviso': request.POST.get('treviso', ''),
-        'motivo': request.POST.get('motivo', ''),
-        'soliservi': request.POST.get('soliservi', ''),
-        'terreno': request.POST.get('terreno', ''),
-        'construc': request.POST.get('construc', ''),
-        'elaboracion': request.POST.get('elaboracion', ''),
-        'atencion': request.POST.get('atencion', ''),
-        'hora': request.POST.get('hora', ''),
-        'pago': request.POST.get('pago', ''),
-        'extras': request.POST.get('extras', ''),
+        'prog': '',
+        'clavera': '',
+        'nombre': '',
+        'curp': '',
+        'manzana': '',
+        'lote': '',
+        'calle': '',
+        'barrio': '',
+        'entidad': '',
+        'municipio': '',
+        'fecha': '',
+        'folio': '',
+        'recibo': '',
+        'importe': '',
+        'treviso': '',
+        'motivo': '',
+        'soliservi': '',
+        'terreno': '',
+        'construc': '',
+        'elaboracion': '',
+        'atencion': '',
+        'hora': '',
+        'pago': '',
+        'extras': '',
     }
 
     return render(request, 'Registrar_Ven.html', {'datos_formulario': datos_formulario})
@@ -123,3 +145,99 @@ def obtener_siguiente_id(request):
     except Ventanilla.DoesNotExist:
         siguiente_id = 1  # Si no hay registros, el siguiente ID es 1
     return JsonResponse({'siguiente_id': siguiente_id})
+
+class Editorven(APIView):    
+    template_name="Veneditor.html"
+    def get(self, request):
+        ventanilla = Ventanilla.objects.all()
+        return render(request, self.template_name, {'ventanilla': ventanilla})
+
+def edicionVenta(request, codigo):
+    ventanilla = Ventanilla.objects.get(nprog=codigo)
+    return render(request, "Editar_Ven.html", {"ventanilla": ventanilla})
+
+def editarVenta(request, codigo):
+    if request.method == 'POST':
+        claveraev = request.POST.get('claveraa')
+        nombreev = request.POST.get('nombree')
+        curpev = request.POST.get('curpp')
+        manzanaev = request.POST.get('manzanaa')
+        loteev = request.POST.get('lotee')
+        calleev = request.POST.get('callee')
+        barrioev = request.POST.get('barrioo')
+        entidadev = request.POST.get('tentidadd')
+        municipioev = request.POST.get('municipioo')
+        tramiteev = request.POST.get('tramitee')
+        fechaev = request.POST.get('fechaa')
+        folioev = request.POST.get('folioo')
+        reciboev = request.POST.get('reciboo')
+        importeev = request.POST.get('importee')
+        revisoev = request.POST.get('trevisoo')
+        motivoev = request.POST.get('motivoo')
+        soliserviev = request.POST.get('soliservii')
+        terrenoev = request.POST.get('terrenoo')
+        construcev = request.POST.get('construcc')
+        elaboracionev= request.POST.get('elaboracionn')
+        atencionev = request.POST.get('atencionn')
+        horaev = request.POST.get('horaa')
+        pagoev = request.POST.get('pagoo')
+        extrasev = request.POST.get('extrass')
+
+        try:
+            ediven = Ventanilla.objects.get(nprog=codigo)
+            ediven.clave_catastral = claveraev
+            ediven.nombre = nombreev
+            ediven.curp =  curpev
+            ediven.manzana = manzanaev
+            ediven.lote = loteev
+            ediven.calle = calleev
+            ediven.barrio_colonia = barrioev
+            ediven.entidad = entidadev
+            ediven.municipio = municipioev
+            ediven.tramite = tramiteev
+            ediven.fecha = fechaev 
+            ediven.folio = folioev
+            ediven.recibo = reciboev 
+            ediven.importe = importeev 
+            ediven.reviso = revisoev 
+            ediven.motivo = motivoev 
+            ediven.solicitud_servicio_catastral = soliserviev
+            ediven.superficie_terreno = terrenoev 
+            ediven.superficie_construccion_resultante = construcev 
+            ediven.fecha_elaboracion = elaboracionev 
+            ediven.observaciones_atencion = atencionev 
+            ediven.hora_recepcion = horaev 
+            ediven.pago = pagoev 
+            ediven.extras = extrasev 
+            ediven.save()
+            messages.success(request, '✅ ¡Datos del registro actualizado!', extra_tags='success-messages')
+            return redirect('editorven')
+        except Ventanilla.DoesNotExist:
+            messages.error(request, 'El Registro no existe')
+            return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación
+    else:
+        # Manejar casos donde no es una solicitud POST
+        messages.error(request, 'La solicitud no es válida')
+        return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación
+
+def eliminarVenta(request, codigo):
+    ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
+
+    if request.method == 'GET':
+        # Verificar si hay registros asociados
+        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados con las demas areas.'})
+        
+        # Si no hay registros asociados, indicar que se puede eliminar
+        return JsonResponse({'success': True})
+
+    if request.method == 'POST':
+        # Verificar si hay registros asociados antes de eliminar
+        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
+
+        # Eliminar el registro
+        ventanilla.delete()
+        return JsonResponse({'success': True, 'message': '✅ El registro ha sido eliminado correctamente.'})

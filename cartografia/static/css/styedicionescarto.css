@@ -18,14 +18,15 @@
   
   /* Estilos para el formulario */
   .formulariocarto {
-    margin-top: 24vw;
+    margin-top: 17vh;
     width: 85vw;
-    height: 115vh;
+    height: 102vh;
     background-color: rgba(255, 255, 255, 0.884);
     padding: 20px;
     border-radius: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.603);
     user-select: none;
+    margin-bottom: 20px;
   }
   
 /* Contenedor de grid para los poner en 2 columnas los campos */
@@ -69,18 +70,6 @@
     margin-right: 34px; 
   }
   
-  /* Estilos para los botones */
-  button {
-    width: 25%;
-    padding: 10px;
-    margin: 10px;
-    margin-left: 70px;
-    border: none;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
   
   /* Estilos para cada botón */
   #prepararven {
@@ -128,6 +117,7 @@ button {
   border-radius: 5px; /* Radio de borde */
   cursor: pointer; /* Cambiar cursor al pasar el ratón */
   transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
+  margin-bottom: 6vh;
 }
 
 

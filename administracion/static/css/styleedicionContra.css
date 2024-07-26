@@ -1,0 +1,216 @@
+/* Estilos generales para el cuerpo del documento */
+#bg4 {
+    font-family: sans-serif; /* Tipo de fuente sans-serif */
+    background-repeat: no-repeat; /* Evitar que la imagen de fondo se repita */
+    background-position: center; /* Posición del fondo */
+    background-size: cover; /* Tamaño del fondo que cubra completamente el contenedor */
+    background-attachment: fixed; /* Fondo fijo */
+    font-family: sans-serif; /* Tipo de fuente sans-serif */
+}
+
+/* Estilos para el contenedor principal */
+.contenedoredici {
+    width: 99vw;  /* Ancho igual al 100% del viewport */
+    height: 96vh; /* Altura igual al 96% del viewport */
+    display: flex;  /*alinear elementos */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+/* Estilos para el formulario de edicion de usuarios */
+.formularioedici {
+    width: 41vw;  /* Ancho del formulario */
+    height: 50vh; /* Altura del formulario */
+    background-color: rgba(255, 255, 255, 0.927); /* Transparencia del contenedor */
+    padding: 20px;  /* Espaciado interno */
+    border-radius: 50px;  /* Radio de borde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.603); /* Sombra */
+    user-select: none;  /* Evitar la selección de texto */
+
+}
+
+/* Estilos para el título */
+h1 {
+    margin-top: 14px;
+    text-align: center; /* Alinear al centro */
+    margin-bottom: 55px; /* Margen inferior */
+    font-size:40px;  /* Tamaño de fuente */
+    margin-left: 1vw;
+}
+
+  
+/* Estilos para los campos de entrada */
+input {
+    width: 20vw;  /* Ancho del campo */
+    padding: 1vh;  /* largo del campo */
+    margin-left: 2vw; /* Margen  */
+    margin-top: -1vw;
+    margin-bottom: 1vw; /* Margen inferior */
+    border: 1px solid #676666; /* Borde */
+    border-radius: 5px; /* Radio de borde */
+}
+
+
+/* Estilos para los botones */
+button {
+    width: 25%; /* Ancho del botón */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px; /* Margen */
+    border: none; /* Sin borde */
+    margin-left: 16%; /* Margen izquierdo */
+    background-color: #e8c289; /* Color de fondo */
+    color: #ffffff; /* Color de texto */
+    border-radius: 5px; /* Radio de borde */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
+}
+
+
+/* Estilos al pasar el ratón sobre el botón */
+button:hover {
+    background-color: #491411; /* Cambiar color de fondo */
+}
+
+/* Estilos al pasar el ratón sobre el botón */
+.campo {
+    margin-bottom: 1vw;
+    display: flex; 
+    align-items: center; 
+    margin-top: 3%;
+ 
+} 
+
+.campo label {
+    margin-left: 6vw; 
+    width: 4vw; 
+    margin-top: -4vh;
+    padding: 6px;  /* Espaciado interno */
+  
+}
+
+/* Estilos para los iconos de mostrar contraseña */
+.password-container {
+    position: relative;
+}
+
+.password-container .togglePassword {
+    position: absolute;
+    left: 230px;
+    top: 10%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.password-container .eye-icon {
+    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
+    height: auto;
+}
+
+.eye-icon {
+    /* Estilos existentes para el ícono */
+    outline: none; /* Excluye el delineado de enfoque */
+}
+
+/* messages */
+.error-message {
+    background-color: #f8d7da; /* Color de fondo rojo claro para mensajes de error */
+    color: #721c24; /* Color de texto rojo oscuro */
+    border: 1px solid #f5c6cb; /* Borde rojo */
+    padding: 7px; /* Espacio alrededor del mensaje */
+    margin-bottom: 10px; /* Espacio debajo del mensaje */
+    margin-right: 40px;
+    margin-left: 3px;
+    margin-top: -13px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+}
+
+
+.warning-message {
+    background-color: #fff3cd; /* Color de fondo amarillo claro para mensajes de advertencia */
+    color: #856404; /* Color de texto marrón oscuro */
+    border: 1px solid #ffeeba; /* Borde amarillo */
+    padding: 7px; /* Espacio alrededor del mensaje */
+    margin-bottom: 10px; /* Espacio debajo del mensaje */
+    margin-right: 40px;
+    margin-left: 3px;
+    margin-top: -13px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+}
+
+
+
+
+/* modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 10% solid #888;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* boton de modal */
+.custom-btn {
+    background-color:  #e8c289; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Alinea el texto al centro */
+    text-decoration: none; /* Quita la decoración de texto */
+    display: inline-block; /* Hace que el botón se muestre como un bloque en línea */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Radio de las esquinas */
+    margin-right: 14%;
+}
+
+.custom-btn:hover {
+    background-color:  #491411; /* Cambia el color de fondo al pasar sobre el botón */
+}
+
+/* mensaje de modal */
+.message {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da; /* Color de fondo rojo claro para mensajes de error */
+    color: #721c24; /* Color de texto rojo oscuro */
+    border: 1px solid #f5c6cb; /* Borde rojo */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 9999;
+}

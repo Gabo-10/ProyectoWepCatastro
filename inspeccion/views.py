@@ -9,6 +9,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 import os
 from django.shortcuts import redirect, reverse
+import re
 
 
 def inspeccion(request):
@@ -76,15 +77,25 @@ def agregarInspec(request):
     return render(request, 'edicionInspec.html', {'datos_formulario': datos_formulario, 'ventanilla': ventanilla})
 
 def obtener_siguiente_idins(request):
-    last_id = Inspeccion.objects.order_by('-ID').first()
-    if last_id is None:
-        siguiente_id = 'REP-1'
-    else:
-        last_id_number = int(last_id.ID.split('-')[-1])
-        siguiente_id_number = last_id_number + 1
-        siguiente_id = f'REP-{siguiente_id_number}'
-    return JsonResponse({'siguiente_id': siguiente_id})
+    # Obtener todos los IDs
+    all_ids = Inspeccion.objects.values_list('ID', flat=True)
 
+    # Extraer la parte numérica y ordenarla numéricamente
+    numeric_ids = sorted(
+        [int(re.search(r'\d+', id_str).group()) for id_str in all_ids if re.search(r'\d+', id_str)],
+        reverse=True
+    )
+
+    print(f"Numeric IDs: {numeric_ids}")
+    
+    if not numeric_ids:
+        siguiente_idins = 'REP-01'
+    else:
+        siguiente_id_number = numeric_ids[0] + 1
+        siguiente_idins = f'REP-{str(siguiente_id_number).zfill(2)}'
+    
+    print(f"Siguiente ID: {siguiente_idins}")
+    return JsonResponse({'siguiente_idins': siguiente_idins})
 def eliminarInspec(request, codigo):
     inspeccion = get_object_or_404(Inspeccion, ID=codigo)
     
@@ -139,3 +150,4 @@ def editarReport(request, codigo):
     else:
         messages.error(request, 'La solicitud no es válida')
         return redirect('Inspeccion')
+    
