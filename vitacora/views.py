@@ -159,3 +159,58 @@ def eliminarVitac(request, codigo):
     # Si la solicitud no es POST, simplemente renderiza la página de confirmación de eliminación
     return render(request, 'vitacoras.html', {'vitacora': vitacora})
 
+def edicionReportv(request, codigo):
+    reportev = Vitacora.objects.get(idvit=codigo)
+    return render(request, "editarReportv.html", {"vitacora": reportev})
+
+def editarReportv(request, codigo):
+    if request.method == 'POST':
+        folior = request.POST.get('txtfoliore')
+        nombrer = request.POST.get('txtnombrere')
+        fechar = request.POST.get('txtfechare')
+        carpetar = request.POST.get('txtcarpetare')
+        arear = request.POST.get('txtareare')
+        foliomar = request.POST.get('txtfoliomare')
+        diar = request.POST.get('txtdiare')
+        plano_manzaneror = request.FILES.get('archivo_pdfre')
+        verier = request.POST.get('txtverire')
+        tipor = request.POST.get('txttipore')
+        claver = request.POST.get('txtclavere')
+        costor = request.POST.get('txtcostore')
+        obsr = request.POST.get('txtobsre')
+        
+
+        try:
+            reportev = Vitacora.objects.get(idvit=codigo)
+            reportev.folio = folior
+            reportev.nombre_propietario = nombrer
+            reportev.fecha_revision = fechar
+            reportev.carpeta = carpetar
+            reportev.area = arear
+            reportev.folio_manifestacion = foliomar
+            reportev.dia_que_sale = diar
+            reportev.verificacion_linderos = verier
+            reportev.tipo_captura = tipor
+            reportev.clave_catastral = claver
+            reportev.costo_traslado = costor
+            reportev.observacion = obsr
+
+
+            # Manejo del archivo PDF
+            if plano_manzaneror:
+                # Eliminar el archivo anterior si existe
+                if reportev.plano_manzanero and os.path.isfile(reportev.plano_manzanero.path):
+                    os.remove(reportev.plano_manzanero.path)
+                reportev.plano_manzanero = plano_manzaneror
+            
+            reportev.save()
+            messages.success(request, '✅ ¡Reporte actualizado!', extra_tags='success-message')
+            return redirect('Inspeccion')
+        except Vitacora.DoesNotExist:
+            messages.error(request, 'El reporte no existe')
+            return redirect('Inspeccion')
+    else:
+        messages.error(request, 'La solicitud no es válida')
+        return redirect('Inspeccion')
+    
+

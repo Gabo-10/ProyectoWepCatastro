@@ -51,7 +51,7 @@
                   <tbody>
                     {% for vitacora in vitacoras  %}      
                 <tr>  
-                  <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarvita">
+                  <td><a href="/vitacora/edicionReportv/{{ vitacora.idvit}}" class="btneditarvita">
                     <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
                     <a href="#" class="btneliminarvita" data-url="{% url 'eliminarVitac' codigo=vitacora.idvit %}" >
                     <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>

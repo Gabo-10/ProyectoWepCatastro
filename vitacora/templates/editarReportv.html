@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Gestión de datos {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styleeditreportev.css' %}">
+    </head>
+    <body id="bg19" style="background-image: url('{% static 'images/catadef.jpg' %}')">
+        {% block body %}
+        <div class="contenedorvitare">
+            <div class="formulariovitare">
+                <h1>Agregar Reporte</h1>
+                <div class="card">
+                    <div class="card-body">         
+                        <form action="/vitacora/editarReportv/{{vitacora.idvit}}/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="grid-container">
+                                <div class="campo">
+                                    <label for="idvitas">ID_Vitacora:</label>
+                                    <input type="text" id="txtidre" name="idvi" value="{{ vitacora.idvit }}"  class="form-control"  required readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="foliovita">Folio:</label>
+                                    <input type="text" id="txtfoliore" name="foliovi" value="{{ vitacora.folio }}" class="form-control" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="nombrevita">Nombre del propetario:</label>
+                                    <input type="text" id="txtnombrere" name="nombrevi" value="{{ vitacora.nombre_propietario }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="fechavita">Fecha de revisión:</label>
+                                    <input type="date" id="txtfechare" name="fechavi" value="{{ vitacora.fecha_revision}}" class="form-control"min="01/01/1980" max="31-12-2099" required required >
+                                </div>
+                                <div class="campo">
+                                    <label for="carpetavita">Carpeta:</label>
+                                    <input type="text" id="txtcarpetare" name="carpetavi" value="{{ vitacora.carpeta }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="areavita">Área:</label>
+                                    <input type="text" id="txtareare" name="areavi" value="{{ vitacora.area }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="foliovita">Folio de manifestación:</label>
+                                    <input type="text" id="txtfoliomare" name="foliomavi" value="{{ vitacora.folio_manifestacion }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="diavita">Dia que sale:</label>
+                                    <input type="date" id="txtdiare" name="diavi" value="{{ vitacora.dia_que_sale }}" class="form-control" min="01/01/1980" max="31-12-2099" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="archivo_pdfvita">Nuevo plano manzaner:</label>
+                                    <input type="file" id="txtarchivore" name="archivovi" value="{{ vitacora.plano_manzanero }}"class="form-control" required>
+                                </div>
+                                <div class="campo">
+                                    <label for="verivita">Verificación de linderos:</label>
+                                    <input type="text" id="txtverire" name="verivi" value="{{ vitacora.verificacion_linderos }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="tipovita">Tipo de captura:</label>
+                                    <input type="text" id="txttipore" name="tipovi" value="{{ vitacora.tipo_captura }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="clavevita">Clave catastral:</label>
+                                    <input type="text" id="txtclavere" name="clavevi" value="{{ vitacora.clave_catastral }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="costovita">Costo de translado:</label>
+                                    <input type="text" id="txtcostore" name="costovi" value="{{ vitacora.costo_traslado }}" class="form-control" required >
+                                </div>
+                                <div class="campo">
+                                    <label for="observita">Observaciones:</label>
+                                    <input type="text" id="txtobsre" name="obsvi" value="{{ vitacora.observacion }}" class="form-control" required >
+                                </div>
+                                {% if vitacora.plano_manzanero %}
+                                <p>Plano actual: <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">  <img src="{% static 'images/pdf_icon.png' %}" alt="ver pdf" style="width: 24px; height: 24px;"></a></p>
+                            {% endif %}
+                            {{ form.plano_manzanero }}
+                            </div>
+                            <div class="button-container">
+                                <button type="submit" class="actualizarrev">Actualizar</button>
+                                <button type="button" class="cancelarrev" onclick="goToinspeciones()">Cancelar</button>        
+                            </div>
+                        </form>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            setTimeout(function() {
+                                var messages = document.querySelector('.messages');
+                                messages.style.display = 'none';
+                            }, 5000);
+                        </script>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/edicionreporte.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>
