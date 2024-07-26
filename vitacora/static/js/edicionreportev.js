@@ -170,7 +170,7 @@ function goToVitacoras() {
 }
 
 
-document.getElementById('txtfecha').addEventListener('input', function () {
+document.getElementById('txtfechare').addEventListener('input', function () {
   const inputDate = this.value;
   const regex = /^\d{4}-\d{2}-\d{2}$/; // Formato YYYY-MM-DD
 
@@ -181,7 +181,7 @@ document.getElementById('txtfecha').addEventListener('input', function () {
 });
 
 
-document.getElementById('txtdia').addEventListener('input', function () {
+document.getElementById('txtdiare').addEventListener('input', function () {
   const inputDate = this.value;
   const regex = /^\d{4}-\d{2}-\d{2}$/; // Formato YYYY-MM-DD
 
