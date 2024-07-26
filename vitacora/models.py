@@ -32,5 +32,5 @@ class Vitacora(models.Model):
                 new_id_number = last_id_number + 1
             self.ID_vitacora = f'{self.ID_PREFIX}{new_id_number}'
 
-        super(Vitacora, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 

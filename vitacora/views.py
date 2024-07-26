@@ -9,6 +9,9 @@ from django.http import JsonResponse
 from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import os
+
 
 
 def vitacora(request):
@@ -122,12 +125,12 @@ def obtener_siguiente_idvit(request):
     print(f"Numeric IDs: {numeric_ids}")
     
     if not numeric_ids:
-        siguiente_idins = 'VIT-01'
+        siguiente_idvit = 'VIT-01'
     else:
         siguiente_id_number = numeric_ids[0] + 1
         siguiente_idvit = f'VIT-{str(siguiente_id_number).zfill(2)}'
     
-    print(f"Siguiente ID: {siguiente_idins}")
+    print(f"Siguiente ID: {siguiente_idvit}")
     return JsonResponse({'siguiente_idvit': siguiente_idvit})
 
 

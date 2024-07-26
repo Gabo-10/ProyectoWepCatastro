@@ -104,7 +104,7 @@
                     fetch(urlObtenerSiguienteId)
                         .then(response => response.json())
                         .then(data => {
-                            document.getElementById('txtid').value = data.siguiente_idins;  
+                            document.getElementById('txtid').value = data.siguiente_idvit;  
                         })
                         .catch(error => {
                             console.error('Error al obtener el siguiente ID:', error);
