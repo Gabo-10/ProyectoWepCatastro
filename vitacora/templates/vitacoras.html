@@ -53,7 +53,7 @@
                 <tr>  
                   <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarins">
                     <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
-                    <a href="#" class="btneliminarins" data-url="{% url 'eliminarIns' codigo=inspeccion.ID %}" >
+                    <a href="#" class="btneliminarins" data-url="{% url 'eliminarVitac' codigo=vitacora.idvit %}" >
                     <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
