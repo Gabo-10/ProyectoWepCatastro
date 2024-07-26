@@ -78,27 +78,27 @@
                                 </div>
                                 <div class="campo">
                                     <label for="reviso3">REVISO:</label>
-                                    <input type="text" id="revisocarto" name="revisocarto" value="{{ ventanilla.reviso }}"  class="form-control"  >
+                                    <input type="text" id="revisocarto" name="revisocarto" value="{{ ventanilla.reviso }}"  class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="motivo3">MOTIVO:</label>
-                                    <input type="text" id="motivocarto" name="motivocarto" value="{{ ventanilla.motivo }}" class="form-control" >
+                                    <input type="text" id="motivocarto" name="motivocarto" value="{{ ventanilla.motivo }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="soliservi3">SOLICITUD DE SERVICIO CATASTRAL(codigos):</label>
-                                    <input type="text" id="soliservicarto" name="soliservicarto" value="{{ ventanilla.solicitud_servicio_catastral }}" class="form-control" >
+                                    <input type="text" id="soliservicarto" name="soliservicarto" value="{{ ventanilla.solicitud_servicio_catastral }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="terrreno3">SUPERFICIE TERRENO (M2):</label>
-                                    <input type="text" id="terrenocarto" name="terrenocarto" value="{{ ventanilla.superficie_terreno }}" class="form-control" >
+                                    <input type="text" id="terrenocarto" name="terrenocarto" value="{{ ventanilla.superficie_terreno }}" class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="construc3">SUPERFICIE CONSTRUCCION RESULTANTE (M2):</label>
-                                    <input type="text" id="construccarto" name="construccarto" value="{{ ventanilla.superficie_construccion_resultante }}"  class="form-control" >
+                                    <input type="text" id="construccarto" name="construccarto" value="{{ ventanilla.superficie_construccion_resultante }}"  class="form-control" required >
                                 </div>
                                 <div class="campo">
                                     <label for="elaboracioncarto">FECHA ELABORACION:</label>
-                                    <input type="date" id="elaboracioncarto" name="elaboracioncarto" value="{{ ventanilla.fecha_elaboracion }}" class="form-control" min="01/01/1980" max="31-12-2099">
+                                    <input type="date" id="elaboracioncarto" name="elaboracioncarto" value="{{ ventanilla.fecha_elaboracion }}" class="form-control" min="01/01/1980" max="31-12-2099" required>
                                 </div>
                                 <div class="campo">
                                     <label for="atencion3">OBSERVACIONES ATENCION:</label>
