@@ -14,15 +14,15 @@
                 <h1>Agregar Reporte</h1>
                 <div class="card">
                     <div class="card-body">         
-                        <form method="POST" action="{% url 'AgregarInspec' %}" enctype="multipart/form-data"> {% csrf_token %}
+                        <form method="POST" action="{% url 'AgregarVita' %}" enctype="multipart/form-data"> {% csrf_token %}
                             <div class="grid-container">
                                 <div class="campo">
-                                    <label for="idvita">ID_Vitacora:</label>
+                                    <label for="idvitas">ID_Vitacora:</label>
                                     <input type="text" id="txtid" name="idvi" value="{{ datos_formulario.idvi }}"  class="form-control"  required readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="foliovita">Folio:</label>
-                                    <input type="text" id="txtfolio" name="foliovi" value="{{ ventanilla.nprog }}" class="form-control" readonly>
+                                    <input type="text" id="txtfolio" name="foliovi" value="{{ ventanilla.folio }}" class="form-control" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="nombrevita">Nombre del propetario:</label>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="button-container">
                                 <button type="button" id="prepararvita">Preparar</button>
-                                <button type="submit" class="agregarins">Agregar Reporte</button>
+                                <button type="submit" class="agregarvita">Agregar Reporte</button>
                                 <button type="button" class="cancelarins" onclick="goToediinspec()">Cancelar</button>        
                             </div>
                         </form>      
