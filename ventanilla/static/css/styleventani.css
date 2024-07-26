@@ -156,3 +156,31 @@
   border-radius: 5px; /* Bordes redondeados */
   text-align: center;
 }
+
+ /* Estilos para el botón Lista */
+ .btn-listaven {
+  width: 16vw;
+  background-color:  #e8c289; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 8px 15px; /* Padding interno */
+  border: none; /* Sin borde */
+  border-radius: 4px; 
+  cursor: pointer; 
+  margin-left: 59vw; 
+  margin-top: -3.5%;
+  margin-bottom: .5vh;
+  margin-left: 72%;
+}
+.btn-listaven:hover {
+  background-color: #56bfd7;; /* Color de fondo al pasar el mouse */
+}
+
+.btn-listaven:focus {
+  outline: none; 
+}
+
+.btn-listaven img {
+  width: 20px;
+  height: 23px;
+  vertical-align: middle; 
+}

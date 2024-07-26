@@ -17,6 +17,9 @@
     <div class="contenedorventa">
         <div class="formularioventa">
             <h1>Ventanilla</h1>
+            <button type="button" class="btn-listaven">
+                <img src="{% static 'images/lista_icon.png' %}" alt="Iconolista"> Lista de reportes
+              </button>
                 <form method="POST" action="{% url 'Ventanilla' %}"> {% csrf_token %}
                     <div class="button-container">
                         <button type="button" id="prepararven">Preparar</button>

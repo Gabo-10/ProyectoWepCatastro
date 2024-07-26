@@ -243,3 +243,10 @@ const seconds = ('0' + today.getSeconds()).slice(-2);
    const formattedTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
    document.getElementById('txthora').value = formattedTime;
 });
+
+
+document.querySelector('.btn-listaven').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  window.location.href = '/ventanilla/editarven/'; 
+});
+
