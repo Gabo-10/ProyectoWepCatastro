@@ -102,7 +102,11 @@ function getCookie(name) {
     }
   }
   return cookieValue;
-
-
   
 }
+
+document.querySelector('.btn-lista').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  window.location.href = '/vitacora/vitacora/'; 
+});
+
