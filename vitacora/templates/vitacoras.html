@@ -1,0 +1,109 @@
+{% extends "ProyectoWebApp/base2.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitacoras</title>
+    <link rel="stylesheet" href="{% static 'css/stylevitacoras.css' %}">  
+  </head>
+  
+  <body >
+    <div class="contenedorvitacora"> 
+      <div class="formulariovitacora">  
+        <h1>Vitacoras</h1>
+        <button type="button" class="btn-generar">
+          <img src="{% static 'images/reporte_icon.png' %}" alt="Iconolista"> Generar
+        </button>
+        <div class="buscador">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit">Buscar</button>
+        </div>
+        <div class="tabla-contenedor">
+          <table id="tableedi">
+            <thead>
+                <thead>
+                    <tr>
+                      <th colspan="1"> Acciones </th> 
+                      <th>ID_Vitacora</th>
+                      <th>Folio</th>
+                      <th>Nombre del propetario</th>
+                      <th>Fecha de revisión</th>
+                      <th>Carpeta</th>
+                      <th>Área</th>
+                      <th>Folio de manifestación</th>
+                      <th>Dia que sale</th>
+                      <th>Plano manzanero</th>
+                      <th>Verificación de linderos</th>
+                      <th>Tipo de captura</th>
+                      <th>Clave catastral</th>
+                      <th>Costo de translado</th>
+                      <th>Observaciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for vitacora in vitacoras  %}      
+                <tr>  
+                  <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarins">
+                    <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
+                    <a href="#" class="btneliminarins" data-url="{% url 'eliminarIns' codigo=inspeccion.ID %}" >
+                    <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
+                  <td>{{ vitacora.idvit }} </td> 
+                  <td>{{ vitacora.folio }}</td>
+                  <td>{{ vitacora.nombre_propietario }}</td>
+                  <td>{{ vitacora.fecha_revision }}</td>
+                  <td>{{ vitacora.carpeta }}</td>
+                  <td>{{ vitacora.area }}</td>
+                  <td>{{ vitacora.folio_manifestacion }}</td>
+                  <td>{{ vitacora.dia_que_sale }}</td>
+                  <td>
+                    <a href="{{ vitacora.archivo_pdf.url }}" target="_blank">
+                        <img src="{% static 'images/pdf_icon.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
+                    </a>
+                </td>
+                <td>{{ vitacora.verificacion_linderos }}</td>
+                <td>{{ vitacora.tipo_captura }}</td>
+                <td>{{ vitacora.clave_catastral }}</td>
+                <td>{{ vitacora.costo_traslado }}</td>
+                <td>{{ vitacora.observacion }}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="confirmacionEliminar" class="modal">
+      <div class="modal-contenido">
+        <p>¿Estás seguro de que deseas eliminar este reporte?</p>
+        <div>
+          <button id="confirmarEliminar">Confirmar</button>
+          <button id="cancelarEliminar">Cancelar</button>
+        </div>
+      </div>
+    </div>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            setTimeout(function() {
+                var messages = document.querySelector('.messages');
+                messages.style.display = 'none';
+            }, 5000);
+        </script>
+      {% endif %}
+      <script src="{% static 'js/Vitacoras.js' %}"></script> 
+  </body>
+</html>
+
+
+{% endblock %}

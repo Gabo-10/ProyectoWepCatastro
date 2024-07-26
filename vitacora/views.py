@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
-from .models import Ventanilla
+from .models import Vitacora, Ventanilla
 from django.db.models import Q
 from django.contrib import messages
 import re
@@ -10,6 +10,10 @@ from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+
+def vitacora(request):
+    vitacoras = Vitacora.objects.all()
+    return render(request, 'vitacoras.html', {'vitacoras': vitacoras})
 
 class Editorvita(APIView):    
     template_name="Viteditor.html"

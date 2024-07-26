@@ -13,7 +13,7 @@ class Ventanilla(models.Model):
     municipio = models.CharField(max_length=25)  
     tramite = models.CharField(max_length=150)
     fecha = models.CharField(max_length=25)  
-    folio = models.CharField(max_length=150)  
+    folio = models.CharField(max_length=150, unique=True)  
     recibo = models.CharField(max_length=150)  
     importe = models.CharField(max_length=25)  
     reviso = models.CharField(max_length=150)  
