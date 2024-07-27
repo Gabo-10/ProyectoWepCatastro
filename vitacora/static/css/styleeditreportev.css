@@ -108,7 +108,7 @@ button:hover {
   display: flex; 
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
-  margin-top: 20px;
+  margin-top: -10px;
   gap: 7px; /* Espacio entre los botones */
   margin-right: 10%;
 }

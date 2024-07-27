@@ -73,7 +73,7 @@
                                     <input type="text" id="txtobsre" name="obsvire" value="{{ vitacora.observacion }}" class="form-control" required >
                                 </div>
                                 {% if vitacora.plano_manzanero %}
-                                <p>Plano actual: <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">  <img src="{% static 'images/pdf_icon.png' %}" alt="ver pdf" style="width: 24px; height: 24px;"></a></p>
+                                <p style="padding-left: 140px;"> Plano actual: <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">  <img src="{% static 'images/pdf_icon.png' %}" alt="ver pdf" style="width: 24px; height: 24px;" ></a></p>
                             {% endif %}
                             {{ form.plano_manzanero }}
                             </div>
