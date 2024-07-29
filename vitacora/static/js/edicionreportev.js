@@ -165,8 +165,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-function goToVitacoras() {
-  window.location.href = '/vitacora/editarvit/';
+function goToVitacorasr() {
+  window.location.href = '/vitacora/vitacora/';
 }
 
 
