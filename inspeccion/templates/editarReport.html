@@ -11,7 +11,7 @@
         {% block body %}
         <div class="contenedorinspec">
             <div class="formularioinspec">
-                <h1>Agregar Reporte</h1>
+                <h1>Editar Reporte</h1>
                 <div class="card">
                     <div class="card-body">         
                         <form action="/inspeccion/editarReport/{{inspeccion.ID}}/" method="POST" enctype="multipart/form-data">{% csrf_token %}
@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="campo">
                                     <label for="prog13">Vitacora ID:</label>
-                                    <input type="text" id="txtproginspecre" name="progre" value="{{inspeccion.nprog}}" class="form-control" readonly>
+                                    <input type="text" id="txtproginspecre" name="progre" value="{{inspeccion.idvit}}" class="form-control" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="nombre13">Nombre:</label>
