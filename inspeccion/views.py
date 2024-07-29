@@ -30,7 +30,7 @@ def edicionInspec(request, codigo):
 def agregarInspec(request):
     if request.method == 'POST':
         IDi = request.POST.get('regisin')
-        idviti = request.POST.get('progin')  
+        idviti = request.POST.get('vitain')  
         nombrei = request.POST.get('nombrein')
         archivo_pdfi = request.FILES.get('archivo_pdfin')
 
@@ -39,16 +39,16 @@ def agregarInspec(request):
             messages.error(request, '⚠️ Por favor, complete todos los campos del formulario.', extra_tags='warning-message')
         else:
             # Verificar si ya existe un reporte con el mismo nprogi_id
-            if Inspeccion.objects.filter(idvit=idviti).exists():
+            if Inspeccion.objects.filter(ID=IDi).exists():
                 messages.error(request, '❌ Ya se ha realizado un reporte para este número de programa.', extra_tags='error-message')
             else:
                 # Obtener la instancia de Vitacora correspondiente
-                idviti = get_object_or_404(Vitacora, pk=idviti)
+                vitacora_instance = get_object_or_404(Vitacora, idvit=idviti)
 
                 # Crear un nuevo objeto Inspeccion
                 nueva_inspeccion = Inspeccion(
                     ID=IDi,
-                    idvit=idviti,
+                    idvit=vitacora_instance,  # Asigna la instancia de Vitacora
                     nombre=nombrei,
                     archivo_pdf=archivo_pdfi,
                 )
@@ -70,10 +70,10 @@ def agregarInspec(request):
     }
 
     # Obtener la instancia de Vitacora correspondiente
-    vitacoras = Vitacora.objects.get(pk=request.POST.get('progin'))
+    vitacoras = Vitacora.objects.get(idvit=request.POST.get('vitain'))
 
     # Agregar el valor de progin al contexto
-    datos_formulario['progin'] = vitacoras.idvit
+    datos_formulario['vitain'] = vitacoras.idvit
 
     return render(request, 'edicionInspec.html', {'datos_formulario': datos_formulario, 'vitacoras': vitacoras})
 

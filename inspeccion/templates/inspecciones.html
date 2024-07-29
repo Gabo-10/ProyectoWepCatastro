@@ -32,7 +32,7 @@
                 <thead>
                     <tr>
                       <th>ID</th>
-                      <th>N°PROG:</th>
+                      <th>Bitácora ID:</th>
                       <th>Nombre</th>
                       <th>Reporte</th>
                       <th colspan="1"> Acciones </th> 
@@ -42,7 +42,7 @@
                     {% for inspeccion in inspecciones  %}      
                 <tr>  
                   <td>{{ inspeccion.ID }} </td> 
-                  <td class="buscarcolumna">{{ inspeccion.nprog }}</td>
+                  <td class="buscarcolumna">{{ inspeccion.idvit }}</td>
                   <td >{{ inspeccion.nombre }}</td>
                   <td>
                     <a href="{{ inspeccion.archivo_pdf.url }}" target="_blank">

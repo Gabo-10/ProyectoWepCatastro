@@ -1,10 +1,10 @@
-from ventanilla.models import Ventanilla
+from vitacora.models import Vitacora
 from django.db import models
 
 class Inspeccion(models.Model):
     id_prefix = 'REP-'  # Prefijo deseado para el ID
     ID = models.CharField(max_length=11, primary_key=True , unique=True)
-    nprog = models.ForeignKey(Ventanilla, on_delete=models.CASCADE)
+    idvit = models.ForeignKey(Vitacora, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=255)
     archivo_pdf = models.FileField(upload_to='media/')
 
