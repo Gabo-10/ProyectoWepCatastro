@@ -11,7 +11,7 @@ from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from inspeccion.models import Inspeccion
+from vitacora.models import Vitacora
 
 
 def ventanilla(request):
@@ -225,18 +225,18 @@ def eliminarVenta(request, codigo):
 
     if request.method == 'GET':
         # Verificar si hay registros asociados
-        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-        if inspeccion_exists:
-            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados con las demas areas.'})
+        vitacora_exists = Vitacora.objects.filter(folio=ventanilla).exists()
+        if vitacora_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en el área de Bitácora.'})
         
         # Si no hay registros asociados, indicar que se puede eliminar
         return JsonResponse({'success': True})
 
     if request.method == 'POST':
         # Verificar si hay registros asociados antes de eliminar
-        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-        if inspeccion_exists:
-            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
+        vitacora_exists_exists = Vitacora.objects.filter(folio=ventanilla).exists()
+        if vitacora_exists_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en las demas áreas.'})
 
         # Eliminar el registro
         ventanilla.delete()
