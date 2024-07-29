@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
-from .models import Inspeccion, Ventanilla
+from .models import Inspeccion
+from vitacora.models import Vitacora
 from django.contrib import messages
 from django.http import JsonResponse
 from django.http import HttpResponse
@@ -19,35 +20,35 @@ def inspeccion(request):
 class Crearinspec(APIView): 
     template_name="Crearinspec.html"
     def get(self, request):
-        ventanilla = Ventanilla.objects.all()
-        return render(request, self.template_name, {'ventanilla': ventanilla})
+        vitacoras = Vitacora.objects.all()
+        return render(request, self.template_name, {'vitacoras': vitacoras})
     
 def edicionInspec(request, codigo):
-    ventanilla = Ventanilla.objects.get(nprog=codigo)
-    return render(request, "edicionInspec.html", {"ventanilla": ventanilla})
+    vitacoras = Vitacora.objects.get(idvit=codigo)
+    return render(request, "edicionInspec.html", {"vitacoras": vitacoras})
     
 def agregarInspec(request):
     if request.method == 'POST':
         IDi = request.POST.get('regisin')
-        nprogi_id = request.POST.get('progin')  
+        idviti = request.POST.get('progin')  
         nombrei = request.POST.get('nombrein')
         archivo_pdfi = request.FILES.get('archivo_pdfin')
 
         # Verificar si todos los campos están llenos
-        if not all([IDi, nprogi_id, nombrei, archivo_pdfi]):
+        if not all([IDi, idviti, nombrei, archivo_pdfi]):
             messages.error(request, '⚠️ Por favor, complete todos los campos del formulario.', extra_tags='warning-message')
         else:
             # Verificar si ya existe un reporte con el mismo nprogi_id
-            if Inspeccion.objects.filter(nprog_id=nprogi_id).exists():
+            if Inspeccion.objects.filter(idvit=idviti).exists():
                 messages.error(request, '❌ Ya se ha realizado un reporte para este número de programa.', extra_tags='error-message')
             else:
-                # Obtener la instancia de Ventanilla correspondiente
-                nprogi = get_object_or_404(Ventanilla, pk=nprogi_id)
+                # Obtener la instancia de Vitacora correspondiente
+                idviti = get_object_or_404(Vitacora, pk=idviti)
 
                 # Crear un nuevo objeto Inspeccion
                 nueva_inspeccion = Inspeccion(
                     ID=IDi,
-                    nprog=nprogi,
+                    idvit=idviti,
                     nombre=nombrei,
                     archivo_pdf=archivo_pdfi,
                 )
@@ -68,13 +69,13 @@ def agregarInspec(request):
         'archivo_pdfin': request.FILES.get('archivo_pdfin', None),
     }
 
-    # Obtener la instancia de Ventanilla correspondiente
-    ventanilla = Ventanilla.objects.get(pk=request.POST.get('progin'))
+    # Obtener la instancia de Vitacora correspondiente
+    vitacoras = Vitacora.objects.get(pk=request.POST.get('progin'))
 
     # Agregar el valor de progin al contexto
-    datos_formulario['progin'] = ventanilla.nprog
+    datos_formulario['progin'] = vitacoras.idvit
 
-    return render(request, 'edicionInspec.html', {'datos_formulario': datos_formulario, 'ventanilla': ventanilla})
+    return render(request, 'edicionInspec.html', {'datos_formulario': datos_formulario, 'vitacoras': vitacoras})
 
 def obtener_siguiente_idins(request):
     # Obtener todos los IDs

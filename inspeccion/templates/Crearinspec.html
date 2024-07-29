@@ -25,63 +25,45 @@
                 <thead>
                     <tr>
                       <th colspan="1"> Acciones </th> 
-                      <th >N°PROG</th>
-                      <th>Clave Catastral</th>
-                      <th>Nombre</th>
-                      <th>Curp</th>
-                      <th>Manzana</th>
-                      <th>Lote</th>
-                      <th>Calle</th>
-                      <th>Barrio o Colonia</th>
-                      <th>Entidad</th>
-                      <th>Municipio</th>
-                      <th>Tramite</th>
-                      <th>Fecha</th>
+                      <th>ID_Vitacora</th>
                       <th>Folio</th>
-                      <th>N° Recibo</th>
-                      <th>Importe</th>
-                      <th>Reviso</th>
-                      <th>Motivo</th>
-                      <th>Solicitud de serviciocatastral(cod)</th>
-                      <th>Superficie terreno(M2)</th>
-                      <th>Superficie Construccion Resultante(M2)</th>
-                      <th>Fecha de elaboracion</th>
-                      <th>Observaciones aten.</th>
-                      <th>Hora de recepcion</th>
-                      <th>Pago</th>
-                      <th>$Extra$</th>               
+                      <th>Nombre del propetario</th>
+                      <th>Fecha de revisión</th>
+                      <th>Carpeta</th>
+                      <th>Área</th>
+                      <th>Folio de manifestación</th>
+                      <th>Dia que sale</th>
+                      <th>Plano manzanero</th>
+                      <th>Verificación de linderos</th>
+                      <th>Tipo de captura</th>
+                      <th>Clave catastral</th>
+                      <th>Costo de translado</th>
+                      <th>Observaciones</th>               
                     </tr>
                   </thead>
                   <tbody>
-                    {% for ventanilla in ventanilla  %}      
+                    {% for vitacora in vitacoras  %}      
                 <tr>  
-                  <td><a href="/inspeccion/edicionInspec/{{ ventanilla.nprog}}" class="btngeneins">
+                  <td><a href="/inspeccion/edicionInspec/{{ vitacora.idvit}}" class="btngeneins">
                   <img src="{% static 'images/reporte_icon.png' %}" alt="Iconoedi"> Generar Reporte</a></td>
-                  <td class="buscarcolumna">{{ ventanilla.nprog }} </td> 
-                  <td>{{ ventanilla.clave_catastral }}</td>
-                  <td class="buscarcolumna">{{ ventanilla.nombre }}</td>
-                  <td>{{ ventanilla.curp }}</td>
-                  <td>{{ ventanilla.manzana }}</td>
-                  <td>{{ ventanilla.lote }}</td>
-                  <td>{{ ventanilla.calle }}</td>
-                  <td>{{ ventanilla.barrio_colonia }}</td>
-                  <td>{{ ventanilla.entidad }}</td> 
-                  <td>{{ ventanilla.municipio }}</td>
-                  <td>{{ ventanilla.tramite }}</td>
-                  <td>{{ ventanilla.fecha }}</td>
-                  <td>{{ ventanilla.folio }}</td>
-                  <td>{{ ventanilla.recibo }}</td>
-                  <td>{{ ventanilla.importe }}</td>
-                  <td>{{ ventanilla.reviso }}</td>
-                  <td>{{ ventanilla.motivo }}</td>
-                  <td>{{ ventanilla.solicitud_servicio_catastral }}</td>
-                  <td>{{ ventanilla.superficie_terreno }}</td>
-                  <td>{{ ventanilla.superficie_construccion_resultante }}</td>
-                  <td>{{ ventanilla.fecha_elaboracion }}</td>
-                  <td>{{ ventanilla.observaciones_atencion }}</td>
-                  <td>{{ ventanilla.hora_recepcion }}</td>
-                  <td>{{ ventanilla.pago }}</td>
-                  <td>{{ ventanilla.extras }}</td>
+                  <td>{{ vitacora.idvit }} </td> 
+                  <td>{{ vitacora.folio }}</td>
+                  <td>{{ vitacora.nombre_propietario }}</td>
+                  <td>{{ vitacora.fecha_revision }}</td>
+                  <td>{{ vitacora.carpeta }}</td>
+                  <td>{{ vitacora.area }}</td>
+                  <td>{{ vitacora.folio_manifestacion }}</td>
+                  <td>{{ vitacora.dia_que_sale }}</td>
+                  <td>
+                    <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">
+                        <img src="{% static 'images/pdf_icon.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
+                    </a>
+                </td>
+                <td>{{ vitacora.verificacion_linderos }}</td>
+                <td>{{ vitacora.tipo_captura }}</td>
+                <td>{{ vitacora.clave_catastral }}</td>
+                <td>{{ vitacora.costo_traslado }}</td>
+                <td>{{ vitacora.observacion }}</td>
                 </tr>
               {% endfor %}
           </table>
