@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import Vitacora, Ventanilla
+from inspeccion.models import Inspeccion
 from django.db.models import Q
 from django.contrib import messages
 import re
@@ -136,28 +137,41 @@ def obtener_siguiente_idvit(request):
 def eliminarVitac(request, codigo):
     vitacora = get_object_or_404(Vitacora, idvit=codigo)
     
+    if request.method == 'GET':
+        # Verificar si hay registros asociados en Inspeccion
+        inspeccion_exists = Inspeccion.objects.filter(idvit=vitacora).exists()
+        if inspeccion_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en el área de Inspección.'})
+        
+        # Si no hay registros asociados, indicar que se puede eliminar
+        return JsonResponse({'success': True})
+
     if request.method == 'POST':
         try:
-            # Obtén la ruta del archivo PDF
+            # Verificar si hay registros asociados en Inspeccion
+            inspeccion_exists = Inspeccion.objects.filter(idvit=vitacora).exists()
+            if inspeccion_exists:
+                return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en el área de Inspección.'})
+
+            # Si no hay registros asociados, proceder con la eliminación del archivo PDF
             archivo_pdf_path = os.path.join(settings.MEDIA_ROOT, str(vitacora.plano_manzanero))
             
-            # Elimina el archivo PDF si existe
             if os.path.exists(archivo_pdf_path):
                 os.remove(archivo_pdf_path)
-                
-            
+
             vitacora.delete()
             
-            # Redirigir de vuelta a la página de inspecciones después de eliminar
-            return redirect('vitacoras')  
+            # Retornar una respuesta JSON de éxito
+            return JsonResponse({'success': True, 'message': '✅ El registro ha sido eliminado correctamente.'})  
         
         except Exception as e:
             # Manejo de errores si algo sale mal al eliminar
             print(f"Error al eliminar bitacora: {e}")
-            
+            return JsonResponse({'success': False, 'message': f'Error al eliminar el registro: {str(e)}'})
         
-    # Si la solicitud no es POST, simplemente renderiza la página de confirmación de eliminación
+    # Si la solicitud no es GET ni POST, simplemente renderiza la página de confirmación de eliminación
     return render(request, 'vitacoras.html', {'vitacora': vitacora})
+            
 
 def edicionReportv(request, codigo):
     reportev = Vitacora.objects.get(idvit=codigo)
