@@ -17,7 +17,7 @@
                         <form method="POST" action="{% url 'AgregarVita' %}" enctype="multipart/form-data"> {% csrf_token %}
                             <div class="grid-container">
                                 <div class="campo">
-                                    <label for="idvitas">ID_Vitacora:</label>
+                                    <label for="idvitas">ID_Bitácora:</label>
                                     <input type="text" id="txtid" name="idvi" value="{{ datos_formulario.idvi }}"  class="form-control"  required readonly>
                                 </div>
                                 <div class="campo">
