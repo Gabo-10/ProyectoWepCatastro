@@ -14,5 +14,6 @@ urlpatterns = [
     path('edicionContra/<codigo>/', views.edicionContra),
     path('editarContra/<int:codigo>/',views.editarContra),
     path('verificarAdmin/', views.verificar_admin, name='verificarAdmin'),
+    path('bitaco/', views.bitacora, name= 'Bitacora'),
 
 ]

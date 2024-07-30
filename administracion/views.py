@@ -14,6 +14,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 import json
 from django.views.decorators.csrf import csrf_exempt
+from vitacora.models import Vitacora
+
 
 
 class Editor(APIView):    
@@ -174,3 +176,7 @@ def verificar_admin(request):
         except Usuarios.DoesNotExist:
             return JsonResponse({'success': False})
     return JsonResponse({'success': False}, status=400)
+
+def bitacora(request):
+    vitacoras = Vitacora.objects.all()
+    return render(request, 'bitaco.html', {'vitacoras': vitacoras})
