@@ -2,7 +2,7 @@ from django.db import models
 from ventanilla.models import Ventanilla  # Asegúrate de importar el modelo adecuado
 
 class Vitacora(models.Model):
-    ID_PREFIX = 'VIT-'  # Prefijo deseado para el ID
+    ID_PREFIX = 'BIT-'  # Prefijo deseado para el ID
     idvit = models.CharField(max_length=20, primary_key=True)
     folio = models.ForeignKey(Ventanilla, on_delete=models.CASCADE, to_field='folio')
     nombre_propietario = models.CharField(max_length=150)

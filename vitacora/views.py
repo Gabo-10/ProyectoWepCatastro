@@ -125,10 +125,10 @@ def obtener_siguiente_idvit(request):
     print(f"Numeric IDs: {numeric_ids}")
     
     if not numeric_ids:
-        siguiente_idvit = 'VIT-01'
+        siguiente_idvit = 'BIT-01'
     else:
         siguiente_id_number = numeric_ids[0] + 1
-        siguiente_idvit = f'VIT-{str(siguiente_id_number).zfill(2)}'
+        siguiente_idvit = f'BIT-{str(siguiente_id_number).zfill(2)}'
     
     print(f"Siguiente ID: {siguiente_idvit}")
     return JsonResponse({'siguiente_idvit': siguiente_idvit})
