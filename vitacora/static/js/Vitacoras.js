@@ -52,46 +52,90 @@ document.querySelector('.btn-generar').addEventListener('click', function(event)
 });
 
 
-// Mostrar el modal de confirmación
 document.querySelectorAll('.btneliminarvita').forEach(btn => {
   btn.addEventListener('click', (event) => {
     event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-    const url = btn.getAttribute('data-url'); // Obtener la URL de eliminación del atributo 
-    document.getElementById('confirmacionEliminar').style.display = 'block';
+    const url = btn.getAttribute('data-url'); // Obtener la URL de eliminación del atributo personalizado
 
-    // Función para confirmar la eliminación de los usuarios 
-    document.getElementById('confirmarEliminar').onclick = () => {
-      // Enviar una solicitud POST al servidor para eliminar el registro
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': getCookie('csrftoken'), // Asegúrate de incluir el token CSRF en la solicitud
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({}) // No necesitas enviar ningún dato en el cuerpo de la solicitud POST
-      })
-      .then(response => {
-        if (response.ok) {
-          // Redirigir a la página de edición después de eliminar el usuario
-          window.location.href = '/vitacora/vitacora/';
-        } else {
-          // Manejar errores de eliminación
-          console.error('Error al eliminar el usuario');
-        }
-      })
-      .catch(error => {
-        console.error('Error al eliminar el usuario:', error);
-      });
-    };
+    // Enviar una solicitud GET para verificar si se puede eliminar
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'X-CSRFToken': getCookie('csrftoken'), // Incluir el token CSRF en la solicitud
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Si no hay registros asociados, mostrar el modal de confirmación
+        document.getElementById('confirmacionEliminar').style.display = 'block';
 
-    // Función para cancelar la eliminación
-    document.getElementById('cancelarEliminar').onclick = (event) => {
-      event.stopPropagation(); // Detener la propagación del evento al enlace padre
-      document.getElementById('confirmacionEliminar').style.display = 'none';
-      event.preventDefault(); // Prevenir la solicitud AJAX
-    };
+        // Función para confirmar la eliminación
+        document.getElementById('confirmarEliminar').onclick = () => {
+          // Enviar una solicitud POST para eliminar el registro
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'X-CSRFToken': getCookie('csrftoken'),
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              // Ocultar el modal de confirmación
+              document.getElementById('confirmacionEliminar').style.display = 'none';
+              // Redirigir a la página de edición
+              window.location.href = '/ventanilla/editarven/';
+            } else {
+              // Mostrar mensaje en el modal de error
+              document.getElementById('confirmacionEliminar').style.display = 'none';
+              showMessageModal(data.message);
+            }
+          })
+          .catch(error => console.error('Error al eliminar el registro:', error));
+        };
+
+        // Función para cancelar la eliminación
+        document.getElementById('cancelarEliminar').onclick = (event) => {
+          event.stopPropagation(); // Detener la propagación del evento al enlace padre
+          document.getElementById('confirmacionEliminar').style.display = 'none';
+          event.preventDefault(); // Prevenir la solicitud AJAX
+        };
+      } else {
+        // Mostrar mensaje en el modal de error
+        showMessageModal(data.message);
+      }
+    })
+    .catch(error => console.error('Error al verificar la eliminación:', error));
   });
 });
+
+// Función para mostrar el modal de mensaje personalizado
+function showMessageModal(message) {
+  const mensajeModal = document.getElementById('mensajeModal');
+  const mensajeTexto = document.getElementById('mensajeTexto');
+  mensajeTexto.textContent = message;
+  mensajeModal.style.display = 'block';
+
+  // Función para cerrar el modal con el botón Aceptar
+  document.getElementById('aceptarMensaje').onclick = () => {
+    mensajeModal.style.display = 'none';
+  };
+
+  // Función para cerrar el modal con la cruz
+  document.querySelector('#mensajeModal .close').onclick = () => {
+    mensajeModal.style.display = 'none';
+  };
+
+  // Cerrar el modal si se hace clic fuera del contenido
+  window.onclick = (event) => {
+    if (event.target === mensajeModal) {
+      mensajeModal.style.display = 'none';
+    }
+  };
+}
 
 // Función para obtener el token CSRF de las cookies
 function getCookie(name) {
