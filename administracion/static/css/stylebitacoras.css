@@ -147,7 +147,7 @@
   
    
   /* Estilos para el botón eliminar usuario*/
-  .btneliminarbita {
+  .btndenebita {
     background-color: #d12a2a; 
     color: #ffffff; 
     padding: 4.5px 11px; 
@@ -158,13 +158,13 @@
   }
   
   /* Estilos cuando se pasa el cursor sobre el botón */
-  .btneliminarbita:hover {
+  .btndenebita:hover {
     background-color: #511512; 
   }
   
   
   /* Estilos para el botón eliminar usuario*/
-  .btneditarbita {
+  .btnaprobarbita {
     background-color: #2ad14b; 
     color: #ffffff; 
     padding: 4.5px 11px; 
@@ -175,20 +175,20 @@
   }
   
   /* Estilos cuando se pasa el cursor sobre el botón */
-  .btneditarbita:hover {
+  .btnaprobarbita:hover {
     background-color: #511512; 
   }
   
   
   /* Estilos para los iconos */
-  .btneditarbita img{
+  .btnaprobarbita img{
     width: 20px;
     height: 23px;
     vertical-align: middle; 
 }
   
 
-  .btneliminarbita img {
+  .btndenebita img {
     width: 20px;
     height: 20px;
     vertical-align: middle; 
