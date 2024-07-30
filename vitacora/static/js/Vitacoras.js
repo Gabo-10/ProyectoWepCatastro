@@ -87,7 +87,7 @@ document.querySelectorAll('.btneliminarvita').forEach(btn => {
               // Ocultar el modal de confirmación
               document.getElementById('confirmacionEliminar').style.display = 'none';
               // Redirigir a la página de edición
-              window.location.href = '/ventanilla/editarven/';
+              window.location.href = '/vitacora/vitacora/';
             } else {
               // Mostrar mensaje en el modal de error
               document.getElementById('confirmacionEliminar').style.display = 'none';

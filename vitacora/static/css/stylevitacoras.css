@@ -283,7 +283,7 @@
     padding: 10px;
     border: 1px solid #888;
     width: 45%; 
-    height: 20%; 
+    height: 26%; 
     border-radius: 5px; /* Añadir borde redondeado si se desea */
     text-align: center; /* Centrar el texto */
     display: flex;
@@ -294,7 +294,7 @@
   }
   
   .mensajeModal-content p {
-    margin:14px 0; /* Espaciado arriba y abajo */
+    margin:5px 0; /* Espaciado arriba y abajo */
   }
   
   .mensajeModal .close {
