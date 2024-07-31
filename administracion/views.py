@@ -15,6 +15,8 @@ from django.contrib.auth.hashers import check_password
 import json
 from django.views.decorators.csrf import csrf_exempt
 from vitacora.models import Vitacora
+from inspeccion.models import Inspeccion
+
 
 
 
@@ -188,3 +190,7 @@ def actualizar_estado_vitacora(request, id, estado):
         vitacora.save()
         return JsonResponse({'success': True, 'estado': estado})
     return JsonResponse({'success': False})
+
+def inspeccion(request):
+    inspecciones = Inspeccion.objects.all()
+    return render(request, 'inspecion.html', {'inspecciones': inspecciones})

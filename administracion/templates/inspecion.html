@@ -1,0 +1,58 @@
+{% extends "ProyectoWebApp/base4.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspección</title>
+    <link rel="stylesheet" href="{% static 'css/styleinspeccion.css' %}">  
+  </head>
+  
+  <body >
+    <div class="contenedorinspec"> 
+      <div class="formularioinspec">  
+        <h1>Inspección</h1>
+        <div class="buscador">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit">Buscar</button>
+        </div>
+        <div class="tabla-contenedor">
+          <table id="tableedi">
+            <thead>
+                <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Bitácora ID:</th>
+                      <th>Nombre</th>
+                      <th>Reporte</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for inspeccion in inspecciones  %}      
+                <tr>  
+                  <td>{{ inspeccion.ID }} </td> 
+                  <td class="buscarcolumna">{{ inspeccion.idvit }}</td>
+                  <td >{{ inspeccion.nombre }}</td>
+                  <td>
+                    <a href="{{ inspeccion.archivo_pdf.url }}" target="_blank">
+                        <img src="{% static 'images/pdf_icon.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
+                    </a>
+                </td>  
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/Inspecciones.js' %}"></script> 
+  </body>
+</html>
+
+{% endblock %}

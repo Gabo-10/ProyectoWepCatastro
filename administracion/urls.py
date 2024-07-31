@@ -16,5 +16,6 @@ urlpatterns = [
     path('verificarAdmin/', views.verificar_admin, name='verificarAdmin'),
     path('bitaco/', views.bitacora, name= 'Bitacora'),
     path('actualizar_estado_vitacora/<str:id>/<str:estado>/', views.actualizar_estado_vitacora, name='actualizar_estado_vitacora'),
+    path('inspec/', views.inspeccion, name= 'Inspec'),
 
 ]

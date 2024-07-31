@@ -1,74 +1,75 @@
 /* Estilos generales para el cuerpo del documento */
 #bg4 {
-    font-family: sans-serif; /* Tipo de fuente sans-serif */
-    background-repeat: no-repeat; /* Evitar que la imagen de fondo se repita */
-    background-position: center; /* Posición del fondo */
-    background-size: cover; /* Tamaño del fondo que cubra completamente el contenedor */
-    background-attachment: fixed; /* Fondo fijo */
-    font-family: sans-serif; /* Tipo de fuente sans-serif */
+    font-family: sans-serif; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-size: cover; 
+    background-attachment: fixed; 
+    font-family: sans-serif; 
 }
 
 /* Estilos para el contenedor principal */
 .contenedoredici {
-    width: 99vw;  /* Ancho igual al 100% del viewport */
-    height: 96vh; /* Altura igual al 96% del viewport */
-    display: flex;  /*alinear elementos */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    width: 99vw; 
+    height: 96vh; 
+    display: flex;  
+    justify-content: center; 
+    align-items: center; 
 }
 
 /* Estilos para el formulario de edicion de usuarios */
 .formularioedici {
-    width: 41vw;  /* Ancho del formulario */
-    height: 50vh; /* Altura del formulario */
-    background-color: rgba(255, 255, 255, 0.927); /* Transparencia del contenedor */
-    padding: 20px;  /* Espaciado interno */
-    border-radius: 50px;  /* Radio de borde */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.603); /* Sombra */
-    user-select: none;  /* Evitar la selección de texto */
+    width: 41vw;  
+    height: 50vh; 
+    background-color: rgba(255, 255, 255, 0.927); 
+    padding: 20px;  
+    border-radius: 50px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.603); 
+    user-select: none;  
+    margin-top: -10vh;
 
 }
 
 /* Estilos para el título */
 h1 {
     margin-top: 14px;
-    text-align: center; /* Alinear al centro */
-    margin-bottom: 55px; /* Margen inferior */
-    font-size:40px;  /* Tamaño de fuente */
+    text-align: center; 
+    margin-bottom: 55px; 
+    font-size:40px;  
     margin-left: 1vw;
 }
 
   
 /* Estilos para los campos de entrada */
 input {
-    width: 20vw;  /* Ancho del campo */
-    padding: 1vh;  /* largo del campo */
-    margin-left: 2vw; /* Margen  */
+    width: 20vw;  
+    padding: 1vh; 
+    margin-left: 2vw; 
     margin-top: -1vw;
-    margin-bottom: 1vw; /* Margen inferior */
-    border: 1px solid #676666; /* Borde */
-    border-radius: 5px; /* Radio de borde */
+    margin-bottom: 1vw; 
+    border: 1px solid #676666; 
+    border-radius: 5px; 
 }
 
 
 /* Estilos para los botones */
 button {
-    width: 25%; /* Ancho del botón */
-    padding: 10px; /* Espaciado interno */
-    margin: 10px; /* Margen */
-    border: none; /* Sin borde */
-    margin-left: 16%; /* Margen izquierdo */
-    background-color: #e8c289; /* Color de fondo */
-    color: #ffffff; /* Color de texto */
-    border-radius: 5px; /* Radio de borde */
-    cursor: pointer; /* Cambiar cursor al pasar el ratón */
-    transition: background-color 0.2s ease-in-out;   /* Transición de color de fondo */
+    width: 25%; 
+    padding: 10px; 
+    margin: 10px;
+    border: none; 
+    margin-left: 16%; 
+    background-color: #e8c289; 
+    color: #ffffff; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.2s ease-in-out;   
 }
 
 
 /* Estilos al pasar el ratón sobre el botón */
 button:hover {
-    background-color: #491411; /* Cambiar color de fondo */
+    background-color: #491411; 
 }
 
 /* Estilos al pasar el ratón sobre el botón */
@@ -104,40 +105,40 @@ button:hover {
 }
 
 .password-container .eye-icon {
-    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
+    width: 20px; 
     height: auto;
 }
 
 .eye-icon {
     /* Estilos existentes para el ícono */
-    outline: none; /* Excluye el delineado de enfoque */
+    outline: none;
 }
 
 /* messages */
 .error-message {
-    background-color: #f8d7da; /* Color de fondo rojo claro para mensajes de error */
+    background-color: #f8d7da; 
     color: #721c24; /* Color de texto rojo oscuro */
     border: 1px solid #f5c6cb; /* Borde rojo */
     padding: 7px; /* Espacio alrededor del mensaje */
-    margin-bottom: 10px; /* Espacio debajo del mensaje */
+    margin-bottom: 10px; 
     margin-right: 40px;
     margin-left: 3px;
     margin-top: -13px;
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 5px; 
     text-align: center;
 }
 
 
 .warning-message {
-    background-color: #fff3cd; /* Color de fondo amarillo claro para mensajes de advertencia */
-    color: #856404; /* Color de texto marrón oscuro */
-    border: 1px solid #ffeeba; /* Borde amarillo */
+    background-color: #fff3cd; 
+    color: #856404; 
+    border: 1px solid #ffeeba; 
     padding: 7px; /* Espacio alrededor del mensaje */
     margin-bottom: 10px; /* Espacio debajo del mensaje */
     margin-right: 40px;
     margin-left: 3px;
     margin-top: -13px;
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 5px; 
     text-align: center;
 }
 
