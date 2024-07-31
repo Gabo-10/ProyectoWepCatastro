@@ -46,7 +46,6 @@ document.querySelector('.tabla-contenedor table tbody').addEventListener("click"
   
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
   let id, estado; // Variables para guardar el id y estado temporalmente
 
@@ -55,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
           event.preventDefault();
           id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
           estado = 'Aprobado';
-          mostrarModal(`¿Estás seguro de que deseas aprobar el registro con ID ${id}?`);
+          mostrarModalConfirmacion(`¿Estás seguro de que deseas aprobar el registro con ID ${id}?`);
       });
   });
 
@@ -64,11 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
           event.preventDefault();
           id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
           estado = 'Desaprobado';
-          mostrarModal(`¿Estás seguro de que deseas desaprobar el registro con ID ${id}?`);
+          mostrarModalConfirmacion(`¿Estás seguro de que deseas desaprobar el registro con el ID ${id}?`);
       });
   });
 
-  function mostrarModal(mensaje) {
+  function mostrarModalConfirmacion(mensaje) {
       const modal = document.getElementById('confirmacionModal');
       const modalMensaje = document.getElementById('modalMensaje');
       const closeBtn = document.getElementsByClassName('close')[0];
@@ -80,10 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       closeBtn.onclick = function() {
           modal.style.display = 'none';
+          location.reload(); // Recargar la página al cerrar
       };
 
       cancelarBtn.onclick = function() {
           modal.style.display = 'none';
+          location.reload(); // Recargar la página al cerrar
       };
 
       confirmarBtn.onclick = function() {
@@ -94,6 +95,34 @@ document.addEventListener('DOMContentLoaded', function() {
       window.onclick = function(event) {
           if (event.target == modal) {
               modal.style.display = 'none';
+              location.reload(); // Recargar la página al hacer clic fuera del modal
+          }
+      };
+  }
+
+  function mostrarModalMensaje(mensaje) {
+      const modal = document.getElementById('mensajeModal');
+      const mensajeTexto = document.getElementById('mensajeTexto');
+      const closeBtn = document.getElementsByClassName('close')[1];
+      const cerrarBtn = document.getElementById('cerrarMensaje');
+
+      mensajeTexto.textContent = mensaje;
+      modal.style.display = 'block';
+
+      closeBtn.onclick = function() {
+          modal.style.display = 'none';
+          location.reload(); // Recargar la página al cerrar
+      };
+
+      cerrarBtn.onclick = function() {
+          modal.style.display = 'none';
+          location.reload(); // Recargar la página al cerrar
+      };
+
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = 'none';
+              location.reload(); // Recargar la página al hacer clic fuera del modal
           }
       };
   }
@@ -110,10 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              alert(`Estado actualizado a ${data.estado}`);
-              location.reload();  // Recargar la página para ver los cambios
+              mostrarModalMensaje(`Estado actualizado a ${data.estado}`);
           } else {
-              alert('Error al actualizar el estado.');
+              mostrarModalMensaje('Error al actualizar el estado.');
           }
       });
   }
@@ -133,4 +161,3 @@ document.addEventListener('DOMContentLoaded', function() {
       return cookieValue;
   }
 });
-
