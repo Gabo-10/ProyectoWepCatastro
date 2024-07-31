@@ -34,6 +34,7 @@
                       <th colspan="1"> Acciones </th> 
                       <th>ID_Vitacora</th>
                       <th>Folio</th>
+                      <th>Estado</th> 
                       <th>Nombre del propetario</th>
                       <th>Fecha de revisión</th>
                       <th>Carpeta</th>
@@ -45,8 +46,7 @@
                       <th>Tipo de captura</th>
                       <th>Clave catastral</th>
                       <th>Costo de translado</th>
-                      <th>Observaciones</th>
-                      <th>Estado</th> 
+                      <th>Observaciones</th>  
                     </tr>
                   </thead>
                   <tbody>
@@ -59,6 +59,11 @@
                     <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
+                  <td class="
+                  {% if vitacora.estado == 'Pendiente' %}estado-pendiente
+                  {% elif vitacora.estado == 'Aprobado' %}estado-aprobado
+                  {% elif vitacora.estado == 'Desaprobado' %}estado-desaprobado
+                  {% endif %}">{{ vitacora.estado }}</td>
                   <td>{{ vitacora.nombre_propietario }}</td>
                   <td>{{ vitacora.fecha_revision }}</td>
                   <td>{{ vitacora.carpeta }}</td>
@@ -75,7 +80,6 @@
                 <td>{{ vitacora.clave_catastral }}</td>
                 <td>{{ vitacora.costo_traslado }}</td>
                 <td>{{ vitacora.observacion }}</td>
-                <td>{{ vitacora.estado }}</td>
                 </tr>
               {% endfor %}
           </table>
