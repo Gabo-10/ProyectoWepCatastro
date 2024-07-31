@@ -335,4 +335,16 @@
   background-color: #511512;  
 }
 
-  
+.estado-pendiente {
+  background-color: yellow;
+}
+
+.estado-aprobado {
+  background-color: green;
+  color: white; /* Opcional: para que el texto sea legible */
+}
+
+.estado-desaprobado {
+  background-color: red;
+  color: white; /* Opcional: para que el texto sea legible */
+}

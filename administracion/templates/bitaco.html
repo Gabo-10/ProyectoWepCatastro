@@ -52,7 +52,11 @@
                     <img src="{% static 'images/paloma.png' %}" alt="Iconoedi"> Aprobar</a>
                     <a href="#" class="btndenebita">
                     <img src="{% static 'images/tache.png' %}" alt="Iconoelimi"> Desaprobar</a>
-                  <td>{{ vitacora.estado }}</td>
+                  <td class="
+                    {% if vitacora.estado == 'Pendiente' %}estado-pendiente
+                    {% elif vitacora.estado == 'Aprobado' %}estado-aprobado
+                    {% elif vitacora.estado == 'Desaprobado' %}estado-desaprobado
+                    {% endif %}">{{ vitacora.estado }}</td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
                   <td>{{ vitacora.nombre_propietario }}</td>
