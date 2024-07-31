@@ -51,7 +51,7 @@
                   <td><a href="#" class="btnaprobarbita">
                     <img src="{% static 'images/paloma.png' %}" alt="Iconoedi"> Aprobar</a>
                     <a href="#" class="btndenebita">
-                    <img src="{% static 'images/tache.png' %}" alt="Iconoelimi">Desaprobar</a>
+                    <img src="{% static 'images/tache.png' %}" alt="Iconoelimi"> Desaprobar</a>
                   <td>{{ vitacora.estado }}</td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
@@ -78,6 +78,16 @@
         </div>
       </div>
     </div>
+    <div id="confirmacionModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modalMensaje"></p>
+          <div class="modal-buttons">
+              <button id="confirmarBtn">Confirmar</button>
+              <button id="cancelarBtn">Cancelar</button>
+          </div>
+      </div>
+  </div>
       {% if messages %}
         <ul class="messages">
             {% for message in messages %}

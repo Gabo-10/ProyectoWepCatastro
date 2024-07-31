@@ -46,23 +46,57 @@ document.querySelector('.tabla-contenedor table tbody').addEventListener("click"
   
 });
 
-// static/js/Administracion.js
+
 document.addEventListener('DOMContentLoaded', function() {
+  let id, estado; // Variables para guardar el id y estado temporalmente
+
   document.querySelectorAll('.btnaprobarbita').forEach(function(button) {
       button.addEventListener('click', function(event) {
           event.preventDefault();
-          var id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
-          actualizarEstado(id, 'Aprobado');
+          id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
+          estado = 'Aprobado';
+          mostrarModal(`¿Estás seguro de que deseas aprobar el registro con ID ${id}?`);
       });
   });
 
   document.querySelectorAll('.btndenebita').forEach(function(button) {
       button.addEventListener('click', function(event) {
           event.preventDefault();
-          var id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
-          actualizarEstado(id, 'Desaprobado');
+          id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
+          estado = 'Desaprobado';
+          mostrarModal(`¿Estás seguro de que deseas desaprobar el registro con ID ${id}?`);
       });
   });
+
+  function mostrarModal(mensaje) {
+      const modal = document.getElementById('confirmacionModal');
+      const modalMensaje = document.getElementById('modalMensaje');
+      const closeBtn = document.getElementsByClassName('close')[0];
+      const confirmarBtn = document.getElementById('confirmarBtn');
+      const cancelarBtn = document.getElementById('cancelarBtn');
+
+      modalMensaje.textContent = mensaje;
+      modal.style.display = 'block';
+
+      closeBtn.onclick = function() {
+          modal.style.display = 'none';
+      };
+
+      cancelarBtn.onclick = function() {
+          modal.style.display = 'none';
+      };
+
+      confirmarBtn.onclick = function() {
+          modal.style.display = 'none';
+          actualizarEstado(id, estado);
+      };
+
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = 'none';
+          }
+      };
+  }
 
   function actualizarEstado(id, estado) {
       const baseUrl = window.location.origin; // Obtener la URL base del servidor
@@ -99,3 +133,4 @@ document.addEventListener('DOMContentLoaded', function() {
       return cookieValue;
   }
 });
+
