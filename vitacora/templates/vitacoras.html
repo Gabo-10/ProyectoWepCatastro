@@ -46,11 +46,13 @@
                       <th>Clave catastral</th>
                       <th>Costo de translado</th>
                       <th>Observaciones</th>
+                      <th>Estado</th> 
                     </tr>
                   </thead>
                   <tbody>
-                    {% for vitacora in vitacoras  %}      
-                <tr>  
+                    {% for vitacora in vitacoras  %}  
+                  <tr>
+
                   <td><a href="/vitacora/edicionReportv/{{ vitacora.idvit}}" class="btneditarvita">
                     <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
                     <a href="#" class="btneliminarvita" data-url="{% url 'eliminarVitac' codigo=vitacora.idvit %}" >
@@ -73,6 +75,7 @@
                 <td>{{ vitacora.clave_catastral }}</td>
                 <td>{{ vitacora.costo_traslado }}</td>
                 <td>{{ vitacora.observacion }}</td>
+                <td>{{ vitacora.estado }}</td>
                 </tr>
               {% endfor %}
           </table>

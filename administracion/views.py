@@ -180,3 +180,11 @@ def verificar_admin(request):
 def bitacora(request):
     vitacoras = Vitacora.objects.all()
     return render(request, 'bitaco.html', {'vitacoras': vitacoras})
+
+def actualizar_estado_vitacora(request, id, estado):
+    if request.method == 'POST':
+        vitacora = get_object_or_404(Vitacora, idvit=id)
+        vitacora.estado = estado
+        vitacora.save()
+        return JsonResponse({'success': True, 'estado': estado})
+    return JsonResponse({'success': False})

@@ -17,10 +17,18 @@ class Vitacora(models.Model):
     clave_catastral = models.CharField(max_length=25)
     costo_traslado = models.CharField(max_length=25)
     observacion = models.CharField(max_length=150)
+    estado = models.CharField(
+        max_length=20, 
+        choices=[
+            ('pendiente', 'Pendiente'),
+            ('aprobado', 'Aprobado'),
+            ('desaprobado', 'Desaprobado')
+        ], 
+        default='pendiente'
+    )
 
     class Meta:
         db_table = 'vitacora'
-
 
     def save(self, *args, **kwargs):
         if not self.idvit or not self.idvit.startswith(self.ID_PREFIX):

@@ -13,8 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitácora</title>
     <link rel="stylesheet" href="{% static 'css/stylebitacoras.css' %}">  
-  </head>
-  
+  </head>  
   <body >
     <div class="contenedorvitacora"> 
       <div class="formulariovitacora">  
@@ -28,7 +27,8 @@
             <thead>
                 <thead>
                     <tr>
-                      <th colspan="1"> Acciones </th> 
+                      <th colspan="1"> Acciones </th>
+                      <th>Estado</th> 
                       <th>ID_Vitacora</th>
                       <th>Folio</th>
                       <th>Nombre del propetario</th>
@@ -51,7 +51,8 @@
                   <td><a href="#" class="btnaprobarbita">
                     <img src="{% static 'images/paloma.png' %}" alt="Iconoedi"> Aprobar</a>
                     <a href="#" class="btndenebita">
-                    <img src="{% static 'images/tache.png' %}" alt="Iconoelimi"> Desaprobar</a></td>
+                    <img src="{% static 'images/tache.png' %}" alt="Iconoelimi">Desaprobar</a>
+                  <td>{{ vitacora.estado }}</td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
                   <td>{{ vitacora.nombre_propietario }}</td>
@@ -70,6 +71,7 @@
                 <td>{{ vitacora.clave_catastral }}</td>
                 <td>{{ vitacora.costo_traslado }}</td>
                 <td>{{ vitacora.observacion }}</td>
+                
                 </tr>
               {% endfor %}
           </table>

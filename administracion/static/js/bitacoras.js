@@ -46,3 +46,56 @@ document.querySelector('.tabla-contenedor table tbody').addEventListener("click"
   
 });
 
+// static/js/Administracion.js
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.btnaprobarbita').forEach(function(button) {
+      button.addEventListener('click', function(event) {
+          event.preventDefault();
+          var id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
+          actualizarEstado(id, 'Aprobado');
+      });
+  });
+
+  document.querySelectorAll('.btndenebita').forEach(function(button) {
+      button.addEventListener('click', function(event) {
+          event.preventDefault();
+          var id = this.closest('tr').querySelector('td:nth-child(3)').innerText.trim();
+          actualizarEstado(id, 'Desaprobado');
+      });
+  });
+
+  function actualizarEstado(id, estado) {
+      const baseUrl = window.location.origin; // Obtener la URL base del servidor
+      fetch(`${baseUrl}/administracion/actualizar_estado_vitacora/${id}/${estado}/`, {
+          method: 'POST',
+          headers: {
+              'X-CSRFToken': getCookie('csrftoken'),
+              'Content-Type': 'application/json'
+          },
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              alert(`Estado actualizado a ${data.estado}`);
+              location.reload();  // Recargar la página para ver los cambios
+          } else {
+              alert('Error al actualizar el estado.');
+          }
+      });
+  }
+
+  function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+});
