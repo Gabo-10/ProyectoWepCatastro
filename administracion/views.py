@@ -23,7 +23,7 @@ from inspeccion.models import Inspeccion
 class Editor(APIView):    
     template_name="editor.html"
     def get(self, request):
-        usuarios = Usuarios.objects.all()
+        usuarios = Usuarios.objects.all()[1:]
         return render(request, self.template_name, {'usuarios': usuarios})
 
 def registro(request):

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django import forms
+
 
 
 
@@ -14,3 +14,12 @@ class Usuarios(models.Model):
 
     class Meta:
         db_table='usuarios'
+
+    def save(self, *args, **kwargs):
+        if self.idUsuarios is None:
+            last_user = Usuarios.objects.all().order_by('idUsuarios').last()
+            if last_user:
+                self.idUsuarios = last_user.idUsuarios + 1
+            else:
+                self.idUsuarios = 1
+        super(Usuarios, self).save(*args, **kwargs)
