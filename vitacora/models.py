@@ -24,7 +24,7 @@ class Vitacora(models.Model):
             ('aprobado', 'Aprobado'),
             ('desaprobado', 'Desaprobado')
         ], 
-        default='pendiente'
+        default='Pendiente'
     )
 
     class Meta:
