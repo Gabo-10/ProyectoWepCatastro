@@ -17,14 +17,17 @@ from django.views.decorators.csrf import csrf_exempt
 from vitacora.models import Vitacora
 from inspeccion.models import Inspeccion
 from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
 
 
-
+@method_decorator(require_authentication, name='dispatch')
 class Editor(APIView):    
-    template_name="editor.html"
+    template_name = "editor.html"
+    
     def get(self, request):
         usuarios = Usuarios.objects.all()[1:]
         return render(request, self.template_name, {'usuarios': usuarios})
+    
 @require_authentication
 def registro(request):
     if request.method == 'POST':
@@ -82,7 +85,7 @@ def registro(request):
     return render(request, 'registro.html', {'datos_formulario': datos_formulario})
 
 
-
+@require_authentication
 def eliminarUsuario(request, codigo):
     usuario = get_object_or_404(Usuarios, idUsuarios=codigo)
     if request.method == 'POST':
@@ -93,10 +96,11 @@ def eliminarUsuario(request, codigo):
     return render(request, 'editor.html', {'usuario': usuario})
 
  
-
+@require_authentication
 def edicionUsuario(request, codigo):
     usuario = Usuarios.objects.get(idUsuarios=codigo)
     return render(request, "edicionUsuario.html", {"usuario": usuario})
+@require_authentication    
 def editarUsuario(request, codigo):
     if request.method == 'POST':
         nombre = request.POST.get('txtNombres')
@@ -118,11 +122,11 @@ def editarUsuario(request, codigo):
         return redirect('editor')  # O redirigir a donde sea apropiado en tu aplicación
 
     
-
+@require_authentication
 def edicionContra(request, codigo):
     usuario = Usuarios.objects.get(idUsuarios=codigo)
     return render(request, "edicionContra.html", {"usuario": usuario})
-
+@require_authentication
 def editarContra(request, codigo):
     if request.method == 'POST':
         password = request.POST.get('txtContra')
@@ -161,7 +165,7 @@ def editarContra(request, codigo):
         return redirect('editor')  # O redirigir a donde sea apropiado en tu aplicación
     
 
-
+@require_authentication
 @csrf_exempt
 def verificar_admin(request):
     if request.method == 'POST':
@@ -178,11 +182,11 @@ def verificar_admin(request):
         except Usuarios.DoesNotExist:
             return JsonResponse({'success': False})
     return JsonResponse({'success': False}, status=400)
-
+@require_authentication
 def bitacora(request):
     vitacoras = Vitacora.objects.all()
     return render(request, 'bitaco.html', {'vitacoras': vitacoras})
-
+@require_authentication
 def actualizar_estado_vitacora(request, id, estado):
     if request.method == 'POST':
         vitacora = get_object_or_404(Vitacora, idvit=id)
@@ -190,7 +194,7 @@ def actualizar_estado_vitacora(request, id, estado):
         vitacora.save()
         return JsonResponse({'success': True, 'estado': estado})
     return JsonResponse({'success': False})
-
+@require_authentication
 def inspeccion(request):
     inspecciones = Inspeccion.objects.all()
     return render(request, 'inspecion.html', {'inspecciones': inspecciones})
