@@ -58,9 +58,12 @@
           <li class="nav-item {% if request.path == '/direccion/' %} active {% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Direccion' %}"><img src="{% static 'ProyectoWebApp/img/ayuda.png' %}" alt="Iconore" style="width: 27px; height: 27px; margin-top: -9px; margin-right: 5px;">Ayuda</a>
           </li>
-          <li class="nav-item {% if request.path == '/login/' %} active {% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio_de_sesion' %}"><img src="{% static 'ProyectoWebApp/img/cerrar-sesion.png' %}" alt="Iconore" style="width: 25px; height: 25px; margin-top: -8px; margin-right: 5px;">Cerrar Sesión</a>
-          </li>
+          <li class="nav-item {% if request.path == '/cerrar-sesion/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'cerrar_sesion' %}">
+                <img src="{% static 'ProyectoWebApp/img/cerrar-sesion.png' %}" alt="Iconore" style="width: 25px; height: 25px; margin-top: -8px; margin-right: 5px;">
+                Cerrar Sesión
+            </a>
+        </li>
         </ul>
       </div>
     </div>

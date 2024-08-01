@@ -16,7 +16,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from vitacora.models import Vitacora
 from inspeccion.models import Inspeccion
-
+from ProyectoWeb.decorators import require_authentication
 
 
 
@@ -25,7 +25,7 @@ class Editor(APIView):
     def get(self, request):
         usuarios = Usuarios.objects.all()[1:]
         return render(request, self.template_name, {'usuarios': usuarios})
-
+@require_authentication
 def registro(request):
     if request.method == 'POST':
         nombre = request.POST.get('name')
