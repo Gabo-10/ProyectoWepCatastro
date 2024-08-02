@@ -11,22 +11,24 @@ from django.conf import settings
 import os
 from django.shortcuts import redirect, reverse
 import re
+from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
 
-
+@require_authentication 
 def inspeccion(request):
     inspecciones = Inspeccion.objects.all()
     return render(request, 'inspecciones.html', {'inspecciones': inspecciones})
-
+@method_decorator(require_authentication, name='dispatch')
 class Crearinspec(APIView): 
     template_name="Crearinspec.html"
     def get(self, request):
         vitacoras = Vitacora.objects.all()
         return render(request, self.template_name, {'vitacoras': vitacoras})
-    
+@require_authentication    
 def edicionInspec(request, codigo):
     vitacoras = Vitacora.objects.get(idvit=codigo)
     return render(request, "edicionInspec.html", {"vitacoras": vitacoras})
-    
+@require_authentication    
 def agregarInspec(request):
     if request.method == 'POST':
         IDi = request.POST.get('regisin')
@@ -76,7 +78,7 @@ def agregarInspec(request):
     datos_formulario['vitain'] = vitacoras.idvit
 
     return render(request, 'edicionInspec.html', {'datos_formulario': datos_formulario, 'vitacoras': vitacoras})
-
+@require_authentication
 def obtener_siguiente_idins(request):
     # Obtener todos los IDs
     all_ids = Inspeccion.objects.values_list('ID', flat=True)
@@ -97,7 +99,7 @@ def obtener_siguiente_idins(request):
     
     print(f"Siguiente ID: {siguiente_idins}")
     return JsonResponse({'siguiente_idins': siguiente_idins})
-
+@require_authentication
 def eliminarInspec(request, codigo):
     inspeccion = get_object_or_404(Inspeccion, ID=codigo)
     
@@ -123,10 +125,11 @@ def eliminarInspec(request, codigo):
         
     # Si la solicitud no es POST, simplemente renderiza la página de confirmación de eliminación
     return render(request, 'inspecciones.html', {'inspeccion': inspeccion})
-
+@require_authentication
 def edicionReport(request, codigo):
     reporte = Inspeccion.objects.get(ID=codigo)
     return render(request, "editarReport.html", {"inspeccion": reporte})
+@require_authentication
 def editarReport(request, codigo):
     if request.method == 'POST':
         nombrer = request.POST.get('nombrere')

@@ -12,23 +12,25 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import os
+from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
 
 
-
+@require_authentication
 def vitacora(request):
     vitacoras = Vitacora.objects.all()
     return render(request, 'vitacoras.html', {'vitacoras': vitacoras})
-
+@method_decorator(require_authentication, name='dispatch')
 class Editorvita(APIView):    
     template_name="Viteditor.html"
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
-
+@require_authentication
 def edicionVita(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
     return render(request, "edicionVita.html", {"ventanilla": ventanilla})
-
+@require_authentication
 def agregarVita(request):
     if request.method == 'POST':
         IDvit = request.POST.get('idvi')
@@ -112,7 +114,7 @@ def agregarVita(request):
 
     return render(request, 'edicionVita.html', {'datos_formulario': datos_formulario, 'ventanilla': ventanilla})
 
-
+@require_authentication
 def obtener_siguiente_idvit(request):
     # Obtener todos los IDs
     all_ids = Vitacora.objects.values_list('idvit', flat=True)
@@ -133,7 +135,7 @@ def obtener_siguiente_idvit(request):
     
     print(f"Siguiente ID: {siguiente_idvit}")
     return JsonResponse({'siguiente_idvit': siguiente_idvit})
-
+@require_authentication
 def eliminarVitac(request, codigo):
     vitacora = get_object_or_404(Vitacora, idvit=codigo)
     
@@ -172,11 +174,11 @@ def eliminarVitac(request, codigo):
     # Si la solicitud no es GET ni POST, simplemente renderiza la página de confirmación de eliminación
     return render(request, 'vitacoras.html', {'vitacora': vitacora})
             
-
+@require_authentication
 def edicionReportv(request, codigo):
     reportev = Vitacora.objects.get(idvit=codigo)
     return render(request, "editarReportv.html", {"vitacora": reportev})
-
+@require_authentication
 def editarReportv(request, codigo):
     if request.method == 'POST':
         nombrer = request.POST.get('nombrevire')

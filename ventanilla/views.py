@@ -12,8 +12,10 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from vitacora.models import Vitacora
+from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
 
-
+@require_authentication
 def ventanilla(request):
     if request.method == 'POST':
         # Obtener los datos del formulario
@@ -136,7 +138,7 @@ def ventanilla(request):
     }
 
     return render(request, 'Registrar_Ven.html', {'datos_formulario': datos_formulario})
-
+@require_authentication
 @require_GET
 def obtener_siguiente_id(request):
     try:
@@ -145,17 +147,17 @@ def obtener_siguiente_id(request):
     except Ventanilla.DoesNotExist:
         siguiente_id = 1  # Si no hay registros, el siguiente ID es 1
     return JsonResponse({'siguiente_id': siguiente_id})
-
+@method_decorator(require_authentication, name='dispatch')
 class Editorven(APIView):    
     template_name="Veneditor.html"
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
-
+@require_authentication
 def edicionVenta(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
     return render(request, "Editar_Ven.html", {"ventanilla": ventanilla})
-
+@require_authentication
 def editarVenta(request, codigo):
     if request.method == 'POST':
         claveraev = request.POST.get('claveraa')
@@ -219,7 +221,7 @@ def editarVenta(request, codigo):
         # Manejar casos donde no es una solicitud POST
         messages.error(request, 'La solicitud no es válida')
         return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación
-
+@require_authentication
 def eliminarVenta(request, codigo):
     ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
 

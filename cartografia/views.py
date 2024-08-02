@@ -9,20 +9,22 @@ from django.http import JsonResponse
 from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
+from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
 
 
-
+@method_decorator(require_authentication, name='dispatch')
 class Editorcar(APIView):    
     template_name="Careditor.html"
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
 
-
+@require_authentication
 def edicionCarto(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
     return render(request, "edicionCarto.html", {"ventanilla": ventanilla})
-
+@require_authentication
 def editarCarto(request, codigo):
     if request.method == 'POST':
         claverac = request.POST.get('claveracarto')

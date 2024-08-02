@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import FormularioDireccion
 from django.core.mail import EmailMessage
+from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
+
 
 
 # Create your views here.
-
+@require_authentication
 def direccion(request):
     formulario_direccion=FormularioDireccion()
     
