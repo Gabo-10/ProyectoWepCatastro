@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'ventanilla', 
     'administracion',
     'login',
-    'carro',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
