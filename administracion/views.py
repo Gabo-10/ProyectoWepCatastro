@@ -20,7 +20,7 @@ from ProyectoWeb.decorators import require_authentication
 from django.utils.decorators import method_decorator
 
 
-@method_decorator(require_authentication, name='dispatch')
+@method_decorator(require_authentication(role='superuser'), name='dispatch')
 class Editor(APIView):    
     template_name = "editor.html"
     
@@ -28,7 +28,7 @@ class Editor(APIView):
         usuarios = Usuarios.objects.all()[1:]
         return render(request, self.template_name, {'usuarios': usuarios})
     
-@require_authentication
+@require_authentication(role='superuser')
 def registro(request):
     if request.method == 'POST':
         nombre = request.POST.get('name')
@@ -85,7 +85,7 @@ def registro(request):
     return render(request, 'registro.html', {'datos_formulario': datos_formulario})
 
 
-@require_authentication
+@require_authentication(role='superuser')
 def eliminarUsuario(request, codigo):
     usuario = get_object_or_404(Usuarios, idUsuarios=codigo)
     if request.method == 'POST':
@@ -96,11 +96,11 @@ def eliminarUsuario(request, codigo):
     return render(request, 'editor.html', {'usuario': usuario})
 
  
-@require_authentication
+@require_authentication(role='superuser')
 def edicionUsuario(request, codigo):
     usuario = Usuarios.objects.get(idUsuarios=codigo)
     return render(request, "edicionUsuario.html", {"usuario": usuario})
-@require_authentication    
+@require_authentication(role='superuser')    
 def editarUsuario(request, codigo):
     if request.method == 'POST':
         nombre = request.POST.get('txtNombres')
@@ -122,11 +122,11 @@ def editarUsuario(request, codigo):
         return redirect('editor')  # O redirigir a donde sea apropiado en tu aplicación
 
     
-@require_authentication
+@require_authentication(role='superuser')
 def edicionContra(request, codigo):
     usuario = Usuarios.objects.get(idUsuarios=codigo)
     return render(request, "edicionContra.html", {"usuario": usuario})
-@require_authentication
+@require_authentication(role='superuser')
 def editarContra(request, codigo):
     if request.method == 'POST':
         password = request.POST.get('txtContra')
@@ -165,7 +165,7 @@ def editarContra(request, codigo):
         return redirect('editor')  # O redirigir a donde sea apropiado en tu aplicación
     
 
-@require_authentication
+@require_authentication(role='superuser')
 @csrf_exempt
 def verificar_admin(request):
     if request.method == 'POST':
@@ -182,11 +182,11 @@ def verificar_admin(request):
         except Usuarios.DoesNotExist:
             return JsonResponse({'success': False})
     return JsonResponse({'success': False}, status=400)
-@require_authentication
+@require_authentication(role='superuser')
 def bitacora(request):
     vitacoras = Vitacora.objects.all()
     return render(request, 'bitaco.html', {'vitacoras': vitacoras})
-@require_authentication
+@require_authentication(role='superuser')
 def actualizar_estado_vitacora(request, id, estado):
     if request.method == 'POST':
         vitacora = get_object_or_404(Vitacora, idvit=id)
@@ -194,7 +194,7 @@ def actualizar_estado_vitacora(request, id, estado):
         vitacora.save()
         return JsonResponse({'success': True, 'estado': estado})
     return JsonResponse({'success': False})
-@require_authentication
+@require_authentication(role='superuser')
 def inspeccion(request):
     inspecciones = Inspeccion.objects.all()
     return render(request, 'inspecion.html', {'inspecciones': inspecciones})

@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 
 
 # Create your views here.
-@require_authentication
+@require_authentication(role='user')
 def home(request):
     
     return render(request, "ProyectoWebApp/home.html")

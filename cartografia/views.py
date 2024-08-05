@@ -13,18 +13,18 @@ from ProyectoWeb.decorators import require_authentication
 from django.utils.decorators import method_decorator
 
 
-@method_decorator(require_authentication, name='dispatch')
+@method_decorator(require_authentication(role='user'), name='dispatch')
 class Editorcar(APIView):    
     template_name="Careditor.html"
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
 
-@require_authentication
+@require_authentication(role='user')
 def edicionCarto(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
     return render(request, "edicionCarto.html", {"ventanilla": ventanilla})
-@require_authentication
+@require_authentication(role='user')
 def editarCarto(request, codigo):
     if request.method == 'POST':
         claverac = request.POST.get('claveracarto')
