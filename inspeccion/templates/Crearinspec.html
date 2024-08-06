@@ -27,6 +27,7 @@
                       <th colspan="1"> Acciones </th> 
                       <th>Inspección ID</th>
                       <th>Folio</th>
+                      <th>Estado</th> 
                       <th>Nombre del propetario</th>
                       <th>Fecha de revisión</th>
                       <th>Carpeta</th>
@@ -48,6 +49,11 @@
                   <img src="{% static 'images/reporte_icon.png' %}" alt="Iconoedi"> Generar Reporte</a></td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
+                  <td class="
+                  {% if vitacora.estado == 'Pendiente' %}estado-pendiente
+                  {% elif vitacora.estado == 'Aprobado' %}estado-aprobado
+                  {% elif vitacora.estado == 'Desaprobado' %}estado-desaprobado
+                  {% endif %}">{{ vitacora.estado }}</td>
                   <td>{{ vitacora.nombre_propietario }}</td>
                   <td>{{ vitacora.fecha_revision }}</td>
                   <td>{{ vitacora.carpeta }}</td>
