@@ -165,8 +165,9 @@ def editarContra(request, codigo):
         return redirect('editor')  # O redirigir a donde sea apropiado en tu aplicación
     
 
-@require_authentication(role='superuser')
+
 @csrf_exempt
+@require_authentication(role='superuser')
 def verificar_admin(request):
     if request.method == 'POST':
         data = json.loads(request.body)
