@@ -201,8 +201,48 @@ button:hover {
 .custom-btn:hover {
     background-color:  #491411; /* Cambia el color de fondo al pasar sobre el botón */
 }
+/* campos de modal */
+.horizontal-fields {
+    display: flex;
+    gap: 10px; /* Espacio entre los campos */
+    align-items: center; /* Alinear verticalmente los campos */
+    justify-content: center;
+    margin-top: 25px;
+    
+}
 
-/* mensaje de modal */
+.password-field-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el campo de contraseña y el botón */
+    position: relative; /* Permite que el botón sea posicionado absolutamente dentro del contenedor */
+}
+
+.password-field-container .form-control {
+    
+    padding-right: 40px; /* Añade espacio a la derecha para el botón */
+    box-sizing: border-box; /* Incluye padding en el ancho total del campo */
+}
+
+.togglePassword {
+    position: absolute;
+    right: 10px; /* Ajusta la distancia desde el borde derecho del contenedor */
+    top: 50%; /* Centra verticalmente el botón */
+    transform: translateY(-50%); /* Ajusta el botón para que esté centrado verticalmente */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.eye-icon-admin {
+    width: 20px; /* Ajusta el tamaño si es necesario */
+    height: auto;
+    position: relative;
+    top: -16px; /* Ajusta este valor según sea necesario para la posición vertical */
+    margin-left: 62px;
+}
+
+
+
 .message {
     position: fixed;
     top: 30px;
@@ -215,3 +255,5 @@ button:hover {
     border-radius: 5px;
     z-index: 9999;
 }
+
+
