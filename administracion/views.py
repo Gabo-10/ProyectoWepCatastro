@@ -133,7 +133,7 @@ def editarContra(request, codigo):
         confirmacion = request.POST.get('txtConfir')
 
         if not password or not confirmacion:
-            messages.error(request, '⚠️ ¡Todos los campos son obligatorios!', extra_tags='warning-message')
+            messages.error(request, '⚠️ ¡Por favor, llene todos los campos!', extra_tags='warning-message')
             usuario = Usuarios.objects.get(idUsuarios=codigo)
             return render(request, "edicionContra.html", {"usuario": usuario})
 
