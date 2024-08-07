@@ -90,3 +90,8 @@ const togglePasswordButtons = document.querySelectorAll(".togglePassword");
       }
     });
   });
+
+  function goToCance() {
+    window.location.href = '/administracion/editar/';
+  }
+  
