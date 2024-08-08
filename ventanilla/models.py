@@ -24,7 +24,7 @@ class Ventanilla(models.Model):
     fecha_elaboracion = models.CharField(max_length=25)  
     observaciones_atencion = models.CharField(max_length=125)  
     hora_recepcion = models.CharField(max_length=25)  
-    pago = models.CharField(max_length=125)  
+    pago = models.CharField(max_length=25)  
     extras = models.CharField(max_length=150)  
 
     class Meta:

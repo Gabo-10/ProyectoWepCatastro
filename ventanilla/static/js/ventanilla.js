@@ -111,9 +111,12 @@ document.addEventListener("DOMContentLoaded", function() {
   // Agregar evento validarCampo3 al presionar una tecla en los campos
   txtnombre.addEventListener("keyup", validarCampo3);
 
-  // Agregar evento validarCampo3 al presionar una tecla en los campos
+  // Agregar evento validarCampo4 al presionar una tecla en los campos
 
   txtfecha.addEventListener("keyup", validarCampo4);
+
+// Agregar evento validarCampo5 al presionar una tecla en los campos
+  txtatencion.addEventListener("keyup", validarCampo5);
 
 
 
@@ -154,6 +157,27 @@ function validarCampo2(event) {
   // Limitar la longitud máxima del valor a 50 caracteres
   if (valor.length > 150) {
     valor = valor.slice(0, 150);
+  }
+  // Eliminar espacio al final si no hay más texto después de un espacio
+  if (valor.endsWith(' ')) {
+    valor = valor.trim() + ' ';
+  }
+  // Eliminar espacio al principio
+  if (valor.startsWith(' ')) {
+    valor = valor.trimStart();
+  }
+  // Permitir solo un espacio entre nombrs
+  valor = valor.replace(/\s{2,}/g, ' ');
+  input.value = valor;
+}
+
+
+function validarCampo5(event) {
+  const input = event.target;
+  let valor = input.value;
+  // Limitar la longitud máxima del valor a 50 caracteres
+  if (valor.length > 125) {
+    valor = valor.slice(0, 125);
   }
   // Eliminar espacio al final si no hay más texto después de un espacio
   if (valor.endsWith(' ')) {
