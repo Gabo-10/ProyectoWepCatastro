@@ -29,3 +29,7 @@ class Ventanilla(models.Model):
 
     class Meta:
         db_table = 'ventanilla'
+
+
+    def __str__(self):
+        return self.folio     

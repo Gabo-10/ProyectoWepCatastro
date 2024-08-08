@@ -41,3 +41,6 @@ class Vitacora(models.Model):
             self.idvit = f'{self.ID_PREFIX}{new_id_number}'
 
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.idvit     

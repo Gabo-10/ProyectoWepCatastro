@@ -107,7 +107,8 @@ def agregarVita(request):
     }
 
     # Obtener la instancia de Ventanilla correspondiente
-    ventanilla = Ventanilla.objects.get(request.POST.get('foliovi'))
+    ventanilla = Ventanilla.objects.get(folio=request.POST.get('foliovi'))
+
 
     # Agregar el valor de folion al contexto
     datos_formulario['foliovi'] = ventanilla.folio
