@@ -4,6 +4,7 @@ const nombressin = document.getElementById("txtnombre");
   // Agregar evento de validación al presionar una tecla en los campos de nombres y apellidos
   nombressin.addEventListener("keyup", validarCampo);
   nombressin.addEventListener("blur", limpiarEspacioFinal);
+  nombressin.addEventListener("blur", convertirMayusculas);
  
 
 
@@ -13,8 +14,8 @@ const nombressin = document.getElementById("txtnombre");
     let valor = input.value;
   
     // Limitar la longitud máxima del valor
-    if (valor.length > 45) {
-      valor = valor.slice(0, 45);
+    if (valor.length > 150) {
+      valor = valor.slice(0, 150);
     }
   
     // Verificar si el valor contiene caracteres no permitidos
@@ -46,6 +47,16 @@ const nombressin = document.getElementById("txtnombre");
     // Actualizar el valor del campo
     input.value = valor;
   }
+
+  function convertirMayusculas(event) {
+    const input = event.target;
+    let valor = input.value;
+    // Convertir el valor a mayúsculas
+    valor = valor.toUpperCase();
+    // Actualizar el valor del campo
+    input.value = valor;
+  }
+
   
   
   function goToediinspec() {

@@ -41,7 +41,7 @@ def agregarInspec(request):
             messages.error(request, '⚠️ Por favor, complete todos los campos del formulario.', extra_tags='warning-message')
         else:
             # Verificar si ya existe un reporte con el mismo nprogi_id
-            if Inspeccion.objects.filter(ID=IDi).exists():
+            if Inspeccion.objects.filter(idvit=idviti).exists():
                 messages.error(request, '❌ Ya se ha realizado un reporte para este número de programa.', extra_tags='error-message')
             else:
                 # Obtener la instancia de Vitacora correspondiente
