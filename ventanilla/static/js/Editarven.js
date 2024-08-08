@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function() {
     tetentidad.addEventListener("keyup", validarCampo);
     tetfolio.addEventListener("keyup", validarCampo);
     tetrecibo.addEventListener("keyup", validarCampo);
-    tetreviso.addEventListener("keyup", validarCampo);
     tetmotivo.addEventListener("keyup", validarCampo);
     tetsoliservi.addEventListener("keyup", validarCampo);
     tetterrreno.addEventListener("keyup", validarCampo);
@@ -83,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
     tetatencion.addEventListener("keyup", validarCampo2);
     tethora.addEventListener("keyup", validarCampo2);
     tetpago.addEventListener("keyup", validarCampo2);
-  
+    tetreviso.addEventListener("keyup", validarCampo2);
     
     // Agregar evento  al presionar una tecla en los campos 
     tetprog.addEventListener("blur", convertirMayusculas);
