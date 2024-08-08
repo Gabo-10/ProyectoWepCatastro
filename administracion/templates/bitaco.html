@@ -57,11 +57,11 @@
                     {% elif vitacora.estado == 'Aprobado' %}estado-aprobado
                     {% elif vitacora.estado == 'Desaprobado' %}estado-desaprobado
                     {% endif %}">{{ vitacora.estado }}</td>
-                  <td>{{ vitacora.idvit }} </td> 
-                  <td>{{ vitacora.folio }}</td>
-                  <td>{{ vitacora.nombre_propietario }}</td>
-                  <td>{{ vitacora.fecha_revision }}</td>
-                  <td>{{ vitacora.carpeta }}</td>
+                  <td >{{ vitacora.idvit }} </td> 
+                  <td class="buscarcolumna">{{ vitacora.folio }}</td>
+                  <td class="buscarcolumna">{{ vitacora.nombre_propietario }}</td>
+                  <td >{{ vitacora.fecha_revision }}</td>
+                  <td class="buscarcolumna">{{ vitacora.carpeta }}</td>
                   <td>{{ vitacora.area }}</td>
                   <td>{{ vitacora.folio_manifestacion }}</td>
                   <td>{{ vitacora.dia_que_sale }}</td>
