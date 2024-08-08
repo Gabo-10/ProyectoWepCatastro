@@ -307,3 +307,45 @@ function formatClave(input) {
 
   input.value = formattedValue;
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const txtimporte = document.getElementById("txtimporte");
+  const txtpago = document.getElementById("txtpago");
+  const txtextras = document.getElementById("txtextras");
+
+  // Aplicar formato al escribir y al perder el foco
+  [txtimporte, txtpago, txtextras].forEach(input => {
+    input.addEventListener("input", function() {
+      formatCurrency(this);
+    });
+
+    input.addEventListener("blur", function() {
+      formatCurrency(this); // Aplicar formato también al perder el foco
+    });
+  });
+});
+
+function formatCurrency(input) {
+  let value = input.value.replace(/[^0-9.]/g, ''); // Elimina cualquier carácter no numérico ni punto
+
+  // Convertir a número flotante para manejar los centavos
+  let numericValue = parseFloat(value);
+  if (isNaN(numericValue)) {
+    numericValue = 0;
+  }
+
+  // Formatear el número con comas y punto decimal
+  let formattedValue = numericValue.toLocaleString('es-MX', { // Para pesos mexicanos
+    style: 'currency',
+    currency: 'MXN',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  // Reemplazar el símbolo de moneda por el símbolo deseado
+  formattedValue = formattedValue.replace('$', '');
+  formattedValue = `$${formattedValue}`;
+
+  input.value = formattedValue;
+}
