@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Agregar evento limpiarEspacioFinal al presionar una tecla en los campos 
   txtprog.addEventListener("blur", limpiarEspacioFinal);
-  txtclavera .addEventListener("blur", limpiarEspacioFinal);
   txtnombre.addEventListener("blur", limpiarEspacioFinal);
   txtcurp.addEventListener("blur", limpiarEspacioFinal);
   txtmanzana.addEventListener("blur", limpiarEspacioFinal);
@@ -114,9 +113,14 @@ document.addEventListener("DOMContentLoaded", function() {
   // Agregar evento validarCampo4 al presionar una tecla en los campos
 
   txtfecha.addEventListener("keyup", validarCampo4);
+  txtclavera.addEventListener("keyup", validarCampo4);
 
 // Agregar evento validarCampo5 al presionar una tecla en los campos
   txtatencion.addEventListener("keyup", validarCampo5);
+
+  
+
+
 
 
 
@@ -133,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const input = event.target;
   let valor = input.value;
   // Limitar la longitud máxima del valor a 150 caracteres
-  if (valor.length > 25) {
-    valor = valor.slice(0, 25);
+  if (valor.length > 24) {
+    valor = valor.slice(0, 24);
   }
   // Eliminar espacio al final si no hay más texto después de un espacio
   if (valor.endsWith(' ')) {
@@ -275,4 +279,31 @@ document.querySelector('.btn-listaven').addEventListener('click', function(event
 });
 
 
+// campo para poner los guiones cada 4 
 
+txtclavera.addEventListener("input", function() {
+  formatClave(this);
+});
+
+txtclavera.addEventListener("blur", function() {
+  formatClave(this); 
+});
+
+function formatClave(input) {
+  let value = input.value.replace(/\W/g, ''); // Elimina cualquier carácter no alfanumérico
+  let formattedValue = '';
+
+  for (let i = 0; i < value.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formattedValue += '-';
+    }
+    formattedValue += value[i];
+  }
+
+  // Elimina el guion final si existe
+  if (formattedValue.endsWith('-')) {
+    formattedValue = formattedValue.slice(0, -1);
+  }
+
+  input.value = formattedValue;
+}
