@@ -13,12 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const txtfolio = document.getElementById('txtfolio');
   const txtrecibo = document.getElementById('txtrecibo');
   const txtimporte = document.getElementById('txtimporte');
-  const txtreviso = document.getElementById('txtreviso');
-  const txtmotivo = document.getElementById('txtmotivo');
-  const txtsoliservi = document.getElementById('txtsoliservi');
-  const txtterrreno = document.getElementById('txtterrreno');
-  const txtconstruc = document.getElementById('txtconstruc');
-  const txtelaboracion = document.getElementById('txtelaboracion');
   const txtatencion = document.getElementById('txtatencion');
   const txthora = document.getElementById('txthora');
   const txtpago = document.getElementById('txtpago');
@@ -40,12 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtfolio.addEventListener("blur", limpiarEspacioFinal);
   txtrecibo.addEventListener("blur", limpiarEspacioFinal);
   txtimporte.addEventListener("blur", limpiarEspacioFinal);
-  txtreviso.addEventListener("blur", limpiarEspacioFinal);
-  txtmotivo.addEventListener("blur", limpiarEspacioFinal);
-  txtsoliservi.addEventListener("blur", limpiarEspacioFinal);
-  txtterrreno.addEventListener("blur", limpiarEspacioFinal);
-  txtconstruc.addEventListener("blur", limpiarEspacioFinal);
-  txtelaboracion.addEventListener("blur", limpiarEspacioFinal);
   txtatencion.addEventListener("blur", limpiarEspacioFinal);
   txthora.addEventListener("blur", limpiarEspacioFinal);
   txtpago.addEventListener("blur", limpiarEspacioFinal);
@@ -61,11 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtentidad.addEventListener("keyup", validarCampo);
   txtfolio.addEventListener("keyup", validarCampo);
   txtrecibo.addEventListener("keyup", validarCampo);
-  txtreviso.addEventListener("keyup", validarCampo);
-  txtmotivo.addEventListener("keyup", validarCampo);
-  txtsoliservi.addEventListener("keyup", validarCampo);
-  txtterrreno.addEventListener("keyup", validarCampo);
-  txtconstruc.addEventListener("keyup", validarCampo);
   txtextras.addEventListener("keyup", validarCampo);
   
   // Agregar evento validarCampo2 al presionar una tecla en los campos
@@ -75,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtmunicipio.addEventListener("keyup", validarCampo2);
   txtfecha.addEventListener("keyup", validarCampo2);
   txtimporte.addEventListener("keyup", validarCampo2);
-  txtelaboracion.addEventListener("keyup", validarCampo2);
   txtatencion.addEventListener("keyup", validarCampo2);
   txthora.addEventListener("keyup", validarCampo2);
   txtpago.addEventListener("keyup", validarCampo2);
@@ -96,12 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtfolio.addEventListener("blur", convertirMayusculas);
   txtrecibo.addEventListener("blur", convertirMayusculas);
   txtimporte.addEventListener("blur", convertirMayusculas);
-  txtreviso.addEventListener("blur", convertirMayusculas);
-  txtmotivo.addEventListener("blur", convertirMayusculas);
-  txtsoliservi.addEventListener("blur", convertirMayusculas);
-  txtterrreno.addEventListener("blur", convertirMayusculas);
-  txtconstruc.addEventListener("blur", convertirMayusculas);
-  txtelaboracion.addEventListener("blur", convertirMayusculas);
   txtatencion.addEventListener("blur", convertirMayusculas);
   txthora.addEventListener("blur", convertirMayusculas);
   txtpago.addEventListener("blur", convertirMayusculas);
