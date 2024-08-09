@@ -34,12 +34,6 @@ def ventanilla(request):
         foliov = request.POST.get('folio')
         recibov = request.POST.get('recibo')
         importev = request.POST.get('importe')
-        revisov = request.POST.get('treviso')
-        motivov = request.POST.get('motivo')
-        solicitud_servicio_catastralv = request.POST.get('soliservi')
-        superficie_terrenov = request.POST.get('terreno')
-        superficie_construccion_resultantev = request.POST.get('construc')
-        fecha_elaboracionv = request.POST.get('elaboracion')
         observaciones_atencionv = request.POST.get('atencion')
         hora_recepcionv = request.POST.get('hora')
         pagov = request.POST.get('pago')
@@ -64,12 +58,6 @@ def ventanilla(request):
                 'folio': foliov,
                 'recibo': recibov,
                 'importe': importev,
-                'treviso': revisov,
-                'motivo': motivov,
-                'soliservi': solicitud_servicio_catastralv,
-                'terreno': superficie_terrenov,
-                'construc': superficie_construccion_resultantev,
-                'elaboracion': fecha_elaboracionv,
                 'atencion': observaciones_atencionv,
                 'hora': hora_recepcionv,
                 'pago': pagov,
@@ -94,12 +82,6 @@ def ventanilla(request):
             folio=foliov,
             recibo=recibov,
             importe=importev,
-            reviso=revisov,
-            motivo=motivov,
-            solicitud_servicio_catastral=solicitud_servicio_catastralv,
-            superficie_terreno=superficie_terrenov,
-            superficie_construccion_resultante=superficie_construccion_resultantev,
-            fecha_elaboracion=fecha_elaboracionv,
             observaciones_atencion=observaciones_atencionv,
             hora_recepcion=hora_recepcionv,
             pago=pagov,
