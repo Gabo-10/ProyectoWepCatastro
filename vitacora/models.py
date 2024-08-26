@@ -3,7 +3,7 @@ from ventanilla.models import Ventanilla  # Asegúrate de importar el modelo ade
 
 class Vitacora(models.Model):
     ID_PREFIX = 'VIT-'  # Prefijo deseado para el ID
-    idvit = models.CharField(max_length=20, unique=True)
+    idvit = models.CharField(max_length=20, primary_key=True)
     folio = models.ForeignKey(Ventanilla, on_delete=models.CASCADE, to_field='folio')
     nombre_propietario = models.CharField(max_length=150)
     fecha_revision = models.CharField(max_length=25)
@@ -23,14 +23,13 @@ class Vitacora(models.Model):
 
 
     def save(self, *args, **kwargs):
-        if not self.ID_vitacora or not self.ID_vitacora.startswith(self.ID_PREFIX):
+        if not self.idvit or not self.idvit.startswith(self.ID_PREFIX):
             last_id = Vitacora.objects.order_by('-idvit').first()
-            if not last_id or not last_id.ID_vitacora:
+            if last_id is None or last_id.idvit is None:
                 new_id_number = 1
             else:
-                last_id_number = int(last_id.ID_vitacora.split(self.ID_PREFIX)[-1])
+                last_id_number = int(last_id.idvit.split(self.ID_PREFIX)[-1])
                 new_id_number = last_id_number + 1
-            self.ID_vitacora = f'{self.ID_PREFIX}{new_id_number}'
+            self.idvit = f'{self.ID_PREFIX}{new_id_number}'
 
-        super(Vitacora, self).save(*args, **kwargs)
-
+        super().save(*args, **kwargs)

@@ -96,6 +96,7 @@ def obtener_siguiente_idins(request):
     
     print(f"Siguiente ID: {siguiente_idins}")
     return JsonResponse({'siguiente_idins': siguiente_idins})
+
 def eliminarInspec(request, codigo):
     inspeccion = get_object_or_404(Inspeccion, ID=codigo)
     

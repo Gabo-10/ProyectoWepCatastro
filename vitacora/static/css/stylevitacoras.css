@@ -148,7 +148,7 @@
   
    
   /* Estilos para el botón eliminar usuario*/
-  .btneliminarins {
+  .btneliminarvita {
     background-color: #d12a2a; 
     color: #ffffff; 
     padding: 4.5px 11px; 
@@ -159,13 +159,13 @@
   }
   
   /* Estilos cuando se pasa el cursor sobre el botón */
-  .btneliminarins:hover {
+  .btneliminarvita:hover {
     background-color: #511512; 
   }
   
   
   /* Estilos para el botón eliminar usuario*/
-  .btneditarins {
+  .btneditarvita {
     background-color: #2a99d1; 
     color: #ffffff; 
     padding: 4.5px 11px; 
@@ -176,14 +176,14 @@
   }
   
   /* Estilos cuando se pasa el cursor sobre el botón */
-  .btneditarins:hover {
+  .btneditarvita:hover {
     background-color: #511512; 
   }
   
   
   /* Estilos para los iconos */
-  .btneditarins img,
-  .btneliminarins img {
+  .btneditarvita img,
+  .btneliminarvita img {
       width: 20px;
       height: 23px;
       vertical-align: middle; 

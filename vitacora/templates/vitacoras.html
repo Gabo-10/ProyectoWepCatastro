@@ -51,9 +51,9 @@
                   <tbody>
                     {% for vitacora in vitacoras  %}      
                 <tr>  
-                  <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarins">
+                  <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarvita">
                     <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
-                    <a href="#" class="btneliminarins" data-url="{% url 'eliminarIns' codigo=inspeccion.ID %}" >
+                    <a href="#" class="btneliminarvita" data-url="{% url 'eliminarVitac' codigo=vitacora.idvit %}" >
                     <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
@@ -64,7 +64,7 @@
                   <td>{{ vitacora.folio_manifestacion }}</td>
                   <td>{{ vitacora.dia_que_sale }}</td>
                   <td>
-                    <a href="{{ vitacora.archivo_pdf.url }}" target="_blank">
+                    <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">
                         <img src="{% static 'images/pdf_icon.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
                     </a>
                 </td>
