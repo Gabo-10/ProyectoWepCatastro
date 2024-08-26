@@ -1,0 +1,120 @@
+{% extends "ProyectoWebApp/base4.html" %}
+
+{% load static %}
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora</title>
+    <link rel="stylesheet" href="{% static 'css/stylebitacoras.css' %}">  
+  </head>  
+  <body >
+    <div class="contenedorvitacora"> 
+      <div class="formulariovitacora">  
+        <h1>Bitácora</h1>
+        <div class="buscador">
+          <input type="search" placeholder="Buscar...">
+          <button type="submit">Buscar</button>
+        </div>
+        <div class="tabla-contenedor">
+          <table id="tableedi">
+            <thead>
+                <thead>
+                    <tr>
+                      <th colspan="1"> Acciones </th>
+                      <th>Estado</th> 
+                      <th>ID Bitacora</th>
+                      <th>Folio</th>
+                      <th>Nombre del propetario</th>
+                      <th>Fecha de revisión</th>
+                      <th>Carpeta</th>
+                      <th>Área</th>
+                      <th>Folio de manifestación</th>
+                      <th>Dia que sale</th>
+                      <th>Plano manzanero</th>
+                      <th>Verificación de linderos</th>
+                      <th>Tipo de captura</th>
+                      <th>Clave catastral</th>
+                      <th>Costo de translado</th>
+                      <th>Observaciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for vitacora in vitacoras  %}      
+                <tr>  
+                  <td><a href="#" class="btnaprobarbita">
+                    <img src="{% static 'images/paloma.png' %}" alt="Iconoedi"> Aprobar</a>
+                    <a href="#" class="btndenebita">
+                    <img src="{% static 'images/tache.png' %}" alt="Iconoelimi"> Desaprobar</a>
+                  <td class="
+                    {% if vitacora.estado == 'Pendiente' %}estado-pendiente
+                    {% elif vitacora.estado == 'Aprobado' %}estado-aprobado
+                    {% elif vitacora.estado == 'Desaprobado' %}estado-desaprobado
+                    {% endif %}">{{ vitacora.estado }}</td>
+                  <td >{{ vitacora.idvit }} </td> 
+                  <td class="buscarcolumna">{{ vitacora.folio }}</td>
+                  <td class="buscarcolumna">{{ vitacora.nombre_propietario }}</td>
+                  <td >{{ vitacora.fecha_revision }}</td>
+                  <td class="buscarcolumna">{{ vitacora.carpeta }}</td>
+                  <td>{{ vitacora.area }}</td>
+                  <td>{{ vitacora.folio_manifestacion }}</td>
+                  <td>{{ vitacora.dia_que_sale }}</td>
+                  <td>
+                    <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">
+                        <img src="{% static 'images/plano.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
+                    </a>
+                </td>
+                <td>{{ vitacora.verificacion_linderos }}</td>
+                <td>{{ vitacora.tipo_captura }}</td>
+                <td>{{ vitacora.clave_catastral }}</td>
+                <td>{{ vitacora.costo_traslado }}</td>
+                <td>{{ vitacora.observacion }}</td>
+                
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="confirmacionModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modalMensaje"></p>
+          <div class="modal-buttons">
+              <button id="confirmarBtn">Confirmar</button>
+              <button id="cancelarBtn">Cancelar</button>
+          </div>
+      </div>
+  </div>
+    <div id="mensajeModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="mensajeTexto"></p>
+        <button id="cerrarMensaje">Aceptar</button>
+      </div>
+    </div>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            setTimeout(function() {
+                var messages = document.querySelector('.messages');
+                messages.style.display = 'none';
+            }, 5000);
+        </script>
+      {% endif %}
+      <script src="{% static 'js/bitacoras.js' %}"></script> 
+  </body>
+</html>
+
+{% endblock %}
+

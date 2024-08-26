@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
   
     // Agregar evento validarCampo al presionar una tecla en los campos
    
-    txtrevisoc.addEventListener("keyup", validarCampo);
-    txtmotivoc.addEventListener("keyup", validarCampo);
+    
+    
     txtsoliservic.addEventListener("keyup", validarCampo);
     txtterrrenoc.addEventListener("keyup", validarCampo);
     txtconstrucc.addEventListener("keyup", validarCampo);
@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Agregar evento validarCampo2 al presionar una tecla en los campos
 
     txtelaboracionc.addEventListener("keyup", validarCampo2);
+    txtrevisoc.addEventListener("keyup", validarCampo2);
+    txtmotivoc.addEventListener("keyup", validarCampo2);
+
 
     
     // Agregar evento  al presionar una tecla en los campos 

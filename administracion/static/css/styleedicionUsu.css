@@ -55,12 +55,12 @@ input {
 button {
     width: 25%; 
     padding: 10px; 
-    margin: 10px; 
+    margin: 10px;
     border: none; 
-    margin-left: 38%; 
+    margin-left: 16%; 
     background-color: #e8c289; 
     color: #ffffff; 
-    border-radius: 5px;
+    border-radius: 5px; 
     cursor: pointer; 
     transition: background-color 0.2s ease-in-out;   
 }

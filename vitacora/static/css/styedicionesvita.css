@@ -112,3 +112,17 @@ button:hover {
   gap: 7px; /* Espacio entre los botones */
   margin-right: 10%;
 }
+
+
+.warning-message {
+  background-color: #fff3cd; /* Color de fondo amarillo claro para mensajes de advertencia */
+  color: #856404; /* Color de texto marrón oscuro */
+  border: 1px solid #ffeeba; /* Borde amarillo */
+  padding: 9px; 
+  margin-bottom: 88vh; 
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: -669px;
+  border-radius: 5px; 
+  text-align: center;
+}

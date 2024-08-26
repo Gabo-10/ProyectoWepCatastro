@@ -69,8 +69,15 @@
             <h2>Confirmación de Administrador</h2>
             <p>Para guardar la nueva contraseña, por favor ingrese su nombre de usuario y contraseña actual:</p>
             <form id="adminPasswordForm">
-                <input type="text" id="adminUsername" name="adminUsername" class="form-control" placeholder="Usuario del Administrador" required>
-                <input type="password" id="adminPassword" name="adminPassword" class="form-control" placeholder="Contraseña del Administrador" required>
+                <div class="form-group horizontal-fields">
+                    <input type="text" id="adminUsername" name="adminUsername" class="form-control" placeholder="Usuario del Administrador" required>
+                    <div class="password-field-container">
+                        <input type="password" id="adminPassword" name="adminPassword" class="form-control" placeholder="Contraseña del Administrador" required>
+                        <button type="button" class="togglePassword" data-target="adminPassword" style="position: absolute; right: 10px; top: 10px; background: none; border: none;">
+                            <img src="{% static 'images/eye.png' %}" alt="Mostrar" class="eye-icon-admin">
+                        </button>
+                    </div>
+                </div>
                 <button type="submit" id="confirmPassword" class="btn btn-primary custom-btn">Confirmar</button>
             </form>
         </div>

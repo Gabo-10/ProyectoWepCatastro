@@ -11,14 +11,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitacoras</title>
+    <title>Bitácora</title>
     <link rel="stylesheet" href="{% static 'css/stylevitacoras.css' %}">  
   </head>
   
   <body >
     <div class="contenedorvitacora"> 
       <div class="formulariovitacora">  
-        <h1>Vitacoras</h1>
+        <h1>Bitácora</h1>
         <button type="button" class="btn-generar">
           <img src="{% static 'images/reporte_icon.png' %}" alt="Iconolista"> Generar
         </button>
@@ -34,6 +34,7 @@
                       <th colspan="1"> Acciones </th> 
                       <th>ID_Vitacora</th>
                       <th>Folio</th>
+                      <th>Estado</th> 
                       <th>Nombre del propetario</th>
                       <th>Fecha de revisión</th>
                       <th>Carpeta</th>
@@ -45,18 +46,24 @@
                       <th>Tipo de captura</th>
                       <th>Clave catastral</th>
                       <th>Costo de translado</th>
-                      <th>Observaciones</th>
+                      <th>Observaciones</th>  
                     </tr>
                   </thead>
                   <tbody>
-                    {% for vitacora in vitacoras  %}      
-                <tr>  
-                  <td><a href="/inspeccion/edicionReport/{{ inspeccion.ID}}" class="btneditarvita">
+                    {% for vitacora in vitacoras  %}  
+                  <tr>
+
+                  <td><a href="/vitacora/edicionReportv/{{ vitacora.idvit}}" class="btneditarvita">
                     <img src="{% static 'images/editar_icon.png' %}" alt="Iconoedi"> Editar</a>
                     <a href="#" class="btneliminarvita" data-url="{% url 'eliminarVitac' codigo=vitacora.idvit %}" >
                     <img src="{% static 'images/elimi.png' %}" alt="Iconoelimi"> Eliminar</a></td>
                   <td>{{ vitacora.idvit }} </td> 
                   <td>{{ vitacora.folio }}</td>
+                  <td class="
+                  {% if vitacora.estado == 'Pendiente' %}estado-pendiente
+                  {% elif vitacora.estado == 'Aprobado' %}estado-aprobado
+                  {% elif vitacora.estado == 'Desaprobado' %}estado-desaprobado
+                  {% endif %}">{{ vitacora.estado }}</td>
                   <td>{{ vitacora.nombre_propietario }}</td>
                   <td>{{ vitacora.fecha_revision }}</td>
                   <td>{{ vitacora.carpeta }}</td>
@@ -65,7 +72,7 @@
                   <td>{{ vitacora.dia_que_sale }}</td>
                   <td>
                     <a href="{{ vitacora.plano_manzanero.url }}" target="_blank">
-                        <img src="{% static 'images/pdf_icon.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
+                        <img src="{% static 'images/plano.png' %}" alt="Ver PDF" style="width: 24px; height: 24px;">
                     </a>
                 </td>
                 <td>{{ vitacora.verificacion_linderos }}</td>
@@ -86,6 +93,13 @@
           <button id="confirmarEliminar">Confirmar</button>
           <button id="cancelarEliminar">Cancelar</button>
         </div>
+      </div>
+    </div>
+    <div id="mensajeModal" class="mensajeModal">
+      <div class="mensajeModal-content">
+          <span class="close">&times;</span>
+          <p id="mensajeTexto"></p>
+          <button id="aceptarMensaje">Aceptar</button>
       </div>
     </div>
       {% if messages %}

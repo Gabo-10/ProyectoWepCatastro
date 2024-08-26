@@ -33,31 +33,31 @@
                         </div>
                         <div class="campo">
                             <label for="claveca3" >CLAVE CATASTRAL:</label>
-                            <input type="text" id="txtclavera" name="clavera" value="{{ datos_formulario.clavera }}" class="form-control" >
+                            <input type="text" id="txtclavera" name="clavera" value="{{ datos_formulario.clavera }}" class="form-control" required >
                         </div>
                         <div class="campo">
                             <label for="nombre3">NOMBRE:</label>
-                            <input type="text" id="txtnombre" name="nombre" value="{{ datos_formulario.nombre }}" class="form-control" >
+                            <input type="text" id="txtnombre" name="nombre" value="{{ datos_formulario.nombre }}" class="form-control" required >
                         </div>
                         <div class="campo">
                             <label for="curp3">CURP:</label>
-                            <input type="text" id="txtcurp" name="curp" value="{{ datos_formulario.curp }}"  class="form-control" >
+                            <input type="text" id="txtcurp" name="curp" value="{{ datos_formulario.curp }}"  class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="manzana3">MANZANA:</label>
-                            <input type="text" id="txtmanzana" name="manzana" value="{{ datos_formulario.manzana }}"  class="form-control">
+                            <input type="text" id="txtmanzana" name="manzana" value="{{ datos_formulario.manzana }}"  class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="lote3">LOTE:</label>
-                            <input type="text" id="txtlote" name="lote" value="{{ datos_formulario.lote }}" class="form-control" >
+                            <input type="text" id="txtlote" name="lote" value="{{ datos_formulario.lote }}" class="form-control" required >
                         </div>
                         <div class="campo">
                             <label for="calle3">CALLE:</label>
-                            <input type="text" id="txtcalle" name="calle" value="{{ datos_formulario.calle }}"  class="form-control">
+                            <input type="text" id="txtcalle" name="calle" value="{{ datos_formulario.calle }}"  class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="barrio3">BARRIO O COLONIA:</label>
-                            <input type="text" id="txtbarrio" name="barrio" value="{{ datos_formulario.barrio }}" class="form-control">
+                            <input type="text" id="txtbarrio" name="barrio" value="{{ datos_formulario.barrio }}" class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="entidad3">ENTIDAD:</label>
@@ -76,7 +76,7 @@
                                 <option value="LEVANTAMINETO TOPOGRÁFICO" {% if datos_formulario.tramite == "LEVANTAMINETO TOPOGRÁFICO" %}selected{% endif %}>LEVANTAMINETO TOPOGRÁFICO</option>
                                 <option value="VERIFICACIÓN DE LINDEROS" {% if datos_formulario.tramite == "VERIFICACIÓN DE LINDEROS" %}selected{% endif %}>VERIFICACIÓN DE LINDEROS</option>
                                 <option value="CONSTANCIA DE IDENTIFICACIÓN CATASTRAL" {% if datos_formulario.tramite == "CONSTANCIA DE IDENTIFICACIÓN CATASTRAL" %}selected{% endif %}>CONSTANCIA DE IDENTIFICACIÓN CATASTRAL</option>
-                                <option value="ccvc" {% if datos_formulario.tramite == "C.C.V.C" %}selected{% endif %}>C.C.V.C</option>
+                                <option value="C.C.V.C" {% if datos_formulario.tramite == "C.C.V.C" %}selected{% endif %}>C.C.V.C</option>
                             </select>
                         </div>
                         <div class="campo">
@@ -89,39 +89,15 @@
                         </div>
                         <div class="campo">
                             <label for="recibo3">N°RECIBO:</label>
-                            <input type="text" id="txtrecibo" name="recibo" value="{{ datos_formulario.recibo }}"  class="form-control" >
+                            <input type="text" id="txtrecibo" name="recibo" value="{{ datos_formulario.recibo }}"  class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="importe3">IMPORTE:</label>
-                            <input type="text" id="txtimporte" name="importe"  value="{{ datos_formulario.importe }}" class="form-control" >
-                        </div>
-                        <div class="campo">
-                            <label for="reviso3">REVISO:</label>
-                            <input type="text" id="txtreviso" name="treviso" value="{{ datos_formulario.treviso }}"  class="form-control" readonly >
-                        </div>
-                        <div class="campo">
-                            <label for="motivo3">MOTIVO:</label>
-                            <input type="text" id="txtmotivo" name="motivo" value="{{ datos_formulario.motivo }}" class="form-control" readonly>
-                        </div>
-                        <div class="campo">
-                            <label for="soliservi3">SOLICITUD DE SERVICIO CATASTRAL(codigos):</label>
-                            <input type="text" id="txtsoliservi" name="soliservi" value="{{ datos_formulario.soliservi }}" class="form-control" readonly>
-                        </div>
-                        <div class="campo">
-                            <label for="terrreno3">SUPERFICIE TERRENO (M2):</label>
-                            <input type="text" id="txtterrreno" name="terreno" value="{{ datos_formulario.terreno }}" class="form-control" readonly>
-                        </div>
-                        <div class="campo">
-                            <label for="construc3">SUPERFICIE CONSTRUCCION RESULTANTE (M2):</label>
-                            <input type="text" id="txtconstruc" name="construc" value="{{ datos_formulario.construc }}"  class="form-control" readonly>
-                        </div>
-                        <div class="campo">
-                            <label for="elaboracion3">FECHA ELABORACION:</label>
-                            <input type="text" id="txtelaboracion" name="elaboracion" value="{{ datos_formulario.elaboracion }}" class="form-control" readonly >
+                            <input type="text" id="txtimporte" name="importe"  value="{{ datos_formulario.importe }}" class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="atencion3">OBSERVACIONES ATENCION:</label>
-                            <input type="text" id="txtatencion" name="atencion" value="{{ datos_formulario.atencion }}" class="form-control" >
+                            <input type="text" id="txtatencion" name="atencion" value="{{ datos_formulario.atencion }}" class="form-control" required>
                         </div>
                         <div class="campo">
                             <label for="hora3">HORA DE RECEPCION:</label>
@@ -129,11 +105,11 @@
                         </div>
                         <div class="campo">
                             <label for="pago3">PAGO:</label>
-                            <input type="text" id="txtpago" name="pago" value="{{ datos_formulario.pago }}" class="form-control" >
+                            <input type="text" id="txtpago" name="pago" value="{{ datos_formulario.pago }}" class="form-control" required >
                         </div>
                         <div class="campo">
                             <label for="extras3">$EXTRA$:</label>
-                            <input type="text" id="txtextras" name="extras" value="{{ datos_formulario.extras }}" class="form-control" >
+                            <input type="text" id="txtextras" name="extras" value="{{ datos_formulario.extras }}" class="form-control" required >
                         </div>
                     </div>
                 </form>

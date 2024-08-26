@@ -11,9 +11,11 @@ from django.urls import reverse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from inspeccion.models import Inspeccion
+from vitacora.models import Vitacora
+from ProyectoWeb.decorators import require_authentication
+from django.utils.decorators import method_decorator
 
-
+@require_authentication(role='user')
 def ventanilla(request):
     if request.method == 'POST':
         # Obtener los datos del formulario
@@ -32,12 +34,6 @@ def ventanilla(request):
         foliov = request.POST.get('folio')
         recibov = request.POST.get('recibo')
         importev = request.POST.get('importe')
-        revisov = request.POST.get('treviso')
-        motivov = request.POST.get('motivo')
-        solicitud_servicio_catastralv = request.POST.get('soliservi')
-        superficie_terrenov = request.POST.get('terreno')
-        superficie_construccion_resultantev = request.POST.get('construc')
-        fecha_elaboracionv = request.POST.get('elaboracion')
         observaciones_atencionv = request.POST.get('atencion')
         hora_recepcionv = request.POST.get('hora')
         pagov = request.POST.get('pago')
@@ -62,12 +58,6 @@ def ventanilla(request):
                 'folio': foliov,
                 'recibo': recibov,
                 'importe': importev,
-                'treviso': revisov,
-                'motivo': motivov,
-                'soliservi': solicitud_servicio_catastralv,
-                'terreno': superficie_terrenov,
-                'construc': superficie_construccion_resultantev,
-                'elaboracion': fecha_elaboracionv,
                 'atencion': observaciones_atencionv,
                 'hora': hora_recepcionv,
                 'pago': pagov,
@@ -92,12 +82,6 @@ def ventanilla(request):
             folio=foliov,
             recibo=recibov,
             importe=importev,
-            reviso=revisov,
-            motivo=motivov,
-            solicitud_servicio_catastral=solicitud_servicio_catastralv,
-            superficie_terreno=superficie_terrenov,
-            superficie_construccion_resultante=superficie_construccion_resultantev,
-            fecha_elaboracion=fecha_elaboracionv,
             observaciones_atencion=observaciones_atencionv,
             hora_recepcion=hora_recepcionv,
             pago=pagov,
@@ -136,7 +120,7 @@ def ventanilla(request):
     }
 
     return render(request, 'Registrar_Ven.html', {'datos_formulario': datos_formulario})
-
+@require_authentication(role='user')
 @require_GET
 def obtener_siguiente_id(request):
     try:
@@ -145,17 +129,17 @@ def obtener_siguiente_id(request):
     except Ventanilla.DoesNotExist:
         siguiente_id = 1  # Si no hay registros, el siguiente ID es 1
     return JsonResponse({'siguiente_id': siguiente_id})
-
+@method_decorator(require_authentication(role='user'), name='dispatch')
 class Editorven(APIView):    
     template_name="Veneditor.html"
     def get(self, request):
         ventanilla = Ventanilla.objects.all()
         return render(request, self.template_name, {'ventanilla': ventanilla})
-
+@require_authentication(role='user')
 def edicionVenta(request, codigo):
     ventanilla = Ventanilla.objects.get(nprog=codigo)
     return render(request, "Editar_Ven.html", {"ventanilla": ventanilla})
-
+@require_authentication(role='user')
 def editarVenta(request, codigo):
     if request.method == 'POST':
         claveraev = request.POST.get('claveraa')
@@ -219,24 +203,24 @@ def editarVenta(request, codigo):
         # Manejar casos donde no es una solicitud POST
         messages.error(request, 'La solicitud no es válida')
         return redirect('editorven')  # O redirigir a donde sea apropiado en tu aplicación
-
+@require_authentication(role='user')
 def eliminarVenta(request, codigo):
     ventanilla = get_object_or_404(Ventanilla, nprog=codigo)
 
     if request.method == 'GET':
         # Verificar si hay registros asociados
-        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-        if inspeccion_exists:
-            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados con las demas areas.'})
+        vitacora_exists = Vitacora.objects.filter(folio=ventanilla).exists()
+        if vitacora_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en el área de Bitácora.'})
         
         # Si no hay registros asociados, indicar que se puede eliminar
         return JsonResponse({'success': True})
 
     if request.method == 'POST':
         # Verificar si hay registros asociados antes de eliminar
-        inspeccion_exists = Inspeccion.objects.filter(nprog=ventanilla).exists()
-        if inspeccion_exists:
-            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en Inspeccion.'})
+        vitacora_exists_exists = Vitacora.objects.filter(folio=ventanilla).exists()
+        if vitacora_exists_exists:
+            return JsonResponse({'success': False, 'message': 'No se puede eliminar el registro porque tiene registros asociados en las demas áreas.'})
 
         # Eliminar el registro
         ventanilla.delete()

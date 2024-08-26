@@ -28,32 +28,32 @@ def inicio_de_sesion(request):
     if request.method == 'POST':
         username = request.POST.get('usuario')
         password = request.POST.get('contrasena')
-        
-        # Verificar si se han completado ambos campos
+
         if not (username and password):
             messages.error(request, '⚠️ Por favor, complete todos los campos.', extra_tags='warning-message')
             return redirect('inicio_de_sesion')
 
         try:
-            # Consulta la base de datos para obtener el usuario
             user = Usuarios.objects.get(usuariou=username)
-            
-            # Verifica la contraseña (hash)
+
             if check_password(password, user.contraseñau):
-                # Determina el rol del usuario
+                request.session['user_id'] = user.idUsuarios  # Guarda el ID del usuario en la sesión
                 if user.is_superUser:
-                    # Redirige al usuario administrador a la página de registro
                     return redirect('Registro')
                 else:
-                    # Redirige al usuario normal a otra página, por ejemplo 'dashboard'
-                    return redirect('Home')
+                    return redirect('Home')  # Redirige al home
             else:
-                # Manejar el caso de credenciales incorrectas
                 messages.error(request, '❌ Contraseña incorrecta. Por favor, inténtalo de nuevo.', extra_tags='error-message')
                 return redirect('inicio_de_sesion')
         except Usuarios.DoesNotExist:
-            # Manejar el caso de usuario no encontrado
             messages.error(request, '🚷 Usuario no encontrado. Por favor, acudir con el administrador para que lo registre.', extra_tags='warning-message')
             return redirect('inicio_de_sesion')
     else:
         return render(request, 'login.html')
+
+
+
+def cerrar_sesion(request):
+    # Eliminar la sesión del usuario
+    request.session.flush()
+    return redirect('inicio_de_sesion')  # Redirige a la página de inicio de sesión o a otra página

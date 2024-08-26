@@ -2,7 +2,7 @@ from django.db import models
 from ventanilla.models import Ventanilla  # Asegúrate de importar el modelo adecuado
 
 class Vitacora(models.Model):
-    ID_PREFIX = 'VIT-'  # Prefijo deseado para el ID
+    ID_PREFIX = 'BIT-'  # Prefijo deseado para el ID
     idvit = models.CharField(max_length=20, primary_key=True)
     folio = models.ForeignKey(Ventanilla, on_delete=models.CASCADE, to_field='folio')
     nombre_propietario = models.CharField(max_length=150)
@@ -17,10 +17,18 @@ class Vitacora(models.Model):
     clave_catastral = models.CharField(max_length=25)
     costo_traslado = models.CharField(max_length=25)
     observacion = models.CharField(max_length=150)
+    estado = models.CharField(
+        max_length=20, 
+        choices=[
+            ('pendiente', 'Pendiente'),
+            ('aprobado', 'Aprobado'),
+            ('desaprobado', 'Desaprobado')
+        ], 
+        default='Pendiente'
+    )
 
     class Meta:
         db_table = 'vitacora'
-
 
     def save(self, *args, **kwargs):
         if not self.idvit or not self.idvit.startswith(self.ID_PREFIX):
@@ -33,3 +41,6 @@ class Vitacora(models.Model):
             self.idvit = f'{self.ID_PREFIX}{new_id_number}'
 
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.idvit     

@@ -1,4 +1,4 @@
-{% extends "ProyectoWebApp/base.html" %}
+{% extends "ProyectoWebApp/base1.html" %}
 
 {% load static %}
 
@@ -10,17 +10,14 @@
 </h3>-->
 
    <!-- Heading -->
-   <br>
-   <br>
-   <br>
-   <br>
-   
+
    <section class="page-section clearfix">
     <div class="container">
       <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'ProyectoWebApp/img/catadeb.jpg' %}" alt="">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'ProyectoWebApp/img/catareg.jpeg' %}" alt="">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
           <h2 class="section-heading mb-4" >
+            <span class="section-heading-upper">BIENVENIDO</span>
             <span class="section-heading-upper">CHIMALHUACAN</span>
             <span class="section-heading-lower">CATASTRO</span>
           </h2>
@@ -32,6 +29,8 @@
     </div>
   </section>
 
+  
+  <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'ProyectoWebApp/img/chima_2.jpg' %}" alt="" style="width: 80vw; height: 95vh; margin-left: 9%;" >
 
   
     <!-- Message -->
@@ -51,5 +50,6 @@
       </div>
     </section>
 
+  
 
     {% endblock %}

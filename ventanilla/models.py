@@ -22,10 +22,14 @@ class Ventanilla(models.Model):
     superficie_terreno = models.CharField(max_length=150)  
     superficie_construccion_resultante = models.CharField(max_length=150)  
     fecha_elaboracion = models.CharField(max_length=25)  
-    observaciones_atencion = models.CharField(max_length=25)  
+    observaciones_atencion = models.CharField(max_length=125)  
     hora_recepcion = models.CharField(max_length=25)  
     pago = models.CharField(max_length=25)  
     extras = models.CharField(max_length=150)  
 
     class Meta:
         db_table = 'ventanilla'
+
+
+    def __str__(self):
+        return self.folio     

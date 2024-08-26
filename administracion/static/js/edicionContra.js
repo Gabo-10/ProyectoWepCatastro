@@ -85,6 +85,7 @@ document.getElementById('adminPasswordForm').addEventListener('submit', function
     })
     .then(response => response.json())
     .then(data => {
+        document.getElementById('adminPasswordModal').style.display = 'none';
         if (data.success) {
             // Admin verificado, submit the password form
             document.getElementById('passwordForm').submit();

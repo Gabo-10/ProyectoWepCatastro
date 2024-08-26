@@ -30,6 +30,20 @@ inputBusqueda.addEventListener('input', function() {
   }
 });
 
+document.querySelector('.tabla-contenedor table tbody').addEventListener("click", function(event) {
+  if (event.target.tagName === "TD") {
+    // Eliminar la clase 'selected-row' de todas las filas
+    for (const fila of filasCartografia) {
+      fila.classList.remove('selected-row');
+    }
+
+    // Agregar la clase 'selected-row' a la fila seleccionada
+    var row = event.target.parentNode;
+    row.classList.add('selected-row');
+
+  }
+  
+});
 
 
 

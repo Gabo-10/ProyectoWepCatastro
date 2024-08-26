@@ -13,12 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const txtfolio = document.getElementById('txtfolio');
   const txtrecibo = document.getElementById('txtrecibo');
   const txtimporte = document.getElementById('txtimporte');
-  const txtreviso = document.getElementById('txtreviso');
-  const txtmotivo = document.getElementById('txtmotivo');
-  const txtsoliservi = document.getElementById('txtsoliservi');
-  const txtterrreno = document.getElementById('txtterrreno');
-  const txtconstruc = document.getElementById('txtconstruc');
-  const txtelaboracion = document.getElementById('txtelaboracion');
   const txtatencion = document.getElementById('txtatencion');
   const txthora = document.getElementById('txthora');
   const txtpago = document.getElementById('txtpago');
@@ -28,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Agregar evento limpiarEspacioFinal al presionar una tecla en los campos 
   txtprog.addEventListener("blur", limpiarEspacioFinal);
-  txtclavera .addEventListener("blur", limpiarEspacioFinal);
   txtnombre.addEventListener("blur", limpiarEspacioFinal);
   txtcurp.addEventListener("blur", limpiarEspacioFinal);
   txtmanzana.addEventListener("blur", limpiarEspacioFinal);
@@ -41,12 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtfolio.addEventListener("blur", limpiarEspacioFinal);
   txtrecibo.addEventListener("blur", limpiarEspacioFinal);
   txtimporte.addEventListener("blur", limpiarEspacioFinal);
-  txtreviso.addEventListener("blur", limpiarEspacioFinal);
-  txtmotivo.addEventListener("blur", limpiarEspacioFinal);
-  txtsoliservi.addEventListener("blur", limpiarEspacioFinal);
-  txtterrreno.addEventListener("blur", limpiarEspacioFinal);
-  txtconstruc.addEventListener("blur", limpiarEspacioFinal);
-  txtelaboracion.addEventListener("blur", limpiarEspacioFinal);
   txtatencion.addEventListener("blur", limpiarEspacioFinal);
   txthora.addEventListener("blur", limpiarEspacioFinal);
   txtpago.addEventListener("blur", limpiarEspacioFinal);
@@ -62,11 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtentidad.addEventListener("keyup", validarCampo);
   txtfolio.addEventListener("keyup", validarCampo);
   txtrecibo.addEventListener("keyup", validarCampo);
-  txtreviso.addEventListener("keyup", validarCampo);
-  txtmotivo.addEventListener("keyup", validarCampo);
-  txtsoliservi.addEventListener("keyup", validarCampo);
-  txtterrreno.addEventListener("keyup", validarCampo);
-  txtconstruc.addEventListener("keyup", validarCampo);
   txtextras.addEventListener("keyup", validarCampo);
   
   // Agregar evento validarCampo2 al presionar una tecla en los campos
@@ -76,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtmunicipio.addEventListener("keyup", validarCampo2);
   txtfecha.addEventListener("keyup", validarCampo2);
   txtimporte.addEventListener("keyup", validarCampo2);
-  txtelaboracion.addEventListener("keyup", validarCampo2);
   txtatencion.addEventListener("keyup", validarCampo2);
   txthora.addEventListener("keyup", validarCampo2);
   txtpago.addEventListener("keyup", validarCampo2);
@@ -97,12 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
   txtfolio.addEventListener("blur", convertirMayusculas);
   txtrecibo.addEventListener("blur", convertirMayusculas);
   txtimporte.addEventListener("blur", convertirMayusculas);
-  txtreviso.addEventListener("blur", convertirMayusculas);
-  txtmotivo.addEventListener("blur", convertirMayusculas);
-  txtsoliservi.addEventListener("blur", convertirMayusculas);
-  txtterrreno.addEventListener("blur", convertirMayusculas);
-  txtconstruc.addEventListener("blur", convertirMayusculas);
-  txtelaboracion.addEventListener("blur", convertirMayusculas);
   txtatencion.addEventListener("blur", convertirMayusculas);
   txthora.addEventListener("blur", convertirMayusculas);
   txtpago.addEventListener("blur", convertirMayusculas);
@@ -111,9 +86,17 @@ document.addEventListener("DOMContentLoaded", function() {
   // Agregar evento validarCampo3 al presionar una tecla en los campos
   txtnombre.addEventListener("keyup", validarCampo3);
 
-  // Agregar evento validarCampo3 al presionar una tecla en los campos
+  // Agregar evento validarCampo4 al presionar una tecla en los campos
 
   txtfecha.addEventListener("keyup", validarCampo4);
+  txtclavera.addEventListener("keyup", validarCampo4);
+
+// Agregar evento validarCampo5 al presionar una tecla en los campos
+  txtatencion.addEventListener("keyup", validarCampo5);
+
+  
+
+
 
 
 
@@ -130,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const input = event.target;
   let valor = input.value;
   // Limitar la longitud máxima del valor a 150 caracteres
-  if (valor.length > 25) {
-    valor = valor.slice(0, 25);
+  if (valor.length > 24) {
+    valor = valor.slice(0, 24);
   }
   // Eliminar espacio al final si no hay más texto después de un espacio
   if (valor.endsWith(' ')) {
@@ -154,6 +137,27 @@ function validarCampo2(event) {
   // Limitar la longitud máxima del valor a 50 caracteres
   if (valor.length > 150) {
     valor = valor.slice(0, 150);
+  }
+  // Eliminar espacio al final si no hay más texto después de un espacio
+  if (valor.endsWith(' ')) {
+    valor = valor.trim() + ' ';
+  }
+  // Eliminar espacio al principio
+  if (valor.startsWith(' ')) {
+    valor = valor.trimStart();
+  }
+  // Permitir solo un espacio entre nombrs
+  valor = valor.replace(/\s{2,}/g, ' ');
+  input.value = valor;
+}
+
+
+function validarCampo5(event) {
+  const input = event.target;
+  let valor = input.value;
+  // Limitar la longitud máxima del valor a 50 caracteres
+  if (valor.length > 125) {
+    valor = valor.slice(0, 125);
   }
   // Eliminar espacio al final si no hay más texto después de un espacio
   if (valor.endsWith(' ')) {
@@ -251,4 +255,73 @@ document.querySelector('.btn-listaven').addEventListener('click', function(event
 });
 
 
+// campo para poner los guiones cada 4 
 
+txtclavera.addEventListener("input", function() {
+  formatClave(this);
+});
+
+txtclavera.addEventListener("blur", function() {
+  formatClave(this); 
+});
+
+function formatClave(input) {
+  let value = input.value.replace(/\W/g, ''); // Elimina cualquier carácter no alfanumérico
+  let formattedValue = '';
+
+  for (let i = 0; i < value.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formattedValue += '-';
+    }
+    formattedValue += value[i];
+  }
+
+  // Elimina el guion final si existe
+  if (formattedValue.endsWith('-')) {
+    formattedValue = formattedValue.slice(0, -1);
+  }
+
+  input.value = formattedValue;
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const txtimporte = document.getElementById("txtimporte");
+  const txtpago = document.getElementById("txtpago");
+  const txtextras = document.getElementById("txtextras");
+
+  // Aplicar formato al escribir y al perder el foco
+  [txtimporte, txtpago, txtextras].forEach(input => {
+    input.addEventListener("input", function() {
+      formatCurrency(this);
+    });
+
+    input.addEventListener("blur", function() {
+      formatCurrency(this); // Aplicar formato también al perder el foco
+    });
+  });
+});
+
+function formatCurrency(input) {
+  let value = input.value.replace(/[^0-9.]/g, ''); // Elimina cualquier carácter no numérico ni punto
+
+  // Convertir a número flotante para manejar los centavos
+  let numericValue = parseFloat(value);
+  if (isNaN(numericValue)) {
+    numericValue = 0;
+  }
+
+  // Formatear el número con comas y punto decimal
+  let formattedValue = numericValue.toLocaleString('es-MX', { // Para pesos mexicanos
+    style: 'currency',
+    currency: 'MXN',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  // Reemplazar el símbolo de moneda por el símbolo deseado
+  formattedValue = formattedValue.replace('$', '');
+  formattedValue = `$${formattedValue}`;
+
+  input.value = formattedValue;
+}

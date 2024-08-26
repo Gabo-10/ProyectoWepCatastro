@@ -4,6 +4,7 @@ const nombressre = document.getElementById("txtnombrere");
   // Agregar evento de validación al presionar una tecla en los campos de nombres y apellidos
   nombressre.addEventListener("keyup", validarCampo);
   nombressre.addEventListener("blur", limpiarEspacioFinal);
+  nombressre.addEventListener("blur", convertirMayusculas);
  
 
 
@@ -13,8 +14,8 @@ const nombressre = document.getElementById("txtnombrere");
     let valor = input.value;
   
     // Limitar la longitud máxima del valor
-    if (valor.length > 45) {
-      valor = valor.slice(0, 45);
+    if (valor.length > 150) {
+      valor = valor.slice(0, 150);
     }
   
     // Verificar si el valor contiene caracteres no permitidos
@@ -46,7 +47,15 @@ const nombressre = document.getElementById("txtnombrere");
     // Actualizar el valor del campo
     input.value = valor;
   }
-  
+  function convertirMayusculas(event) {
+    const input = event.target;
+    let valor = input.value;
+    // Convertir el valor a mayúsculas
+    valor = valor.toUpperCase();
+    // Actualizar el valor del campo
+    input.value = valor;
+  }
+
   
   function goToinspeciones() {
     window.location.href = '/inspeccion/inspeccion/';
